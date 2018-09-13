@@ -1,14 +1,13 @@
 export default {
   // Set this to the base URL of your sample server, such as 'https://your-app-name.herokuapp.com'.
   // Do not include the trailing slash. See the README for more information:
-  SAMPLE_SERVER_BASE_URL: 'http://YOUR-SERVER-URL',
+  SAMPLE_SERVER_BASE_URL: 'https://doctestapp.herokuapp.com/',
   // OR, if you have not set up a web server that runs the learning-opentok-php code,
   // set these values to OpenTok API key, a valid session ID, and a token for the session.
   // For test purposes, you can obtain these from https://tokbox.com/account.
-  API_KEY: '46185802',
-  SESSION_ID: '1_MX40NjE4NTgwMn5-MTUzNjYwODM0MTkxOH5IVDBLM3NDV01SUkRTRkNOMSt3NW14RWZ-fg',
+  API_KEY: '46168292',
+  SESSION_ID: '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg',
   // tslint:disable-next-line:max-line-length
-
   // tslint:disable-next-line:max-line-length
-  TOKEN: 'T1==cGFydG5lcl9pZD00NjE1MjQ1MiZzaWc9YTdhNjEwZmUwODJlMTAzYjViMmM1ZDJjYjM0NDI2N2QxOWRhM2I1YTpzZXNzaW9uX2lkPTJfTVg0ME5qRTFNalExTW41LU1UVXpORFV5TnprNU1UWTBOSDV6ZW5SdGNtNTBXbHBMU0U0d05XdFRRVlp1VVhZclNrWi1VSDQmY3JlYXRlX3RpbWU9MTUzNDUyODAyNCZub25jZT0wLjA3Mzg3MzA5MTU4MTM5NTIxJnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1MzcxMjAwMjImaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0='
+  TOKEN: 'T1==cGFydG5lcl9pZD00NjE2ODI5MiZzaWc9OTc1YTU3MGQ4Y2NjYjZiOWYyNjc3YTYzNzYwNGZiY2M4ZDBiZTFhODpzZXNzaW9uX2lkPTJfTVg0ME5qRTJPREk1TW41LU1UVXpOamcyT0RVek5qYzRPWDV0WTBGdVJrUXdVRXhoUTIxc1dITkRNVkU1Y0ZGYWVubC1mZyZjcmVhdGVfdGltZT0xNTM2ODY4NTUyJm5vbmNlPTAuNzE2MjIxODgwOTQ2Njg4OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTM5NDYwNTQ0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9'
 };
