@@ -14,10 +14,8 @@ export class OpentokService {
   getOT() {
     return OT;
   }
-  settoken(token ) {
-    this.token = token;
-  }
   initSession() {
+    this.token = config.TOKEN;
     if (config.API_KEY && config.TOKEN && config.SESSION_ID) {
       this.session = this.getOT().initSession(config.API_KEY, config.SESSION_ID);
       console.log('Token ID ' , this.token);
