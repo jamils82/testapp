@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PublisherComponent } from './publisher/publisher.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
@@ -15,6 +16,8 @@ import { HttpClientModule, HttpClient , HttpHandler } from '@angular/common/http
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
     HttpClientModule
   ],
   providers: [

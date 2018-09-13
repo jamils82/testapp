@@ -50,12 +50,15 @@
         width: 40%;
         margin: 0 auto;
         margin-top: 10%;
-        height: 60vh;
+        height: 40vh;
         text-align: center;  
         border-radius: 10px;
     }
     .example-full-width {
       width: 40%;
+    }
+    mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored{
+        width: 100%;
     }
     ::ng-deep .mat-form-field-underline {
       display: none;   
