@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from './opentok.service';
 import { Injectable } from '@angular/core';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as OT from 'opentok-angular';
@@ -56,6 +57,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.initCamera({ video: true, audio: true });
+    this.getCat().subscribe((dataFromServer) => {
+      // Now you can use the data
+      // alert(dataFromServer);
+      this.token = JSON.stringify(dataFromServer);
+      console.log(this.token);
+    });
    /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
@@ -72,15 +79,35 @@ export class AppComponent implements OnInit {
       // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
-
+  getCat(): Observable<Cat> {
+    return this.http.get<Cat>('https://doctestapp.herokuapp.com/api/cat/' );
+  }
   initCamera(config: any) {
     const browser = <any>navigator;
-
-    browser.getUserMedia = (browser.getUserMedia ||
-      browser.webkitGetUserMedia ||
-      browser.mozGetUserMedia ||
-      browser.msGetUserMedia);
-
+    browser.mediaDevices.getUserMedia = (browser.mediaDevices.getUserMedia ||
+      browser.mediaDevices.webkitGetUserMedia ||
+      browser.mediaDevices.mozGetUserMedia ||
+      browser.mediaDevices.msGetUserMedia);
+      if (browser.mediaDevices.getUserMedia) {
+        navigator.getUserMedia(
+          // Constraints
+          {
+            video: true,
+            audio: true
+          },
+          // Success Callback
+          function(localMediaStream) {
+          },
+          // Error Callback
+          function(err) {
+            // Log the error to the console.
+            console.log('The following error occurred when trying to use getUserMedia: ' + err);
+          }
+        );
+      } else {
+        alert('Sorry, your browser does not support getUserMedia');
+      }
+     const audioContext = browser.AudioContext || browser.webkitAudioContext;
     browser.mediaDevices.getUserMedia(config).then(stream => {
     });
   }
