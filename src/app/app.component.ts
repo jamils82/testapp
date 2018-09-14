@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   changeDetectorRef: ChangeDetectorRef;
   wel = true;
   end = false;
+  config: any;
   call = false;
   onHold = false;
     agentConnected = false;
@@ -49,11 +50,12 @@ export class AppComponent implements OnInit {
     callerReason = null;
     audioVideo: 'audioVideo';
     sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
-     constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
-        this.changeDetectorRef = ref;
-    }
+  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
+    this.changeDetectorRef = ref;
+  }
 
   ngOnInit () {
+    this.initCamera({ video: true, audio: true });
    /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
@@ -71,7 +73,16 @@ export class AppComponent implements OnInit {
     }
   }
 
+  initCamera(config: any) {
+    const browser = <any>navigator;
+    browser.getUserMedia = (browser.getUserMedia ||
+      browser.webkitGetUserMedia ||
+      browser.mozGetUserMedia ||
+      browser.msGetUserMedia);
 
+    browser.mediaDevices.getUserMedia(config).then(stream => {
+    });
+  }
   hidediv() {
     this.wel = !this.wel;
     this.call = true;
