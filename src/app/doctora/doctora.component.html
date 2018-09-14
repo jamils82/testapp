@@ -1,18 +1,4 @@
-<html>
-  <body>
-<div class="maindiv" *ngIf="wel">
-    <h1>Welcome</h1>
-  <p>Please provide your Name</p>
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <input  matInput >
-    </mat-form-field>
-  </form> 
-  <div class="button-row" >
-    <button mat-raised-button color="primary" (click) ="hidediv()"  >Start Call</button>
-    </div>
- 
-</div>
+
 <div *ngIf="call" >
   <h1>Welcome to Doctors Waiting Room</h1>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
@@ -21,6 +7,4 @@
   <app-subscriber class="subscriber" *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
 </div>
 </div>
-</body>
-</html>
 

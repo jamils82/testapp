@@ -1,27 +1,20 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { OpentokService } from './opentok.service';
+import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as OT from 'opentok-angular';
-import {DoctoraComponent} from './doctora/doctora.component';
 import { cleanSession } from 'selenium-webdriver/safari';
 export interface Cat {
   name: string;
 }
-
-const appRoutes: Routes = [
-  { path: 'doctora',  component: DoctoraComponent },
-];
-
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-doctora',
+  templateUrl: './doctora.component.html',
+  styleUrls: ['./doctora.component.css'],
   providers: [ OpentokService ]
 })
-export class AppComponent implements OnInit {
+export class DoctoraComponent implements OnInit {
+
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
@@ -44,7 +37,7 @@ export class AppComponent implements OnInit {
     callerReason = null;
     audioVideo: 'audioVideo';
     sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
-  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
+  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient) {
     this.changeDetectorRef = ref;
   }
 
@@ -107,4 +100,5 @@ export class AppComponent implements OnInit {
     this.wel = !this.wel;
     this.call = !this.call;
   }
+
 }
