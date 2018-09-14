@@ -75,6 +75,7 @@ export class AppComponent implements OnInit {
 
   initCamera(config: any) {
     const browser = <any>navigator;
+
     browser.getUserMedia = (browser.getUserMedia ||
       browser.webkitGetUserMedia ||
       browser.mozGetUserMedia ||
