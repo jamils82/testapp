@@ -35,7 +35,8 @@ app.use(function (req, res, next) {
 app.route('/api/cat').get((req, res) => {
     const token = opentok.generateToken(sessId, {
       role: 'publisher'});
-    res.send( JSON.stringify(token) );
+      console.log(JSON.stringify(token));
+    res.send( token );
     
   });
 // Start the app by listening on the default Heroku port
