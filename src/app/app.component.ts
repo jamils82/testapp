@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     this.getCat().subscribe((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
-      this.token = JSON.stringify(dataFromServer);
+      this.token = dataFromServer;
       console.log(this.token);
     });
    /* this.getCat().subscribeOn((dataFromServer) => {
