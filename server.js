@@ -3,7 +3,13 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-
+const cors = require('cors')
+var corsOptions = {
+    origin: 'https://doctestapp.herokuapp.com/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+  }
+  
+  app.use(cors(corsOptions))
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
 
