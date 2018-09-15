@@ -4,12 +4,7 @@ const path = require('path');
 
 const app = express();
 const cors = require('cors')
-var corsOptions = {
-    origin: 'https://doctestapp.herokuapp.com/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
-  }
-  
-  app.use(cors(corsOptions))
+
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
 
@@ -22,7 +17,7 @@ res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://doctestapp.herokuapp.com/');
   
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

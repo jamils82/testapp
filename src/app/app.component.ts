@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
     this.initCamera({ video: true, audio: true });
     this.getCat().subscribe((dataFromServer) => {
       // Now you can use the data
-      // alert(dataFromServer);
+      console.log(dataFromServer);
       console.log(JSON.stringify(dataFromServer));
       this.token = JSON.stringify(dataFromServer);
      // console.log(this.token);
