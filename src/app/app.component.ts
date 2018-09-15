@@ -81,7 +81,7 @@ export class AppComponent implements OnInit {
     }
   }
   getCat(): Observable<Cat> {
-    return this.http.get<Cat>('https://doctestapp.herokuapp.com/api/cat/' );
+    return this.http.get<Cat>('https://doctestapp.herokuapp.com/api/cat/' + this.sessionId );
   }
   initCamera(config: any) {
     const browser = <any>navigator;

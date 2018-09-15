@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
     next();
   });
   
-app.route('/api/cat').get((req, res) => {
+app.route('/api/cat' + sessId).get((req, res) => {
     const token = opentok.generateToken(sessId, {
       role: 'publisher'});
       console.log(JSON.stringify(token));
