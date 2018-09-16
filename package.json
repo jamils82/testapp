@@ -31,7 +31,8 @@
     "path": "^0.12.7",
     "rxjs": "~6.2.0",
     "typescript": "~2.9.2",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "opentok": "^2.7.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
