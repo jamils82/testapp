@@ -77,6 +77,7 @@ export class AppComponent implements OnInit {
     return this.http.get('https://doctestapp.herokuapp.com', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
       this.token = JSON.stringify(data);
+      alert(this.token);
       console.log(this.token);
     });
   }
