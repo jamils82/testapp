@@ -11,8 +11,9 @@
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv()"  >Start Call</button>
     </div>
-  
+ 
 </div>
+<router-outlet></router-outlet>
 <div *ngIf="call" >
   <h1>Welcome to Doctors Waiting Room</h1>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>

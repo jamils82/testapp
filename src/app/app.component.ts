@@ -6,16 +6,11 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as OT from 'opentok-angular';
 import {DoctoraComponent} from './doctora/doctora.component';
+import { appRoutes } from './routes';
 import { cleanSession } from 'selenium-webdriver/safari';
 export interface Cat {
   name: string;
 }
-
-const appRoutes: Routes = [
-  { path: 'doctora',  component: DoctoraComponent },
-];
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,7 +21,7 @@ export class AppComponent implements OnInit {
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
-  token: string;
+  token = '123';
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
   wel = true;
@@ -56,15 +51,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.initCamera({ video: true, audio: true });
-    this.getCat().subscribe((dataFromServer) => {
-      // Now you can use the data
+    this.getCat();
+   /* this.getCat().subscribe( dataFromServer => {
       console.log(dataFromServer);
-      console.log(JSON.stringify(dataFromServer));
-      this.token = JSON.stringify(dataFromServer);
-     // console.log(this.token);
-    });
-   /* this.getCat().subscribeOn((dataFromServer) => {
+     this.token = JSON.stringify(dataFromServer);
+     alert(this.token);
+     });
+    this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
       this.token = JSON.stringify(dataFromServer);
@@ -80,8 +73,12 @@ export class AppComponent implements OnInit {
       // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
-  getCat(): Observable<Cat> {
-    return this.http.get<Cat>('https://doctestapp.herokuapp.com/api/cat/' + this.sessionId );
+  getCat() {
+    return this.http.get('https://doctestapp.herokuapp.com', {responseType: 'text'}).subscribe( data => {
+      // console.log(data);
+      this.token = JSON.stringify(data);
+      console.log(this.token);
+    });
   }
   initCamera(config: any) {
     const browser = <any>navigator;
@@ -113,7 +110,8 @@ export class AppComponent implements OnInit {
     });
   }
   hidediv() {
-    this.wel = !this.wel;
+    this.route.navigate(['/doctorb']);
+    /*this.wel = !this.wel;
     this.call = true;
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
@@ -135,7 +133,7 @@ export class AppComponent implements OnInit {
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
-    });
+    });*/
   }
   onSubmit() {
    /* // tslint:disable-next-line:max-line-length
