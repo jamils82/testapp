@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
     }
   }
   getCat() {
-    return this.http.get('https://doctestapp.herokuapp.com', {responseType: 'text'}).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
       this.token = JSON.stringify(data);
       alert(this.token);
