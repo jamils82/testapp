@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
-const cors = require('cors')
   const apiKey=  '46168292';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
