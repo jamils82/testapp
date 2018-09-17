@@ -32,7 +32,7 @@ export class PatientComponent implements OnInit {
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
-      // this.token = data;
+       this.token = data;
       // alert(this.token);
       console.log(this.token);
     });
