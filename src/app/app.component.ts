@@ -99,6 +99,7 @@ export class AppComponent implements OnInit {
   hidediv() {
     this.opentokService.gettoken(JSON.stringify(this.token));
     // this.route.navigate(['/doctorb']);
+    console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.call = true;
     this.end = true;
