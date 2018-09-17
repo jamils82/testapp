@@ -28,6 +28,7 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
     this.route.navigate(['./patient']);
+    this.getCat();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -39,7 +40,7 @@ export class PatientComponent implements OnInit {
   }
   hidediv() {
      this.opentokService.gettoken(this.token);
-    // console.log(JSON.stringify(this.token));
+     console.log(JSON.stringify(this.token));
      this.wel = !this.wel;
      this.call = true;
      this.end = true;
