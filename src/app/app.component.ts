@@ -52,20 +52,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.getCat();
-   /* this.getCat().subscribe( dataFromServer => {
-      console.log(dataFromServer);
-     this.token = JSON.stringify(dataFromServer);
-     alert(this.token);
-     });
-    this.getCat().subscribeOn((dataFromServer) => {
-      // Now you can use the data
-      // alert(dataFromServer);
-      this.token = JSON.stringify(dataFromServer);
-      console.log(this.token);
-      this.opentokService.settoken(dataFromServer);
-    });
-    // console.log(this.getAllCats());
-  */
+    this.opentokService.gettoken(this.token);
   }
   errorHandler(err) {
     if (err && err.message) {
@@ -77,7 +64,7 @@ export class AppComponent implements OnInit {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
       this.token = JSON.stringify(data);
-      //alert(this.token);
+      // alert(this.token);
       console.log(this.token);
     });
   }
@@ -111,8 +98,8 @@ export class AppComponent implements OnInit {
     });
   }
   hidediv() {
-    this.route.navigate(['/doctorb']);
-    /*this.wel = !this.wel;
+    // this.route.navigate(['/doctorb']);
+    this.wel = !this.wel;
     this.call = true;
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
@@ -134,7 +121,7 @@ export class AppComponent implements OnInit {
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
-    });*/
+    });
   }
   onSubmit() {
    /* // tslint:disable-next-line:max-line-length
