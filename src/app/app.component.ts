@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.getCat();
+    this.initCamera({audio : true , video: true});
   }
   errorHandler(err) {
     if (err && err.message) {
@@ -65,6 +66,35 @@ export class AppComponent implements OnInit {
       this.token = data;
       // alert(this.token);
       console.log(this.token);
+    });
+  }
+  initCamera(config: any) {
+    const browser = <any>navigator;
+    browser.mediaDevices.getUserMedia = (browser.mediaDevices.getUserMedia ||
+      browser.mediaDevices.webkitGetUserMedia ||
+      browser.mediaDevices.mozGetUserMedia ||
+      browser.mediaDevices.msGetUserMedia);
+      if (browser.mediaDevices.getUserMedia) {
+        navigator.getUserMedia(
+          // Constraints
+          {
+            video: true,
+            audio: true
+          },
+          // Success Callback
+          function(localMediaStream) {
+          },
+          // Error Callback
+          function(err) {
+            // Log the error to the console.
+            console.log('The following error occurred when trying to use getUserMedia: ' + err);
+          }
+        );
+      } else {
+        alert('Sorry, your browser does not support getUserMedia');
+      }
+     const audioContext = browser.AudioContext || browser.webkitAudioContext;
+    browser.mediaDevices.getUserMedia(config).then(stream => {
     });
   }
   hidediv() {
