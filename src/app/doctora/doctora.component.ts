@@ -102,7 +102,7 @@ export class DoctoraComponent implements OnInit {
     });
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/cat' +  name , {responseType: 'text'}).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cats' +  name , {responseType: 'text'}).subscribe( data => {
       // console.log(data);
        this.callerName = data;
       // alert(this.token);

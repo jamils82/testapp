@@ -30,6 +30,7 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.route.navigate(['./patient']);
     this.getCat();
+    this.insertCat();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -40,7 +41,7 @@ export class PatientComponent implements OnInit {
     });
   }
   insertCat() {
-    return this.http.put('https://doctestapp.herokuapp.com/api/cat', name );
+    return this.http.put('https://doctestapp.herokuapp.com/api/cats', this.name  );
   }
   hidediv() {
      this.opentokService.gettoken(this.token);
