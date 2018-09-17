@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
   });
   app.route('/doctorb'.get ((req,res) => {
     res.sendFile(path.join(__dirname + '/src/doctorb/doctor.html' ))
-  }))
+  }));
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
