@@ -47,6 +47,7 @@ export class DoctoraComponent implements OnInit {
   ngOnInit () {
     this.route.navigate(['/doctora']);
     this.getCat();
+    this.getSess();
     this.hidediv();
     /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
