@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import * as OT from 'opentok-angular';
-
 import {  RouterModule, Routes, Router } from '@angular/router';
 @Component({
   selector: 'app-patient',
@@ -25,13 +24,21 @@ export class PatientComponent implements OnInit {
       width: '100%',
       height: '100%'
     };
-  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private route: Router ) { }
+  constructor(private ref: ChangeDetectorRef, private http: HttpClient, private opentokService: OpentokService, private route: Router ) { }
 
   ngOnInit() {
     this.route.navigate(['./patient']);
   }
+  getCat() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
+      // console.log(data);
+      // this.token = data;
+      // alert(this.token);
+      console.log(this.token);
+    });
+  }
   hidediv() {
-    // this.opentokService.gettoken(this.token);
+     this.opentokService.gettoken(this.token);
     // console.log(JSON.stringify(this.token));
      this.wel = !this.wel;
      this.call = true;
