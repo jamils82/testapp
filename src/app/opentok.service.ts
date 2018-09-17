@@ -11,13 +11,13 @@ export class OpentokService {
 
   constructor() { }
   gettoken(tokenid: string) {
-     this.token = tokenid;
+    // this.token = tokenid;
   }
   getOT() {
     return OT;
   }
   initSession() {
-   //  this.token = config.TOKEN;
+     this.token = config.TOKEN;
     if (config.API_KEY && config.TOKEN && config.SESSION_ID) {
       this.session = this.getOT().initSession(config.API_KEY, config.SESSION_ID);
     //  console.log('Token ID ' , this.token);
