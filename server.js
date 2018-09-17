@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
     const token = opentok.generateToken(SESSION_ID, {
       role: 'publisher'});
       console.log(JSON.stringify(token));
-    res.send( token );
+    res.send( JSON.stringify(token) );
   });
   app.route('/api/cats/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
