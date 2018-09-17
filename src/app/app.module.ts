@@ -11,10 +11,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { DoctoraComponent } from './doctora/doctora.component';
 import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
-
+import { DoctorComponent } from './doctor/doctor.component';
+import { PatientComponent } from './patient/patient.component';
 const appRoutes: Routes = [
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'doctorb', component: DoctorbComponent },
+  { path : 'doctor', component: DoctorComponent  },
+  {path : 'patient' , component : PatientComponent }
 ];
 
 
@@ -25,7 +28,9 @@ const appRoutes: Routes = [
     SubscriberComponent,
     DoctoraComponent,
     PagenotfoundComponent,
-    DoctorbComponent
+    DoctorbComponent,
+    DoctorComponent,
+    PatientComponent
   ],
   imports: [
     BrowserModule,

@@ -31,9 +31,17 @@
   }
   .endbut {
     width: 25vh;
-    background: #f44336;
+    background: #2d72b4;
     color: white;
     height : 50px;
+    border-radius: 10px;
+  }
+  .docbut {
+    width: 25vh;
+    background: #2d72b4;
+    color: white;
+    height : 50px;
+    margin-left  : 20px;
     border-radius: 10px;
   }
   .example-form {

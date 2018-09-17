@@ -1,6 +1,8 @@
+<base href="/">
 
-<div *ngIf="call" >
-  <h1>Welcome to Doctors Waiting Room</h1>
+<div>
+  <h1>Welcome Doctor</h1>
+  <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
   <app-publisher class="publisher" [session]="session"></app-publisher>

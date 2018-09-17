@@ -17,13 +17,14 @@
   }
   .button-row button,
   .button-row a {
-    margin-top: 8%;  
+    margin: 0 auto;
+    align-self: auto;
     margin-right: 8px;
     height: 30px;
     font-size: 18px;
     border-radius: 10px;
     background: #2d72b4;
-    width: 80%;
+    width: 15%;
     color: white;
   }
   p {
@@ -32,6 +33,13 @@
   .endbut {
     width: 25vh;
     background: #f44336;
+    color: white;
+    height : 50px;
+    border-radius: 10px;
+  }
+  .callbut {
+    width: 25vh;
+    background: #2d72b4;
     color: white;
     height : 50px;
     border-radius: 10px;

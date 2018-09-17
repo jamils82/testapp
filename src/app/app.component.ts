@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
    // this.getCat();
-    this.initCamera({audio : true , video: true});
+   this.route.navigate(['/doctor']);
   }
   errorHandler(err) {
     if (err && err.message) {
@@ -56,38 +56,9 @@ export class AppComponent implements OnInit {
       console.log(this.token);
     });
   }
-  initCamera(config: any) {
-    const browser = <any>navigator;
-    browser.mediaDevices.getUserMedia = (browser.mediaDevices.getUserMedia ||
-      browser.mediaDevices.webkitGetUserMedia ||
-      browser.mediaDevices.mozGetUserMedia ||
-      browser.mediaDevices.msGetUserMedia);
-      if (browser.mediaDevices.getUserMedia) {
-        navigator.getUserMedia(
-          // Constraints
-          {
-            video: true,
-            audio: true
-          },
-          // Success Callback
-          function(localMediaStream) {
-          },
-          // Error Callback
-          function(err) {
-            // Log the error to the console.
-            console.log('The following error occurred when trying to use getUserMedia: ' + err);
-          }
-        );
-      } else {
-        alert('Sorry, your browser does not support getUserMedia');
-      }
-     const audioContext = browser.AudioContext || browser.webkitAudioContext;
-    browser.mediaDevices.getUserMedia(config).then(stream => {
-    });
-  }
   hidediv() {
    // this.opentokService.gettoken(this.token);
-    // this.route.navigate(['/doctorb']);
+     this.route.navigate(['/doctorb']);
    // console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.call = true;
@@ -127,5 +98,13 @@ export class AppComponent implements OnInit {
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
+  }
+  doctor() {
+    this.wel = !this.wel;
+    this.route.navigate(['/doctora']);
+  }
+  patient() {
+    this.wel = !this.wel;
+    this.route.navigate(['/doctorb']);
   }
 }

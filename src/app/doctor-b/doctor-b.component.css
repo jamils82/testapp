@@ -1,0 +1,86 @@
+.subscriber {
+    display: block;
+    float: right;
+    width: 90%;
+    height: 70vh;
+    margin-top: 10px;
+    position: absolute;
+    z-index: -1;
+  }
+  .publisher {
+    position: relative;
+    width: 22%;
+    margin-top: 3%;
+    opacity: 500;
+    float: left;
+    height: 30vh;
+  }
+  .button-row button,
+  .button-row a {
+    margin-top: 8%;  
+    margin-right: 8px;
+    height: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: #2d72b4;
+    width: 80%;
+    color: white;
+  }
+  p {
+      font-size: 20px;
+  }
+  .endbut {
+    width: 25vh;
+    background: #2d72b4;
+    color: white;
+    height : 50px;
+    border-radius: 10px;
+  }
+  .docbut {
+    width: 25vh;
+    background: #2d72b4;
+    color: white;
+    height : 50px;
+    margin-left  : 20px;
+    border-radius: 10px;
+  }
+  .example-form {
+      min-width: 80%;
+      max-width: 80%;
+      width: 100%;
+      margin: 0 auto;
+      font-size: 18px;
+      margin-top: 5%;
+      background-color: #f4f6f5;
+    }
+    .maindiv {
+        background: #e6e6e6;
+        width: 40%;
+        margin: 0 auto;
+        margin-top: 10%;
+        height: 40vh;
+        text-align: center;  
+        border-radius: 10px;
+    }
+    .example-full-width {
+      width: 40%;
+    }
+    mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored{
+        width: 100%;
+    }
+    ::ng-deep .mat-form-field-underline {
+      display: none;   
+     }
+     html, body { height: 100%; width: 100%; margin: 0; }
+    
+     input {
+       line-height: 4px;
+       height: 20%;
+     }
+     .mat-input-infix mat-form-field-infix{
+       height: 5%;
+     }
+     ::ng-deep .mat-input-wrapper{
+      font-size: 16px;
+      margin-top: 10px;
+    }

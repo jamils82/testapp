@@ -1,7 +1,7 @@
 <html>
   <body>
     <base href="/">
-  <div class="maindiv" >
+  <div *ngIf="wel" class="maindiv" >
     <h1>Welcome</h1>
   <p>Please provide your Name</p>
   <form class="example-form">
@@ -12,7 +12,7 @@
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv()"  >Start Call</button>
     </div>
- 
+
 </div>
 <div *ngIf="call" >
   <h1>Welcome to Doctors Waiting Room</h1>

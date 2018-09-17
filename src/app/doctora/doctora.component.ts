@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule, Routes, Router } from '@angular/router';
 import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
 export interface Cat {
@@ -22,8 +23,10 @@ export class DoctoraComponent implements OnInit {
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
   wel = true;
+  enter = true;
   end = false;
   call = false;
+  callbut = false;
   onHold = false;
     agentConnected = false;
     caller = null;
@@ -37,12 +40,14 @@ export class DoctoraComponent implements OnInit {
     callerReason = null;
     audioVideo: 'audioVideo';
     sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
-  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient) {
+  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
   }
 
   ngOnInit () {
-   /* this.getCat().subscribeOn((dataFromServer) => {
+    this.route.navigate(['/doctora']);
+    this.hidediv();
+    /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
       this.token = JSON.stringify(dataFromServer);
@@ -62,6 +67,7 @@ export class DoctoraComponent implements OnInit {
 
   hidediv() {
     this.wel = !this.wel;
+    this.enter = false;
     this.call = true;
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
@@ -71,6 +77,7 @@ export class DoctoraComponent implements OnInit {
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
       });
+      console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -96,6 +103,7 @@ export class DoctoraComponent implements OnInit {
   }
   endcall() {
     this.session.disconnect();
+    this.callbut = !this.callbut;
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
