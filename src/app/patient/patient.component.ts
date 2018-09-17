@@ -16,6 +16,7 @@ export class PatientComponent implements OnInit {
   wel = true;
   changeDetectorRef: ChangeDetectorRef;
   end = false;
+  name: 'saad';
   config: any;
   call = false;
   onHold = false;
@@ -37,6 +38,9 @@ export class PatientComponent implements OnInit {
       // alert(this.token);
       console.log(this.token);
     });
+  }
+  insertCat() {
+    return this.http.put('https://doctestapp.herokuapp.com/api/cat', name );
   }
   hidediv() {
      this.opentokService.gettoken(this.token);

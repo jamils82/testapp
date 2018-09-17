@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
+const bodyParser = require('body-parser');
   const apiKey=  '46168292';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -18,7 +19,8 @@ app.get('', function(req,res) {
     
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
-
+  app.use(bodyParser.json());
+  
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -46,6 +48,12 @@ app.use(function (req, res, next) {
     const token = opentok.generateToken(SESSION_ID, {
       role: 'publisher'});
     res.send( token );
+  });
+  app.route('/api/cats').post((req, res) => {
+    res.send(201, req.body);
+  });
+  app.route('/api/cats/:name').put((req, res) => {
+    res.send(200, req.body);
   });
   app.route('/api/cats/:name').get((req, res) => {
     const requestedCatName = req.params['name'];

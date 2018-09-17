@@ -72,9 +72,7 @@ export class DoctoraComponent implements OnInit {
       // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
-
-
-  hidediv() {
+   hidediv() {
     this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
@@ -102,6 +100,14 @@ export class DoctoraComponent implements OnInit {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
     });
+  }
+  getSess() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cat' +  name , {responseType: 'text'}).subscribe( data => {
+      // console.log(data);
+       this.callerName = data;
+      // alert(this.token);
+      console.log(this.callerName);
+  });
   }
   onSubmit() {
    /* // tslint:disable-next-line:max-line-length
