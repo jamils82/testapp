@@ -52,7 +52,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.getCat();
-    console.log(this.token);
   }
   errorHandler(err) {
     if (err && err.message) {
