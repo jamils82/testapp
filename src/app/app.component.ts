@@ -29,29 +29,17 @@ export class AppComponent implements OnInit {
   config: any;
   call = false;
   onHold = false;
-    agentConnected = false;
-    caller = null;
-    agentStream = null;
     subscriberOpts: {
       insertMode: 'append',
       width: '100%',
       height: '100%'
     };
-    callerName = null;
-    API_KEY: '46168292';
-    SESSION_ID: '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
-    // tslint:disable-next-line:max-line-length
-    // tslint:disable-next-line:max-line-length
-    TOKEN: 'T1==cGFydG5lcl9pZD00NjE2ODI5MiZzaWc9OTc1YTU3MGQ4Y2NjYjZiOWYyNjc3YTYzNzYwNGZiY2M4ZDBiZTFhODpzZXNzaW9uX2lkPTJfTVg0ME5qRTJPREk1TW41LU1UVXpOamcyT0RVek5qYzRPWDV0WTBGdVJrUXdVRXhoUTIxc1dITkRNVkU1Y0ZGYWVubC1mZyZjcmVhdGVfdGltZT0xNTM2ODY4NTUyJm5vbmNlPTAuNzE2MjIxODgwOTQ2Njg4OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTM5NDYwNTQ0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
-    callerReason = null;
-    audioVideo: 'audioVideo';
-    sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
-  constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
+     constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
   }
 
   ngOnInit () {
-    this.getCat();
+   // this.getCat();
     this.initCamera({audio : true , video: true});
   }
   errorHandler(err) {
@@ -63,7 +51,7 @@ export class AppComponent implements OnInit {
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
-      this.token = data;
+      // this.token = data;
       // alert(this.token);
       console.log(this.token);
     });
@@ -98,9 +86,9 @@ export class AppComponent implements OnInit {
     });
   }
   hidediv() {
-    this.opentokService.gettoken(this.token);
+   // this.opentokService.gettoken(this.token);
     // this.route.navigate(['/doctorb']);
-    console.log(JSON.stringify(this.token));
+   // console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.call = true;
     this.end = true;
