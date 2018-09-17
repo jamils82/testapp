@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   ngOnInit () {
     this.getCat();
     console.log(this.token);
-    this.opentokService.gettoken(this.token);
+    this.opentokService.gettoken(JSON.stringify(this.token));
   }
   errorHandler(err) {
     if (err && err.message) {
