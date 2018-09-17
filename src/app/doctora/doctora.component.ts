@@ -46,6 +46,7 @@ export class DoctoraComponent implements OnInit {
 
   ngOnInit () {
     this.route.navigate(['/doctora']);
+    this.getCat();
     this.hidediv();
     /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
@@ -57,6 +58,14 @@ export class DoctoraComponent implements OnInit {
     // console.log(this.getAllCats());
   */
   }
+  getCat() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
+      // console.log(data);
+       this.token = data;
+      // alert(this.token);
+      console.log(this.token);
+    });
+  }
   errorHandler(err) {
     if (err && err.message) {
      console.log(err);
@@ -66,6 +75,8 @@ export class DoctoraComponent implements OnInit {
 
 
   hidediv() {
+    this.opentokService.gettoken(this.token);
+     console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.enter = false;
     this.call = true;
