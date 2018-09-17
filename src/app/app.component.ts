@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
     this.getCat();
+    console.log(this.token);
   }
   errorHandler(err) {
     if (err && err.message) {
@@ -60,10 +61,9 @@ export class AppComponent implements OnInit {
     }
   }
   getCat() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/cat').subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
-      this.token = data[1];
-      alert(this.token);
+      this.token = data;
       // alert(this.token);
       console.log(this.token);
     });
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
     });
   }
   hidediv() {
-    this.opentokService.gettoken(this.token);
+    this.opentokService.gettoken(JSON.stringify(this.token));
     // this.route.navigate(['/doctorb']);
     this.wel = !this.wel;
     this.call = true;
