@@ -67,37 +67,8 @@ export class AppComponent implements OnInit {
       console.log(this.token);
     });
   }
-  initCamera(config: any) {
-    const browser = <any>navigator;
-    browser.mediaDevices.getUserMedia = (browser.mediaDevices.getUserMedia ||
-      browser.mediaDevices.webkitGetUserMedia ||
-      browser.mediaDevices.mozGetUserMedia ||
-      browser.mediaDevices.msGetUserMedia);
-      if (browser.mediaDevices.getUserMedia) {
-        navigator.getUserMedia(
-          // Constraints
-          {
-            video: true,
-            audio: true
-          },
-          // Success Callback
-          function(localMediaStream) {
-          },
-          // Error Callback
-          function(err) {
-            // Log the error to the console.
-            console.log('The following error occurred when trying to use getUserMedia: ' + err);
-          }
-        );
-      } else {
-        alert('Sorry, your browser does not support getUserMedia');
-      }
-     const audioContext = browser.AudioContext || browser.webkitAudioContext;
-    browser.mediaDevices.getUserMedia(config).then(stream => {
-    });
-  }
   hidediv() {
-    this.opentokService.gettoken(JSON.stringify(this.token));
+    this.opentokService.gettoken(this.token);
     // this.route.navigate(['/doctorb']);
     console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
