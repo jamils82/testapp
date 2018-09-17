@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
   ngOnInit () {
     this.getCat();
     console.log(this.token);
-    this.opentokService.gettoken(JSON.stringify(this.token));
+    this.opentokService.gettoken(this.token);
   }
   errorHandler(err) {
     if (err && err.message) {
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
-      this.token = JSON.stringify(data);
+      this.token = data;
       // alert(this.token);
       console.log(this.token);
     });
