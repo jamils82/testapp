@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/dist/testapp'));
 
 app.get('/', function(req,res) {
-    
+
 res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
 app.get('', function(req,res) {
@@ -59,7 +59,7 @@ app.use(function (req, res, next) {
     res.send(callername);
   });
   app.route('/api/session/:name').get((req, res) => {
-   // const requestedCatName = req.params['name'];
+   const requestedCatName = req.params['name'];
     res.send( req.param(name) );
   });
 // Start the app by listening on the default Heroku port
