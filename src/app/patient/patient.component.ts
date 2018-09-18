@@ -30,7 +30,7 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
     this.route.navigate(['./patient']);
-    this.getCat();
+   // this.getCat();
     this.insertSess();
   //  this.getSess();
   }
