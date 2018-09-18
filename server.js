@@ -52,8 +52,8 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/session/:name').put((req, res) => {
-   // const myname = req.params['name'];
+  app.route('/api/session/:name').post((req, res) => {
+    const myname = req.params['name'];
     res.send(200, req.body);
   });
   app.route('/api/session/:name').get((req, res) => {
