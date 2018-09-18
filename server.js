@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
     const myname = req.params['name'];
     res.send(200, req.body);
   });
-  app.route('/api/session').get((req, res) => {
+  app.route('/api/session/:name').get((req, res) => {
    // const requestedCatName = req.params['name'];
 
     res.send(myname);
