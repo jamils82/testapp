@@ -4,6 +4,7 @@ const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
 const bodyParser = require('body-parser');
+app.use(bodyParser.json());
   const apiKey=  '46168292';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -52,11 +53,20 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/cat/:name').post((req, res) => {
+  app.route('/api/session/').post((req, res) => {
    // const myname = req.params['name'];
-    res.send(201, req.body);
+    res.send(200, req.body);
   });
-  app.route('/api/session/:name').get((req, res) => {
+  app.post('/agent', (req, res, next) => {
+    let a = new Agent(req.body.name || 'N/A')
+    a.assignPending(3)
+    agents.set(a.agentid, a)
+    res.status(200).json({
+      agentid: a.agentid,
+      name: a.name
+    })
+  })
+  app.route('/api/cat/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
 
     res.send(requestedCatName);
