@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/session/:name').put((req, res) => { 
+  app.route('/api/session/:name').post((req, res) => { 
     callername = req.params['name'];
     res.write(callername);
     res.send(callername);

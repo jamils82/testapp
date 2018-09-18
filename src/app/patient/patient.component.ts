@@ -42,7 +42,7 @@ export class PatientComponent implements OnInit {
     });
   }
   insertSess() {
-    return this.http.put('https://doctestapp.herokuapp.com/api/session', 'ali'  );
+    return this.http.post('https://doctestapp.herokuapp.com/api/session', 'ali'  );
   }
   getSess() {
     return this.http.get('https://doctestapp.herokuapp.com/api/session', {responseType: 'text'} ).subscribe( data => {
