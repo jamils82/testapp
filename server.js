@@ -53,14 +53,14 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/session/:name').post((req, res) => { 
+  app.route('/api/session/:name').put((req, res) => { 
     callername = req.params['name'];
     res.write(callername);
     res.send(callername);
   });
-  app.route('/api/session').get((req, res) => {
+  app.route('/api/session/:name').get((req, res) => {
    // const requestedCatName = req.params['name'];
-    res.send( req.param(callername) );
+    res.send( req.param(name) );
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
