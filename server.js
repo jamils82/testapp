@@ -52,10 +52,10 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/cats/:name').put((req, res) => {
+  app.route('/api/session/:name').put((req, res) => {
     res.send(200, req.body);
   });
-  app.route('/api/cats/:name').get((req, res) => {
+  app.route('/api/session/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
     res.send({ name: requestedCatName });
   });

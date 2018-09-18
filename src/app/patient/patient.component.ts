@@ -16,7 +16,7 @@ export class PatientComponent implements OnInit {
   wel = true;
   changeDetectorRef: ChangeDetectorRef;
   end = false;
-  name: 'saad';
+  name: any;
   config: any;
   call = false;
   onHold = false;
@@ -30,7 +30,7 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.route.navigate(['./patient']);
     this.getCat();
-    this.insertCat();
+    this.insertSess();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -40,8 +40,15 @@ export class PatientComponent implements OnInit {
       console.log(this.token);
     });
   }
-  insertCat() {
-    return this.http.put('https://doctestapp.herokuapp.com/api/cats', this.name  );
+  insertSess() {
+    return this.http.put('https://doctestapp.herokuapp.com/api/session', 'ali'  );
+  }
+  getSess() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/session', {responseType: 'text'}).subscribe( data => {
+        this.name = data;
+        console.log(this.name);
+      }
+    );
   }
   hidediv() {
      this.opentokService.gettoken(this.token);
