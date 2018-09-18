@@ -4,6 +4,7 @@ const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
 const bodyParser = require('body-parser');
+  const callername = '';
   const apiKey=  '46168292';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -52,12 +53,13 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/session/:name').put((req, res) => {
+  app.route('/api/session/:name').put((req, res) => { 
+    callername = req.params['name'];
     res.send(200, req.body);
   });
-  app.route('/api/session/:name').get((req, res) => {
-    const requestedCatName = req.params['name'];
-    res.send( requestedCatName );
+  app.route('/api/session').get((req, res) => {
+   // const requestedCatName = req.params['name'];
+    res.send( callername );
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
