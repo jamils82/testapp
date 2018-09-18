@@ -53,8 +53,8 @@ app.use(function (req, res, next) {
     res.send(201, req.body);
   });
   app.route('/api/session/:name').post((req, res) => {
-    const myname = req.params['name'];
-    res.send(200, req.body);
+   // const myname = req.params['name'];
+    res.send(201, req.body);
   });
   app.route('/api/session/:name').get((req, res) => {
    // const requestedCatName = req.params['name'];
