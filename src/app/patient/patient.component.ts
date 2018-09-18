@@ -15,6 +15,7 @@ export class PatientComponent implements OnInit {
   token = '123';
   streams: Array<OT.Stream> = [];
   wel = true;
+  testname: any;
   changeDetectorRef: ChangeDetectorRef;
   end = false;
   callername: string;
@@ -32,7 +33,7 @@ export class PatientComponent implements OnInit {
     this.route.navigate(['./patient']);
     this.getCat();
     this.insertSess();
-    this.getSess();
+   // this.getSess();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -45,9 +46,9 @@ export class PatientComponent implements OnInit {
   insertSess() {
     this.callername = 'ali';
    // return this.http.put('https://doctestapp.herokuapp.com/api/session' , 'saad');
-    return this.http.post('https://doctestapp.herokuapp.com/api/session', this.callername).pipe(
-      tap(_ => console.log(`updated hero name=${this.callername}`))
-    );
+    return this.http.post('https://doctestapp.herokuapp.com/api/session', this.callername).subscribe( data  => {
+       this.testname = data;
+    });
   }
   getSess() {
     return this.http.get('https://doctestapp.herokuapp.com/api/session/name', {responseType: 'text'} ).subscribe( data => {
