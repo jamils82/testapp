@@ -57,9 +57,9 @@ app.use(function (req, res, next) {
     res.send(201, req.body);
   });
   app.route('/api/session/:name').get((req, res) => {
-   // const requestedCatName = req.params['name'];
+    const requestedCatName = req.params['name'];
 
-    res.send(myname);
+    res.send(requestedCatName);
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
