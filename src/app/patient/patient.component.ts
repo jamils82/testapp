@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router } from '@angular/router';
 @Component({
@@ -30,7 +31,7 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.route.navigate(['./patient']);
     this.getCat();
-  //  this.insertSess();
+    this.insertSess();
     this.getSess();
   }
   getCat() {
@@ -43,7 +44,10 @@ export class PatientComponent implements OnInit {
   }
   insertSess() {
     this.callername = 'ali';
-    return this.http.put('https://doctestapp.herokuapp.com/api/session' , 'saad');
+   // return this.http.put('https://doctestapp.herokuapp.com/api/session' , 'saad');
+    return this.http.put('https://doctestapp.herokuapp.com/api/session', this.callername).pipe(
+      tap(_ => console.log(`updated hero name=${this.callername}`))
+    );
   }
   getSess() {
     return this.http.get('https://doctestapp.herokuapp.com/api/session/sadasdasd', {responseType: 'text'} ).subscribe( data => {
