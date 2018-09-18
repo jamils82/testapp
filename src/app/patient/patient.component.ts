@@ -16,7 +16,7 @@ export class PatientComponent implements OnInit {
   wel = true;
   changeDetectorRef: ChangeDetectorRef;
   end = false;
-  name: any;
+  callername: string;
   config: any;
   call = false;
   onHold = false;
@@ -42,12 +42,13 @@ export class PatientComponent implements OnInit {
     });
   }
   insertSess() {
-    return this.http.post('https://doctestapp.herokuapp.com/api/session', 'ali'  );
+    this.callername = 'ali';
+    return this.http.post('https://doctestapp.herokuapp.com/api/session', this.callername);
   }
   getSess() {
     return this.http.get('https://doctestapp.herokuapp.com/api/session', {responseType: 'text'} ).subscribe( data => {
-        this.name = data;
-        console.log(this.name);
+        this.callername = JSON.stringify(data);
+        console.log(this.callername);
       }
     );
   }
