@@ -66,7 +66,7 @@ app.use(function (req, res, next) {
       name: a.name
     })
   })
-  app.route('/api/session/').get((req, res) => {
+  app.route('/api/cat/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
 
     res.send(myname);
