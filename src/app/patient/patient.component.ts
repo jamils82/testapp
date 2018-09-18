@@ -31,6 +31,7 @@ export class PatientComponent implements OnInit {
     this.route.navigate(['./patient']);
     this.getCat();
     this.insertSess();
+    this.getSess();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
