@@ -45,7 +45,7 @@ export class PatientComponent implements OnInit {
     return this.http.put('https://doctestapp.herokuapp.com/api/session', 'ali'  );
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/session/saad', {responseType: 'text'} ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/session', {responseType: 'text'} ).subscribe( data => {
         this.name = data;
         console.log(this.name);
       }
