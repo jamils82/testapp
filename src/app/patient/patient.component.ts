@@ -30,9 +30,9 @@ export class PatientComponent implements OnInit {
 
   ngOnInit() {
     this.route.navigate(['./patient']);
-   // this.getCat();
+    this.getCat();
     this.insertSess();
-  //  this.getSess();
+    this.getSess();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -50,7 +50,7 @@ export class PatientComponent implements OnInit {
     );
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/session/sadasdasd', {responseType: 'text'} ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/session', {responseType: 'text'} ).subscribe( data => {
         this.callername = JSON.stringify(data);
         alert(this.callername);
       }
