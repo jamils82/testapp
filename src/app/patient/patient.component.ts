@@ -46,15 +46,15 @@ export class PatientComponent implements OnInit {
   insertSess() {
     this.callername = 'ali';
    // return this.http.put('https://doctestapp.herokuapp.com/api/session' , 'saad');
-    return this.http.post('https://doctestapp.herokuapp.com/api/cats', {params: {name: 'ABCXYZ'}}).subscribe( data  => {
+    return this.http.post('https://doctestapp.herokuapp.com/api/cats' ,  {name : this.callername}).subscribe( data  => {
        this.testname = data;
        console.log(this.testname);
     });
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/cats/ali', {responseType: 'text'} ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cats/ali', {params: {name : this.callername}} ).subscribe( data => {
         this.callername = JSON.stringify(data);
-      //  alert(this.callername);
+        alert(this.callername);
       }
     );
   }

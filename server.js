@@ -21,10 +21,9 @@ app.get('', function(req,res) {
     
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
-app.use(bodyParser.json());
 var jsonParser = bodyParser.json();
+app.use(jsonParser);
 app.use(bodyParser.urlencoded({ extended: false }))
-
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -55,13 +54,13 @@ app.use(function (req, res, next) {
   });
   app.route('/api/cats',jsonParser ).post((req, res) => {
     if (!req.body) return res.sendStatus(400)
-     myname = req.body.params.name;
+    // myname = req.body.params.name;
     res.send(201, req.body);
   });
 
   app.route('/api/cats/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
-    res.send({name: myname });
+    res.send({name: requestedCatName });
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
