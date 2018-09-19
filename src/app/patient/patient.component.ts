@@ -32,7 +32,7 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.route.navigate(['./patient']);
     this.getCat();
-    this.insertSess();
+   // this.insertSess();
     this.getSess();
   }
   getCat() {
@@ -52,7 +52,7 @@ export class PatientComponent implements OnInit {
     });
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/sess/' +  this.callername ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
         this.callername = JSON.stringify(data);
         alert(this.callername);
       }
