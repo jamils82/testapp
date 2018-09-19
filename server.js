@@ -45,20 +45,20 @@ app.use(function (req, res, next) {
       cats: [{ name: 'lilly' }, { name: 'lucy' }]
     });
   });
-  app.route('/api/cat' ).get((req, res) => {
+ /* app.route('/api/cat' ).get((req, res) => {
     const token = opentok.generateToken(SESSION_ID, {
       role: 'publisher'});
     res.send( token );
-  });
+  });*/
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/session/').post((req, res) => {
+  app.route('/api/cat').post((req, res) => {
     const myname = req.params['name'];
     res.send(200, req.body);
   });
 
-  app.route('/api/session/:name').get((req, res) => {
+  app.route('/api/cat/:name').get((req, res) => {
     res.render('name',{output: req.params.name})
    // res.send(myname);
   });
