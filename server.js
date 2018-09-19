@@ -60,7 +60,7 @@ app.use(function (req, res, next) {
   });
  
   app.route('/api/cats/:name').get((req, res) => {
-    const requestedCatName = req.params['name'];
+    requestedCatName = req.params['name'];
     res.send({ name: requestedCatName });
   });
   
