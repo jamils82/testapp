@@ -53,10 +53,11 @@ app.use(function (req, res, next) {
       role: 'publisher'});
     res.send( token );
   });
-  app.route('/api/cats', function(req, res, next) {
-    var username = req.body.params.name;
-    res.json({'status': 200, 'msg': 'success'});
-});
+  app.route('/api/cats', jsonParser ).post((req, res) => {
+    if (!req.body) return res.sendStatus(400)
+    myname = req.query.name;
+    res.send(201, req.body);
+  });
 
   app.route('/api/cats/:name').get((req, res) => {
     const requestedCatName = req.params['name'];
