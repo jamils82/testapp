@@ -61,11 +61,11 @@ app.use(function (req, res, next) {
  
   app.route('/api/cats/:name').get((req, res) => {
     requestedCatName = req.params['name'];
-    res.send(requestedCatName);
+    res.send({ name: requestedCatName });
   });
   
   app.route('/api/sess').get((req, res ) => {
-    res.send(requestedCatName);
+    res.send({name : requestedCatName});
   })
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
