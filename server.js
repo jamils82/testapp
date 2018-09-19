@@ -22,7 +22,7 @@ app.get('', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
 app.use(bodyParser.json());
-
+var jsonParser = bodyParser.json();
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(function (req, res, next) {
@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
       role: 'publisher'});
     res.send( token );
   });
-  app.route('/api/cats' ).post((req, res) => {
+  app.route('/api/cats',jsonParser ).post((req, res) => {
     if (!req.body) return res.sendStatus(400)
      myname = req.body.name;
     res.send(201, req.body);
