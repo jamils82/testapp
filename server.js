@@ -21,8 +21,10 @@ app.get('', function(req,res) {
     
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
-  app.use(bodyParser.json());
-  
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -46,11 +48,11 @@ app.use(function (req, res, next) {
       cats: [{ name: 'lilly' }, { name: 'lucy' }]
     });
   });
- /* app.route('/api/cat' ).get((req, res) => {
+  app.route('/api/cat' ).get((req, res) => {
     const token = opentok.generateToken(SESSION_ID, {
       role: 'publisher'});
     res.send( token );
-  });*/
+  });
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
@@ -61,7 +63,7 @@ app.use(function (req, res, next) {
 
   app.route('/api/postdata/:name').get((req, res) => {
     myname =req.params.name;
-    res.send({myname});
+    res.send(myname);
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
