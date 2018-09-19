@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
     res.send( token );
   });
   app.route('/api/cats').post((req, res) => {
-   myname = req.params.name;
+  // myname = req.params.name;
     res.send(201, req.body);
   });
 
