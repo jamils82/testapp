@@ -53,7 +53,7 @@ app.use(function (req, res, next) {
       role: 'publisher'});
     res.send( token );
   });
-  app.route('/api/cats', jsonParser ).post((req, res) => {
+  app.route('/api/cats' ).post((req, res) => {
     if (!req.body) return res.sendStatus(400)
     myname = req.query.name;
     res.send(201, req.body);
