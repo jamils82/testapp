@@ -60,12 +60,8 @@ app.use(function (req, res, next) {
   });
  
   app.route('/api/cats/:name').get((req, res) => {
-    requestedCatName = req.params['name'];
-    res.send({name: requestedCatName });
-  });
-  app.route('/api/cats/:name').get((req, res) => {
-    requestedCatName = req.params['name'];
-    res.send({name: requestedCatName });
+    const requestedCatName = req.params['name'];
+    res.send({ name: requestedCatName });
   });
   
   app.route('/api/sess').get((req, res ) => {
