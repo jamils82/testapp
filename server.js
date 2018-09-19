@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
-const myname ='';
+const myname ='saad';
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
   const apiKey=  '46168292';
@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
     res.send( token );
   });
   app.route('/api/cats').post((req, res) => {
-  // myname = req.params.name;
+   myname = req.params.name;
     res.send(201, req.body);
   });
 
