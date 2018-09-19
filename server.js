@@ -56,14 +56,10 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/postdata').post((req, res) => {
-   // myname = req.params['name'];
-    res.send(200, req.body);
-  });
 
-  app.route('/api/cat/:name').get((req, res) => {
-    myname =req.params.name;
-    res.send({myname});
+  app.route('/api/cats/:name').get((req, res) => {
+    const requestedCatName = req.params['name'];
+    res.send({ name: requestedCatName });
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
