@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
   });
   app.route('/api/cats' ).post((req, res) => {
     if (!req.body) return res.sendStatus(400)
-    // myname = req.query.name;
+     myname = req.body.name;
     res.send(201, req.body);
   });
 
