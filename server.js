@@ -7,7 +7,7 @@ const myname ='saad';
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
   const apiKey=  '46168292';
-  const requestedCatName ='hadi';
+  var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
