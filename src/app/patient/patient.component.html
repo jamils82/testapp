@@ -6,11 +6,11 @@
   <p>Please provide your Name</p>
   <form class="example-form">
     <mat-form-field class="example-full-width" >
-      <input  matInput #box (keyup.enter)="onEnter(box.value)">
+      <input  matInput #boxinput >
     </mat-form-field>
   </form> 
   <div class="button-row" >
-    <button mat-raised-button color="primary" (click) ="hidediv()"  >Start Call</button>
+    <button mat-raised-button color="primary" (click) ="hidediv(boxinput.value)"  >Start Call</button>
     </div>
 
 </div>
