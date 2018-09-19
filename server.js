@@ -53,8 +53,8 @@ app.use(function (req, res, next) {
       role: 'publisher'});
     res.send( token );
   });
-  app.route('/api/cats/:name').post((req, res) => {
-   
+  app.route('/api/cats').post((req, res) => {
+   myname = req.params.name;
     res.send(201, req.body);
   });
 
