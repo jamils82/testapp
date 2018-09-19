@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
+const myname ='';
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
   const apiKey=  '46168292';
@@ -53,14 +54,14 @@ app.use(function (req, res, next) {
   app.route('/api/cats').post((req, res) => {
     res.send(201, req.body);
   });
-  app.route('/api/cat').post((req, res) => {
-    const myname = req.params['name'];
+  app.route('/api/postdata').post((req, res) => {
+    myname = req.params['name'];
     res.send(200, req.body);
   });
 
-  app.route('/api/cat/:name').get((req, res) => {
-    res.render('name',{output: req.params.name})
-   // res.send(myname);
+  app.route('/api/postdata').get((req, res) => {
+   // res.render('name',{output: req.params.name})
+    res.send({myname});
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
