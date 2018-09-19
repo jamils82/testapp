@@ -7,6 +7,7 @@ const myname ='saad';
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
   const apiKey=  '46168292';
+  const requestedCatName ='';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
@@ -57,11 +58,14 @@ app.use(function (req, res, next) {
     // myname = req.body.params.name;
     res.send(201, req.body);
   });
-
+ 
   app.route('/api/cats/:name').get((req, res) => {
-    const requestedCatName = req.params['name'];
+    requestedCatName = req.params['name'];
     res.send({name: requestedCatName });
   });
+  app.route('/api/sess').get((req, res ) => {
+    res.send(requestedCatName);
+  })
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);

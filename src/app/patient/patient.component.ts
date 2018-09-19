@@ -52,16 +52,23 @@ export class PatientComponent implements OnInit {
     });
   }
   getSess() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/cats/ali', {params: {name : this.callername}} ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/cats', {params: {name : this.callername}} ).subscribe( data => {
         this.callername = JSON.stringify(data);
         alert(this.callername);
       }
     );
   }
+  getname() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/sess' , {responseType: 'text'} ).subscribe( data => {
+      this.testname = data;
+      alert(this.testname);
+    } );
+  }
   onEnter(value: string) { this.callername = value;
   // alert(this.callername);
   }
   hidediv(box: string ) {
+    this.getname();
    // alert(box);
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
