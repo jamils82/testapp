@@ -60,7 +60,7 @@ export class PatientComponent implements OnInit {
   }
   onEnter(value: string) { this.callername = value;
   alert(this.callername);
-}
+  }
   hidediv() {
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
