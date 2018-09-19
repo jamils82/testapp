@@ -57,18 +57,8 @@ app.use(function (req, res, next) {
     const myname = req.params['name'];
     res.send(200, req.body);
   });
-  app.post('/agent', (req, res, next) => {
-    let a = new Agent(req.body.name || 'N/A')
-    a.assignPending(3)
-    agents.set(a.agentid, a)
-    res.status(200).json({
-      agentid: a.agentid,
-      name: a.name
-    })
-  })
-  app.route('/api/cat/:name').get((req, res) => {
-    const requestedCatName = req.params['name'];
 
+  app.route('/api/session/').get((req, res) => {
     res.send(myname);
   });
 // Start the app by listening on the default Heroku port
