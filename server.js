@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
     res.send(200, req.body);
   });
 
-  app.route('/api/session/').get((req, res) => {
+  app.route('/api/session').get((req, res) => {
     res.send(myname);
   });
 // Start the app by listening on the default Heroku port
