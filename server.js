@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
   });
   app.route('/api/cats',jsonParser ).post((req, res) => {
     if (!req.body) return res.sendStatus(400)
-     myname = req.body.name;
+     myname = req.body.params.name;
     res.send(201, req.body);
   });
 
