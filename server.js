@@ -55,13 +55,13 @@ app.use(function (req, res, next) {
     res.send(201, req.body);
   });
   app.route('/api/postdata').post((req, res) => {
-    myname = req.params['name'];
+   // myname = req.params['name'];
     res.send(200, req.body);
   });
 
   app.route('/api/postdata').get((req, res) => {
    // res.render('name',{output: req.params.name})
-    res.send({myname : saad});
+    res.send({saad});
   });
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
