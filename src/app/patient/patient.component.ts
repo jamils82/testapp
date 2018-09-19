@@ -44,7 +44,6 @@ export class PatientComponent implements OnInit {
     });
   }
   insertSess() {
-    this.callername = 'ali';
    // return this.http.put('https://doctestapp.herokuapp.com/api/session' , 'saad');
     return this.http.post('https://doctestapp.herokuapp.com/api/cats' ,  {name : this.callername}).subscribe( data  => {
        this.testname = data;
@@ -52,6 +51,7 @@ export class PatientComponent implements OnInit {
     });
   }
   getSess() {
+    this.callername = 'ali';
     return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
         this.callername = JSON.stringify(data);
         alert(this.callername);
