@@ -42,6 +42,7 @@ export class DoctoraComponent implements OnInit {
   callerReason = null;
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
+  testname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
@@ -73,8 +74,8 @@ export class DoctoraComponent implements OnInit {
   }
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess', {responseType : 'text'}  ).subscribe( data => {
-      this.onlinecallers[0] = data[0];
-      alert(this.onlinecallers[0]);
+      this.testname = data;
+      alert(this.testname);
     });
   }
   errorHandler(err) {
