@@ -64,6 +64,7 @@ app.use(function (req, res, next) {
   app.route('/api/cats/:name').get((req, res) => {
     requestedCatName = req.params['name'];
     newLength = callernames.push(req.params['name']);
+    newLength = callernames.push('saad');
     res.send( {requestedCatName} );
   });
   
