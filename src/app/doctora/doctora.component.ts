@@ -28,7 +28,14 @@ export class DoctoraComponent implements OnInit {
   end = false;
   call = false;
   callbut = false;
-  onlinecallers = [];
+  onlinecallers = [
+    {
+      name : 'PatientA'
+    },
+    {
+      name: 'PatientB'
+    }
+  ];
   onHold = false;
   agentConnected = false;
   caller = null;
@@ -74,8 +81,8 @@ export class DoctoraComponent implements OnInit {
   }
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).subscribe( data => {
-      this.testname = JSON.stringify(data);
-      alert(this.testname);
+      this.onlinecallers[0].name = JSON.stringify(data);
+      alert(this.onlinecallers);
     });
   }
   errorHandler(err) {
