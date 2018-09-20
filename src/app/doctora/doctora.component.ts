@@ -74,7 +74,7 @@ export class DoctoraComponent implements OnInit {
   }
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess', {responseType : 'text'}  ).subscribe( data => {
-      this.testname = data;
+      this.testname = JSON.stringify(data);
       alert(this.testname);
     });
   }
