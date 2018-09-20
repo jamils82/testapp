@@ -68,7 +68,8 @@ export class PatientComponent implements OnInit {
   // alert(this.callername);
   }
   hidediv(box: string ) {
-   this.getSess(box);
+    this.callername = box;
+   this.getSess(this.callername);
   // alert(box);
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
