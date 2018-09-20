@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
 import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
@@ -27,20 +28,21 @@ export class DoctoraComponent implements OnInit {
   end = false;
   call = false;
   callbut = false;
-  onlinecallers = '';
+  onlinecallers = [];
   onHold = false;
-    agentConnected = false;
-    caller = null;
-    agentStream = null;
-    subscriberOpts: {
+  agentConnected = false;
+  caller = null;
+  agentStream = null;
+  subscriberOpts: {
       insertMode: 'append',
       width: '100%',
       height: '100%'
     };
-    callerName = null;
-    callerReason = null;
-    audioVideo: 'audioVideo';
-    sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
+  callerName = null;
+  callerReason = null;
+  audioVideo: 'audioVideo';
+  sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
+  // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
   }
@@ -70,10 +72,9 @@ export class DoctoraComponent implements OnInit {
     });
   }
   getname() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/sess' , {responseType: 'text'} ).subscribe( data => {
-      this.onlinecallers = data;
-      alert(this.onlinecallers);
-    } );
+    return this.http.get('https://doctestapp.herokuapp.com/api/sess'  ).subscribe( data => {
+      this.onlinecallers[0] = data[0];
+    });
   }
   errorHandler(err) {
     if (err && err.message) {
