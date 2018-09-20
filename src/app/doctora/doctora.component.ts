@@ -27,6 +27,7 @@ export class DoctoraComponent implements OnInit {
   end = false;
   call = false;
   callbut = false;
+  onlinecallers = '';
   onHold = false;
     agentConnected = false;
     caller = null;
@@ -46,9 +47,10 @@ export class DoctoraComponent implements OnInit {
 
   ngOnInit () {
     this.route.navigate(['/doctora']);
-    this.getCat();
-    this.getSess();
-    this.hidediv();
+   // this.getCat();
+  //  this.getSess();
+    this.getname();
+   // this.hidediv();
     /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
       // alert(dataFromServer);
@@ -66,6 +68,12 @@ export class DoctoraComponent implements OnInit {
       // alert(this.token);
       console.log(this.token);
     });
+  }
+  getname() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/sess' , {responseType: 'text'} ).subscribe( data => {
+      this.onlinecallers = data;
+      alert(this.onlinecallers);
+    } );
   }
   errorHandler(err) {
     if (err && err.message) {

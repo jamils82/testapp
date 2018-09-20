@@ -33,7 +33,7 @@ export class PatientComponent implements OnInit {
     this.route.navigate(['./patient']);
     this.getCat();
    // this.insertSess();
-    this.getSess();
+  //  this.getSess();
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -50,8 +50,7 @@ export class PatientComponent implements OnInit {
        console.log(this.testname);
     });
   }
-  getSess() {
-    this.callername = 'ali';
+  getSess(name: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
         this.callername = JSON.stringify(data );
         alert(this.callername);
@@ -64,12 +63,13 @@ export class PatientComponent implements OnInit {
       alert(this.testname);
     } );
   }
-  onEnter(value: string) { this.callername = value;
+  onEnter(value: string) {
+    this.callername = value;
   // alert(this.callername);
   }
   hidediv(box: string ) {
-    this.getname();
-   // alert(box);
+   this.getSess(box);
+  // alert(box);
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
      this.wel = !this.wel;
