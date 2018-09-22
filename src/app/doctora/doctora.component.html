@@ -2,7 +2,11 @@
 
 <div>
   <h1>Welcome Doctor</h1>
-  <h2>Online Users {{onlineCalers[0]}}</h2>
+  <ul>
+    <li *ngFor="let onlineCaller of onlineCallers">
+      {{ onlineCaller }}
+    </li>
+  </ul>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >

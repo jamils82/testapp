@@ -66,7 +66,7 @@ app.use(function (req, res, next) {
     newLength = callernames.push(req.params['name']);
     newLength = callernames.push('ahmed');
     newLength = callernames.push('hamza');
-    res.send( {requestedCatName} );
+    res.send(JSON.stringify( { name :requestedCatName}) );
   });
  
   app.route('/api/sess').get((req, res ) => {
