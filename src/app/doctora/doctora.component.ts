@@ -58,6 +58,9 @@ export class DoctoraComponent implements OnInit {
   ngOnInit () {
     this.route.navigate(['/doctora']);
    // this.getCat();
+   setInterval(() => {
+    this.getname();
+}, 1);
   //  this.getSess();
     this.getname();
    // this.hidediv();
