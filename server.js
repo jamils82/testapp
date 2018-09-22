@@ -66,11 +66,11 @@ app.use(function (req, res, next) {
     newLength = callernames.push(req.params['name']);
     newLength = callernames.push('ahmed');
     newLength = callernames.push('hamza');
-    res.send(JSON.stringify( { name :requestedCatName}) );
+    res.send( {requestedCatName} );
   });
  
   app.route('/api/sess').get((req, res ) => {
-    res.send(callernames);
+    res.send(JSON.stringify( {name : callernames}));
   })
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {

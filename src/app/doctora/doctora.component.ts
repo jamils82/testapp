@@ -49,7 +49,7 @@ export class DoctoraComponent implements OnInit {
    // this.getCat();
    setInterval(() => {
     this.getname();
-}, 3);
+}, 3000);
   //  this.getSess();
     this.getname();
    // this.hidediv();
