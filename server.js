@@ -70,7 +70,7 @@ app.use(function (req, res, next) {
   });
  
   app.route('/api/sess').get((req, res ) => {
-    res.send(JSON.stringify( {name : callernames}));
+    res.send(JSON.stringify( {callernames}));
   })
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
