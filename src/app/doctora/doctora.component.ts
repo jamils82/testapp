@@ -48,9 +48,7 @@ export class DoctoraComponent implements OnInit {
     this.route.navigate(['/doctora']);
    // this.getCat();
    setInterval(() => {
-    this.getname().subscribe((response) => {
-      this.callerName = response;
-    });
+    this.getname();
 }, 3000);
   //  this.getSess();
     this.getname();
@@ -78,7 +76,6 @@ export class DoctoraComponent implements OnInit {
       this.onlinecallers = data;
     //  this.callerName = JSON.stringify(this.callerName);
       console.log(this.onlinecallers);
-      console.log(JSON.stringify(this.onlinecallers));
     }));
   }
   errorHandler(err) {
