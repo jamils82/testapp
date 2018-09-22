@@ -4,7 +4,7 @@
   <h1>Welcome Doctor</h1>
   <ul>
     <li *ngFor="let onlineCaller of onlinecallers">
-      {{ onlineCaller.name }}
+      {{ onlineCaller }}
     </li>
   </ul>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
