@@ -28,18 +28,7 @@ export class DoctoraComponent implements OnInit {
   end = false;
   call = false;
   callbut = false;
-  onlinecallers = [
-    {
-      name : 'PatientA'
-    },
-    {
-      name: 'PatientB'
-    }
-  ];
-  onHold = false;
-  agentConnected = false;
-  caller = null;
-  agentStream = null;
+  onlinecallers: any = [];
   subscriberOpts: {
       insertMode: 'append',
       width: '100%',
@@ -60,7 +49,7 @@ export class DoctoraComponent implements OnInit {
    // this.getCat();
    setInterval(() => {
     this.getname();
-}, 1);
+}, 3);
   //  this.getSess();
     this.getname();
    // this.hidediv();
@@ -84,8 +73,8 @@ export class DoctoraComponent implements OnInit {
   }
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess', {responseType: 'text'} ).subscribe( data => {
-      this.onlinecallers[0].name = JSON.stringify(data);
-      alert(this.onlinecallers[0].name);
+      this.onlinecallers = data[0];
+      alert(JSON.stringify(this.onlinecallers));
     });
   }
   errorHandler(err) {
