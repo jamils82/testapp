@@ -48,7 +48,9 @@ export class DoctoraComponent implements OnInit {
     this.route.navigate(['/doctora']);
    // this.getCat();
    setInterval(() => {
-    this.getname();
+    this.getname().subscribe((response) => {
+      this.callerName = response;
+    });
 }, 3000);
   //  this.getSess();
     this.getname();
