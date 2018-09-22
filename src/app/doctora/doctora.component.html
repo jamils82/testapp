@@ -2,11 +2,6 @@
 
 <div>
   <h1>Welcome Doctor</h1>
-  <ul>
-    <li *ngFor="let onlineCaller of onlinecallers">
-      {{ onlineCaller }}
-    </li>
-  </ul>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
