@@ -69,7 +69,7 @@ app.use(function (req, res, next) {
   });
  
   app.route('/api/sess').get((req, res ) => {
-    res.send( callernames);
+    res.send(callernames);
   })
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000 , function () {
