@@ -3,6 +3,13 @@
 <div>
   <h1>Welcome Doctor</h1>
   <ul>
+      <h2>My favorite hero is: {{myHero}}</h2>
+      <p>Heroes:</p>
+      <ul>
+        <li *ngFor="let hero of heroes">
+          {{ hero }}
+        </li>
+      </ul>
     <li *ngFor="let onlinecaller of onlinecallers">
       {{ hero }}
     </li>

@@ -37,6 +37,8 @@ export class DoctoraComponent implements OnInit {
     };
   callerName = null;
   callerReason = null;
+  heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
+  myHero = this.heroes[0];
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
