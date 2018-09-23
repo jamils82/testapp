@@ -10,12 +10,16 @@
           {{ hero }}
         </li>
       </ul>
-    <li *ngFor="let caller of onlinecallers">
-      {{ caller }}
-    </li>
   </ul>
-    <h2> Name {{favcaller}} </h2>
-    <h3>Name h3 {{onlinecallers}}</h3>
+  <ul>
+      <h2>My favorite hero is: {{favcaller}}</h2>
+      <p>Heroes:</p>
+      <ul>
+        <li *ngFor="let caller of onlinecallers">
+          {{ caller }}
+        </li>
+      </ul>
+  </ul>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
