@@ -51,7 +51,10 @@ export class DoctoraComponent implements OnInit {
     this.route.navigate(['/doctora']);
    // this.getCat();
    setInterval(() => {
-    this.getname();
+    this.getname().subscribe( data => {
+   //   this.onlinecallers = JSON.stringify(data);
+      console.log(data);
+    });
 }, 3000);
   //  this.getSess();
   //  this.getname();
@@ -75,19 +78,13 @@ export class DoctoraComponent implements OnInit {
     });
   }
   getname() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/sess').subscribe ( data => {
-      this.onlinecallers = data.toString();
-      console.log(this.onlinecallers);
-    });
-  }
-  /* getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {
       this.onlinecallers = data;
       this.favcaller = this.onlinecallers[0];
     //  this.callerName = JSON.stringify(this.callerName);
       console.log(this.onlinecallers);
     }));
-  }*/
+  }
   errorHandler(err) {
     if (err && err.message) {
      console.log(err);
