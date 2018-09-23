@@ -2,7 +2,17 @@
 
 <div>
   <h1>Welcome Doctor</h1>
- 
+  <ul class="hotel-list">  
+    <li *ngFor="let onlinecaller of onlinecallers">
+        <span>{{onlinecaller}}<span>
+        <br/>
+       </li> 
+    </ul>
+    <li *ngFor="let onlinecaller of onlinecallers">
+      <span>{{onlinecaller.name}}<span>
+      <br/>
+    </li> 
+</ul>
     <h2 *ngFor="let onlineCaller of onlinecallers">
      Name {{ onlineCaller}}
     </h2>
