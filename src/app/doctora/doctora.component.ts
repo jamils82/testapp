@@ -51,7 +51,6 @@ export class DoctoraComponent implements OnInit {
    setInterval(() => {
     this.getname().subscribe( data => {
       this.onlinecallers = data;
-      this.favcaller = this.onlinecallers[0];
     });
 }, 3000);
   //  this.getSess();
@@ -78,6 +77,7 @@ export class DoctoraComponent implements OnInit {
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {
       this.onlinecallers = data;
+      this.favcaller = this.onlinecallers[0];
     //  this.callerName = JSON.stringify(this.callerName);
       console.log(this.onlinecallers);
     }));
