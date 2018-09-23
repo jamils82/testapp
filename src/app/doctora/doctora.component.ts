@@ -48,10 +48,12 @@ export class DoctoraComponent implements OnInit {
     this.route.navigate(['/doctora']);
    // this.getCat();
    setInterval(() => {
-    this.getname();
+    this.getname().subscribe( data => {
+      this.onlinecallers = data;
+    });
 }, 3000);
   //  this.getSess();
-    this.getname();
+  //  this.getname();
    // this.hidediv();
     /* this.getCat().subscribeOn((dataFromServer) => {
       // Now you can use the data
