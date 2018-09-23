@@ -50,7 +50,7 @@ export class DoctoraComponent implements OnInit {
    // this.getCat();
    setInterval(() => {
     this.getname().subscribe( data => {
-      this.onlinecallers = data;
+      this.onlinecallers = JSON.stringify(data);
       console.log(this.onlinecallers);
     });
 }, 3000);
