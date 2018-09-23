@@ -2,20 +2,12 @@
 
 <div>
   <h1>Welcome Doctor</h1>
-  <ul class="hotel-list">  
+  <ul>
     <li *ngFor="let onlinecaller of onlinecallers">
-        {{onlinecaller}}
-       </li> 
-    
-    <li *ngFor="let onlinecaller of onlinecallers">
-      {{onlinecaller.name}}
-      
-    </li> 
-</ul>
-    <h2 *ngFor="let onlineCaller of onlinecallers">
-     Name {{ onlineCaller}}
-    </h2>
-    <h2> Name {{onlincallers}} </h2>
+      {{ hero }}
+    </li>
+  </ul>
+    <h2> Name {{favcaller}} </h2>
     <h3>Name h3 {{onlinecallers}}</h3>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>

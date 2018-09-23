@@ -23,6 +23,7 @@ export class DoctoraComponent implements OnInit {
   token: string;
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
+  favcaller: string;
   wel = true;
   enter = true;
   end = false;
@@ -50,6 +51,7 @@ export class DoctoraComponent implements OnInit {
    setInterval(() => {
     this.getname().subscribe( data => {
       this.onlinecallers = data;
+      this.favcaller = this.onlinecallers[0];
     });
 }, 3000);
   //  this.getSess();
