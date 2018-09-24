@@ -5,7 +5,7 @@
   <mat-list *ngIf="list">
     <mat-list-item *ngFor="let caller of onlinecallers">
      <h1 matLine> {{caller}} </h1>
-      <md-button class="md-raised md-primary"  matLine  (click)="hidediv()"  *ngIf="callbut">Call </button>
+      <button matLine  (click)="hidediv()" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
     </mat-list-item>
   </mat-list>
 <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
