@@ -37,7 +37,7 @@
     height : 50px;
     border-radius: 10px;
   }
-  .callbut {
+  #callbut {
     width: 25vh;
     background: #2d72b4;
     color: white;
