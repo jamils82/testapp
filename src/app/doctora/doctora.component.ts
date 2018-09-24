@@ -99,27 +99,8 @@ export class DoctoraComponent implements OnInit {
     this.enter = false;
     this.call = true;
     this.end = true;
-    this.opentokService.initSession().then((session: OT.Session) => {
-      this.session = session;
-      this.session.on('streamCreated', (event) => {
-        console.log(session);
-        this.streams.push(event.stream);
-        this.changeDetectorRef.detectChanges();
-      });
-      console.log('connnected to session');
-      this.session.on('streamDestroyed', (event) => {
-        const idx = this.streams.indexOf(event.stream);
-        if (idx > -1) {
-          this.streams.splice(idx, 1);
-          this.changeDetectorRef.detectChanges();
-        }
-      });
-    })
-    .then(() => this.opentokService.connect())
-    .catch((err) => {
-      console.error(err);
-      alert('Unable to connect. Make sure you have Internet Working.');
-    });
+    this.opentokService.initSession();
+     this.opentokService.connect();
   }
   getSess() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cats' + name , {responseType: 'text'}).subscribe( data => {
