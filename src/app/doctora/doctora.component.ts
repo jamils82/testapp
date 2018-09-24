@@ -29,7 +29,7 @@ export class DoctoraComponent implements OnInit {
   enter = true;
   end = false;
   call = false;
-  callbut = false;
+  callbut = true;
   onlinecallers: any = [];
   subscriberOpts: {
       insertMode: 'append',

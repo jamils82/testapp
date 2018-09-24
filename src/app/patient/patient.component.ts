@@ -63,6 +63,13 @@ export class PatientComponent implements OnInit {
       alert(this.testname);
     } );
   }
+  deletename() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/session/' +  this.callername ).subscribe( data => {
+     // this.callername = JSON.stringify(data );
+    //  alert(this.callername);
+    }
+  );
+  }
   onEnter(value: string) {
     this.callername = value;
     this.hidediv(value);
@@ -99,6 +106,7 @@ export class PatientComponent implements OnInit {
      });
    }
    endcall() {
+     this.deletename();
      this.session.disconnect();
      this.end = false;
      this.wel = !this.wel;
