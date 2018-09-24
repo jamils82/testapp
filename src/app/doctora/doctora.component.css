@@ -43,7 +43,14 @@
     background: #2d72b4;
     color: white;
     height : 50px;
+    display: inline-block;
     border-radius: 10px;
+  }
+  matline {
+    display: inline-block;
+  }
+  h1 {
+    display: inline-block;
   }
   .example-form {
       min-width: 80%;
