@@ -37,7 +37,7 @@
     height : 50px;
     border-radius: 10px;
   }
-  md-icon[md-list-icon] {
+  .callbut {
     order: 10;
     width: 25vh;
     background: #2d72b4;
