@@ -13,6 +13,7 @@ import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
+import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'doctorb', component: DoctorbComponent },
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
     RouterModule.forRoot(
       appRoutes,
     ),
