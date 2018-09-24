@@ -4,8 +4,8 @@
   <h1>Welcome Doctor</h1>
   <ul>
       <p>Online Users</p>
-      <ul>
-        <li *ngFor="let caller of onlinecallers">
+      <ul  *ngFor="let caller of onlinecallers">
+        <li>
           {{ caller }}
         </li><span><button class="callbut" mat-raised-button >Call </button>  </span>
       </ul>

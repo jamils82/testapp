@@ -84,3 +84,6 @@
       font-size: 16px;
       margin-top: 10px;
     }
+    ul ul, ol ul {
+      list-style-type: none;
+    } 
