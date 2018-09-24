@@ -2,7 +2,7 @@
 
 <div>
   <h1>Welcome Doctor</h1>
-  <mat-list>
+  <mat-list *ngIf="list">
     <mat-list-item *ngFor="let caller of onlinecallers">
       <img matListAvatar src="/src/assets/imgs/patient.jpg" alt="...">
       <h3 matLine> {{caller}} </h3>

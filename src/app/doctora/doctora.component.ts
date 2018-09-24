@@ -38,8 +38,7 @@ export class DoctoraComponent implements OnInit {
     };
   callerName = null;
   callerReason = null;
-  heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
-  myHero = this.heroes[0];
+  list = true;
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
@@ -96,6 +95,7 @@ export class DoctoraComponent implements OnInit {
     this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
+    this.list = !this.list;
     this.enter = false;
     this.call = true;
     this.end = true;
@@ -140,6 +140,7 @@ export class DoctoraComponent implements OnInit {
   }
   endcall() {
     this.session.disconnect();
+    this.list = !this.list;
     this.callbut = !this.callbut;
     this.end = false;
     this.wel = !this.wel;
