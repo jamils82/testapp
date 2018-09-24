@@ -7,9 +7,16 @@
       <ul  *ngFor="let caller of onlinecallers">
         <li>
           {{ caller }}
-        </li><span><button class="callbut" mat-raised-button >Call </button>  </span>
+        </li><span><button class="callbut" (click)="hidediv()" mat-raised-button >Call </button>  </span>
       </ul>
   </ul>
+  <mat-list>
+    <mat-list-item *ngFor="let caller of onlinecallers">
+      <img matListAvatar src="..." alt="...">
+      <h3 matLine> {{caller}} </h3>
+      <button matLine class="callbut" (click)="hidediv()" mat-raised-button >Call </button>
+    </mat-list-item>
+  </mat-list>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
