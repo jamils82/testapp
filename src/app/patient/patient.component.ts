@@ -65,7 +65,7 @@ export class PatientComponent implements OnInit {
   }
   onEnter(value: string) {
     this.callername = value;
-    this.hidediv(this.callername);
+    this.hidediv(value);
   // alert(this.callername);
   }
   hidediv(box: string ) {
