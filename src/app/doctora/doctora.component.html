@@ -3,21 +3,11 @@
 <div>
   <h1>Welcome Doctor</h1>
   <ul>
-      <h2>My favorite hero is: {{myHero}}</h2>
-      <p>Heroes:</p>
-      <ul>
-        <li *ngFor="let hero of heroes">
-          {{ hero }}
-        </li>
-      </ul>
-  </ul>
-  <ul>
-      <h2>My favorite hero is: {{favcaller}}</h2>
-      <p>Heroes:</p>
+      <p>Online Users</p>
       <ul>
         <li *ngFor="let caller of onlinecallers">
           {{ caller }}
-        </li>
+        </li><span><button class="callbut" mat-raised-button >Call </button>  </span>
       </ul>
   </ul>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
