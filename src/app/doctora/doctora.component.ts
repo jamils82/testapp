@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
 import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
+import {MatListModule} from '@angular/material/list';
 export interface Cat {
   name: string;
 }
