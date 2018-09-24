@@ -141,7 +141,6 @@ export class DoctoraComponent implements OnInit {
   endcall() {
     this.session.disconnect();
     this.list = !this.list;
-    this.callbut = !this.callbut;
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;

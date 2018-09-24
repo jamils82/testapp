@@ -4,7 +4,7 @@
   <h1>Welcome Doctor</h1>
   <mat-list *ngIf="list">
     <mat-list-item *ngFor="let caller of onlinecallers">
-      <img matListAvatar src="/src/assets/imgs/patient.jpg" alt="...">
+      <img matListAvatar src="/src/assets/imgs/patient.jpg" alt="/src/assets/imgs/patient.jpg">
       <h3 matLine> {{caller}} </h3>
       <button matLine  (click)="hidediv()" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
     </mat-list-item>
