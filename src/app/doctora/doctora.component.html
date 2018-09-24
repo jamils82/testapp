@@ -2,23 +2,14 @@
 
 <div>
   <h1>Welcome Doctor</h1>
-  <ul>
-      <p>Online Users</p>
-      <ul  *ngFor="let caller of onlinecallers">
-        <li>
-          {{ caller }}
-        </li><span><button class="callbut" (click)="hidediv()" mat-raised-button >Call </button>  </span>
-      </ul>
-  </ul>
   <mat-list>
     <mat-list-item *ngFor="let caller of onlinecallers">
-      <img matListAvatar src="..." alt="...">
+      <img matListAvatar src="/src/assets/imgs/patient.jpg" alt="...">
       <h3 matLine> {{caller}} </h3>
-      <button matLine  (click)="hidediv()" mat-raised-button >Call </button>
+      <button matLine  (click)="hidediv()" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
     </mat-list-item>
   </mat-list>
-  <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
-  <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
+<button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
   <app-publisher class="publisher" [session]="session"></app-publisher>
   <app-subscriber class="subscriber" *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
