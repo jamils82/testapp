@@ -14,7 +14,7 @@
     <mat-list-item *ngFor="let caller of onlinecallers">
       <img matListAvatar src="..." alt="...">
       <h3 matLine> {{caller}} </h3>
-      <button matLine class="callbut" (click)="hidediv()" mat-raised-button >Call </button>
+      <button matLine  (click)="hidediv()" mat-raised-button >Call </button>
     </mat-list-item>
   </mat-list>
   <button class="callbut" mat-raised-button *ngIf="callbut"  (click)="hidediv()" >Start Call</button>
