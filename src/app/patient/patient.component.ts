@@ -63,7 +63,7 @@ export class PatientComponent implements OnInit {
     );
   }
   getDoc() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/connectteddoctor' ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
         this.doctorconnected = data;
         console.log(this.doctorconnected);
       //  alert(this.callername);
