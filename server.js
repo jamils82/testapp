@@ -50,9 +50,9 @@ app.use(function (req, res, next) {
       cats: [{ name: 'lilly' }, { name: 'lucy' }]
     });
   });
-  app.route('/api/cat' ).get((req, res) => {
+  app.route('/api/pattok' ).get((req, res) => {
     const token = opentok.generateToken(SESSION_ID, {
-      role: 'publisher'});
+      role: 'subscriber'});
     res.send( token );
   });
   app.route('/api/cats',jsonParser ).post((req, res) => {
@@ -67,7 +67,7 @@ app.use(function (req, res, next) {
    
     res.send( {requestedCatName} );
   });
- 
+
   app.route('/api/sess').get((req, res ) => {
     res.send(callernames);
   })

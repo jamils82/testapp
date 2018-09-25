@@ -36,7 +36,7 @@ export class PatientComponent implements OnInit {
   //  this.getSess();
   }
   getCat() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/pattok', {responseType: 'text'}).subscribe( data => {
       // console.log(data);
        this.token = data;
       // alert(this.token);
