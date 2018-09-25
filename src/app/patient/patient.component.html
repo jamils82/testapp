@@ -18,7 +18,7 @@
   <h1>Welcome to Doctors Waiting Room</h1>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
-  <app-publisher class="publisher" [session]="session"></app-publisher>
+    <div class="publisher" [ngClass]="{'publishing': publishing}" #publisherDiv></div>
   <app-subscriber class="subscriber" *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
 </div>
 </div>

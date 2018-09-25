@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  , ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -11,7 +11,8 @@ import {  RouterModule, Routes, Router } from '@angular/router';
   providers: [ OpentokService ]
 })
 export class PatientComponent implements OnInit {
-  session: OT.Session;
+  @ViewChild('publisherDiv') publisherDiv: ElementRef;
+  @Input() session: OT.Session;
   token = '123';
   streams: Array<OT.Stream> = [];
   wel = true;
@@ -29,6 +30,8 @@ export class PatientComponent implements OnInit {
       height: '100%'
     };
   connectionstream: any;
+  publisher: OT.Publisher;
+  publishing: Boolean;
   constructor(private ref: ChangeDetectorRef, private http: HttpClient, private opentokService: OpentokService, private route: Router ) { }
 
   ngOnInit() {
@@ -101,12 +104,20 @@ export class PatientComponent implements OnInit {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
-         alert(session.connection.ID );
+        // alert(session.connection.ID );
          this.connectionstream = event.stream.ID;
-         alert(JSON.stringify( event.stream));
+        // alert(JSON.stringify( event.stream));
          console.log(this.connectionstream);
          this.changeDetectorRef.detectChanges();
        });
+      this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
+
+      if (this.session) {
+        if (this.session['isConnected']()) {
+          this.publish();
+        }
+      this.session.on('sessionConnected', () => this.publish());
+    }
        this.session.on('signal:agentConnected', (data) => {
         console.log('Agentconnected', data);
         this.doctorconnected = true;
@@ -126,4 +137,13 @@ export class PatientComponent implements OnInit {
      this.wel = !this.wel;
      this.call = !this.call;
    }
+   publish() {
+    this.session.publish(this.publisher, (err) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        this.publishing = true;
+      }
+    });
+  }
 }
