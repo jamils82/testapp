@@ -39,6 +39,7 @@ export class DoctoraComponent implements OnInit {
   callerName = null;
   callerReason = null;
   list = true;
+  doctorconnected = true;
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
@@ -76,6 +77,13 @@ export class DoctoraComponent implements OnInit {
       // alert(this.token);
       console.log(this.token);
     });
+  }
+  postconnect(name: string) {
+    return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
+        // this.doctorconnected = (data );
+      //  alert(this.callername);
+      }
+    );
   }
   getname() {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {

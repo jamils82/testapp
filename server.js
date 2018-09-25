@@ -9,6 +9,7 @@ app.use(bodyParser.json());
   const apiKey=  '46168292';
   var callernames = [];
   var newLength ='';
+  doctorconnected = false;
   var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -67,7 +68,15 @@ app.use(function (req, res, next) {
    
     res.send( {requestedCatName} );
   });
-
+  app.route('/api/connecteddoctor/:name').get((req, res) => {
+    doctorconnected = req.params['name'];
+   // newLength = callernames.push(req.params['name']);
+   
+    res.send( doctorconnected );
+  });
+  app.route('/api/connecteddoctor').get((req, res) => {
+    res.send( doctorconnected );
+  });
   app.route('/api/sess').get((req, res ) => {
     res.send(callernames);
   })

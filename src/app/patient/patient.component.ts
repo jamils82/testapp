@@ -19,6 +19,7 @@ export class PatientComponent implements OnInit {
   changeDetectorRef: ChangeDetectorRef;
   end = false;
   callername: string;
+  doctorconnected: any;
   config: any;
   call = false;
   onHold = false;
@@ -54,6 +55,14 @@ export class PatientComponent implements OnInit {
   getSess(name: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
         this.callername = JSON.stringify(data );
+      //  alert(this.callername);
+      }
+    );
+  }
+  getDoc(name: string) {
+    return this.http.get('https://doctestapp.herokuapp.com/api/connectteddoctor' ).subscribe( data => {
+        this.doctorconnected = data;
+        console.log(this.doctorconnected);
       //  alert(this.callername);
       }
     );
