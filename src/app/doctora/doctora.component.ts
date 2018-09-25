@@ -50,6 +50,7 @@ export class DoctoraComponent implements OnInit {
 
   ngOnInit () {
     this.route.navigate(['/doctora']);
+    this.postconnect();
    // this.getCat();
    setInterval(() => {
     this.getname().subscribe( data => {
@@ -78,7 +79,7 @@ export class DoctoraComponent implements OnInit {
       console.log(this.token);
     });
   }
-  postconnect(name: string) {
+  postconnect() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
         // this.doctorconnected = (data );
       //  alert(this.callername);

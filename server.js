@@ -68,8 +68,8 @@ app.use(function (req, res, next) {
    
     res.send( {requestedCatName} );
   });
-  app.route('/api/connecteddoctor/:name').get((req, res) => {
-    doctorconnected = req.params['name'];
+  app.route('/api/connecteddoctor/:bool').get((req, res) => {
+    doctorconnected = true;
    // newLength = callernames.push(req.params['name']);
    
     res.send( doctorconnected );
