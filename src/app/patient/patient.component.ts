@@ -89,8 +89,9 @@ export class PatientComponent implements OnInit {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
-         this.connectionstream = event.stream;
+         this.connectionstream = event.stream.ID;
          this.streams.push(event.stream);
+         console.log(this.connectionstream);
          this.changeDetectorRef.detectChanges();
        });
        this.session.on('streamDestroyed', (event) => {
