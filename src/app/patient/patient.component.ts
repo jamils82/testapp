@@ -114,7 +114,10 @@ export class PatientComponent implements OnInit {
          }
        });
      })
-     .then(() => this.opentokService.connect())
+     .then(() => {
+      if (this.doctorconnected = true  ) {
+     this.opentokService.connect(); }
+       } )
      .catch((err) => {
        console.error(err);
        alert('Unable to connect. Make sure you have Internet Working.');
