@@ -118,10 +118,6 @@ export class PatientComponent implements OnInit {
         }
       this.session.on('sessionConnected', () => this.publish());
     }
-       this.session.on('signal:agentConnected', (data) => {
-        console.log('Agentconnected', data);
-        this.doctorconnected = true;
-      });
        this.session.on('streamDestroyed');
      })
      .then(() => this.opentokService.connect())
