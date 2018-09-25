@@ -24,7 +24,6 @@ export class OpentokService {
       return Promise.resolve(this.session);
     }
   }
-
   connect() {
     return new Promise((resolve, reject) => {
       this.session.connect(this.token, (err) => {
