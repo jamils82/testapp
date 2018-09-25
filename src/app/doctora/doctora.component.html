@@ -3,9 +3,9 @@
 <div>
   <h1>Welcome Doctor</h1>
   <mat-list *ngIf="list">
-    <mat-list-item *ngFor="let caller of onlinecallers">
+    <mat-list-item *ngFor="let caller of onlinecallers; let i = index">
      <h1 matLine> {{caller}} </h1>
-     <h2 matLine > {{caller.index}} </h2>
+     <h2 matLine >Caller number in Queue {{i}} </h2>
       <button matLine  (click)="hidediv()" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
     </mat-list-item>
   </mat-list>
