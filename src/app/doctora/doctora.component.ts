@@ -100,7 +100,8 @@ export class DoctoraComponent implements OnInit {
       // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
-   hidediv() {
+   hidediv(i: string ) {
+     alert(i);
     this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
