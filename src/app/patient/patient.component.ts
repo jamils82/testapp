@@ -97,22 +97,9 @@ export class PatientComponent implements OnInit {
      this.wel = !this.wel;
      this.call = true;
      this.end = true;
+     if (this.doctorconnected = true  ) {
      this.opentokService.initSession().then((session: OT.Session) => {
        this.session = session;
-       this.session.on('streamCreated', (event) => {
-         console.log(session);
-         this.connectionstream = event.stream.ID;
-         this.streams.push(event.stream);
-         console.log(this.connectionstream);
-         this.changeDetectorRef.detectChanges();
-       });
-       this.session.on('streamDestroyed', (event) => {
-         const idx = this.streams.indexOf(event.stream);
-         if (idx > -1) {
-           this.streams.splice(idx, 1);
-           this.changeDetectorRef.detectChanges();
-         }
-       });
      })
      .then(() =>
      this.opentokService.connect())
@@ -120,6 +107,7 @@ export class PatientComponent implements OnInit {
        console.error(err);
        alert('Unable to connect. Make sure you have Internet Working.');
      });
+    }
    }
    endcall() {
      this.deletename();
