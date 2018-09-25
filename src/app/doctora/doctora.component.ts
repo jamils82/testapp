@@ -107,6 +107,7 @@ export class DoctoraComponent implements OnInit {
   }
    hidediv(i: string ) {
     // alert(i);
+    alert(this.onlinecallers[i]);
     this.favcaller = this.onlinecallers[i];
     this.setfav(this.favcaller);
     this.opentokService.gettoken(this.token);
