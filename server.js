@@ -71,7 +71,6 @@ app.use(function (req, res, next) {
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
    // newLength = callernames.push(req.params['name']);
-   
     res.send( doctorconnected );
   });
   app.route('/api/connecteddoctor').get((req, res) => {
