@@ -79,7 +79,10 @@ app.use(function (req, res, next) {
   });
   app.route('/api/favcaller/:name').get((req,res) => {
     favcaller = req.params['name'];
-  } )
+  } );
+  app.route('/api/favcaller/').get((req,res) => {
+    res.send(favcaller);
+  } );
   app.route('/api/sess').get((req, res ) => {
     res.send(callernames);
   })
