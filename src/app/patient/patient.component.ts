@@ -34,6 +34,9 @@ export class PatientComponent implements OnInit {
   ngOnInit() {
     this.route.navigate(['./patient']);
     this.getCat();
+    setInterval(() => {
+    this.getDoc();
+  }, 3000 );
    // this.insertSess();
   //  this.getSess();
   }
@@ -59,7 +62,7 @@ export class PatientComponent implements OnInit {
       }
     );
   }
-  getDoc(name: string) {
+  getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connectteddoctor' ).subscribe( data => {
         this.doctorconnected = data;
         console.log(this.doctorconnected);
