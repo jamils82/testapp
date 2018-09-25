@@ -95,7 +95,7 @@ export class DoctoraComponent implements OnInit {
     }));
   }
   setfav (call: string) {
-    return this.http.get('https://doctestapp.herokuapp.com/api/setfav/' + this.favcaller).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/favcaller/' + this.favcaller).subscribe( data => {
       console.log(this.favcaller);
     });
   }
