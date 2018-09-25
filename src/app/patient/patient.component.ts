@@ -20,6 +20,7 @@ export class PatientComponent implements OnInit {
   end = false;
   callername: string;
   doctorconnected: any;
+  favcaller: any;
   config: any;
   call = false;
   onHold = false;
@@ -35,7 +36,7 @@ export class PatientComponent implements OnInit {
     this.route.navigate(['./patient']);
     this.getCat();
     setInterval(() => {
-    this.getDoc();
+    this.getfav();
   }, 3000 );
    // this.insertSess();
   //  this.getSess();
@@ -75,6 +76,12 @@ export class PatientComponent implements OnInit {
       this.testname = data;
       alert(this.testname);
     } );
+  }
+  getfav() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/favcaller').subscribe( data => {
+      this.favcaller = data;
+      console.log(this.favcaller);
+    });
   }
   deletename() {
     return this.http.get('https://doctestapp.herokuapp.com/api/session/' +  this.callername ).subscribe( data => {

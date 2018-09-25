@@ -94,6 +94,11 @@ export class DoctoraComponent implements OnInit {
       console.log(this.onlinecallers);
     }));
   }
+  setfav (call: string) {
+    return this.http.get('https://doctestapp.herokuapp.com/api/setfav/' + this.favcaller).subscribe( data => {
+      console.log(this.favcaller);
+    });
+  }
   errorHandler(err) {
     if (err && err.message) {
      console.log(err);
@@ -101,7 +106,9 @@ export class DoctoraComponent implements OnInit {
     }
   }
    hidediv(i: string ) {
-     alert(i);
+    // alert(i);
+    this.favcaller = this.onlinecallers[i];
+    this.setfav(this.favcaller);
     this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
     this.wel = !this.wel;

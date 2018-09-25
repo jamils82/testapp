@@ -9,6 +9,7 @@ app.use(bodyParser.json());
   const apiKey=  '46168292';
   var callernames = [];
   var newLength ='';
+  favcaller = '';
   doctorconnected = false;
   var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
@@ -76,6 +77,9 @@ app.use(function (req, res, next) {
   app.route('/api/connecteddoctor').get((req, res) => {
     res.send( doctorconnected );
   });
+  app.route('/api/favcaller/:name').get((req,res) => {
+    favcaller = req.params['name'];
+  } )
   app.route('/api/sess').get((req, res ) => {
     res.send(callernames);
   })
