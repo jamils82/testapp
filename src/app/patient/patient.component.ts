@@ -97,7 +97,7 @@ export class PatientComponent implements OnInit {
      this.wel = !this.wel;
      this.call = true;
      this.end = true;
-    /* this.opentokService.initSession().then((session: OT.Session) => {
+     this.opentokService.initSession().then((session: OT.Session) => {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
@@ -119,7 +119,7 @@ export class PatientComponent implements OnInit {
      .catch((err) => {
        console.error(err);
        alert('Unable to connect. Make sure you have Internet Working.');
-     }); */
+     });
    }
    endcall() {
      this.deletename();
