@@ -100,8 +100,17 @@ export class PatientComponent implements OnInit {
      this.wel = !this.wel;
      this.call = true;
      this.end = true;
-     this.opentokService.initSession().then((session: OT.Session) => {
+     this.opentokService.initSession();
+      this.session.on('sessionConnected', () => this.publish())
+      .then((session: OT.Session) => {
        this.session = session;
+       this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
+
+      if (this.session) {
+        if (this.session['isConnected']()) {
+          this.publish();
+        }
+      }
        this.session.on('streamCreated', (event) => {
          console.log(session);
         // alert(session.connection.ID );
@@ -110,14 +119,6 @@ export class PatientComponent implements OnInit {
          console.log(this.connectionstream);
          this.changeDetectorRef.detectChanges();
        });
-      this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
-
-      if (this.session) {
-        if (this.session['isConnected']()) {
-          this.publish();
-        }
-      this.session.on('sessionConnected', () => this.publish());
-    }
        this.session.on('streamDestroyed');
      })
      .then(() => this.opentokService.connect())
