@@ -101,9 +101,8 @@ export class PatientComponent implements OnInit {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
-         alert(JSON.stringify( session));
+         alert(session.connection.ID );
          this.connectionstream = event.stream.ID;
-         this.streams.push(event.stream);
          alert(JSON.stringify( event.stream));
          console.log(this.connectionstream);
          this.changeDetectorRef.detectChanges();
@@ -112,13 +111,7 @@ export class PatientComponent implements OnInit {
         console.log('Agentconnected', data);
         this.doctorconnected = true;
       });
-       this.session.on('streamDestroyed', (event) => {
-         const idx = this.streams.indexOf(event.stream);
-         if (idx > -1) {
-           this.streams.splice(idx, 1);
-           this.changeDetectorRef.detectChanges();
-         }
-       });
+       this.session.on('streamDestroyed');
      })
      .then(() => this.opentokService.connect())
      .catch((err) => {
