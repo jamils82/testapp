@@ -27,6 +27,7 @@ export class PatientComponent implements OnInit {
       width: '100%',
       height: '100%'
     };
+  connectionstream: any;
   constructor(private ref: ChangeDetectorRef, private http: HttpClient, private opentokService: OpentokService, private route: Router ) { }
 
   ngOnInit() {
@@ -88,6 +89,7 @@ export class PatientComponent implements OnInit {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
+         this.connectionstream = event.stream;
          this.streams.push(event.stream);
          this.changeDetectorRef.detectChanges();
        });
