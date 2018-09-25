@@ -101,14 +101,19 @@ export class PatientComponent implements OnInit {
        this.session = session;
        this.session.on('streamCreated', (event) => {
          console.log(session);
+         alert(session);
          this.connectionstream = event.stream.ID;
          this.streams.push(event.stream);
+         alert(event.stream);
          console.log(this.connectionstream);
          this.changeDetectorRef.detectChanges();
        });
+       this.session.on('signal:agentConnected', (data) => {
+        console.log('Agentconnected', data);
+        this.doctorconnected = true;
+      });
        this.session.on('streamDestroyed', (event) => {
          const idx = this.streams.indexOf(event.stream);
-         alert(idx);
          if (idx > -1) {
            this.streams.splice(idx, 1);
            this.changeDetectorRef.detectChanges();
