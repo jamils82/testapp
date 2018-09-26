@@ -108,6 +108,7 @@ export class PatientComponent implements OnInit {
     this.callername = box;
    this.getSess(this.callername);
   // alert(box);
+    if (this.callername = this.favcaller ) {
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
      this.wel = !this.wel;
@@ -134,6 +135,7 @@ export class PatientComponent implements OnInit {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
     });
+  }
    }
    endcall() {
      this.deletename();
