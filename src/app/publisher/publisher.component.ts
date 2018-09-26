@@ -23,7 +23,7 @@ export class PublisherComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.initCamera({ video: true, audio: true });
-    const OT = this.opentokService.getOT();
+
     this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
 
     if (this.session) {
