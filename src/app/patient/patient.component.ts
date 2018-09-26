@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef , ElementRef, AfterViewInit, ViewC
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import * as OT from 'opentok-angular';
+// import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router } from '@angular/router';
 
 const publish = () => {
@@ -136,6 +136,7 @@ export class PatientComponent implements OnInit {
     });
    }
    testcall() {
+    const OT = this.opentokService.getOT();
     this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
 
     if (this.session) {
