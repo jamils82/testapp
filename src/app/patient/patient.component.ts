@@ -105,32 +105,26 @@ export class PatientComponent implements OnInit {
      this.call = true;
      this.end = true;
      this.opentokService.initSession().then((session: OT.Session) => {
-       this.session = session;
-       this.session.on('streamCreated', (event) => {
-         console.log(session);
-         alert(session.connectionId );
-         this.connectionstream = event.stream.ID;
-         alert(JSON.stringify( event.stream));
-         console.log(this.connectionstream);
-         this.changeDetectorRef.detectChanges();
-       });
-       this.session.on('signal:agentConnected', (data) => {
-        console.log('Agentconnected', data);
-        this.doctorconnected = true;
+      this.session = session;
+      this.session.on('streamCreated', (event) => {
+        console.log(session);
+        this.streams.push(event.stream);
+        this.changeDetectorRef.detectChanges();
       });
-       this.session.on('streamDestroyed', (event) => {
-         const idx = this.streams.indexOf(event.stream);
-         if (idx > -1) {
-           this.streams.splice(idx, 1);
-           this.changeDetectorRef.detectChanges();
-         }
-       });
-     })
-     .then(() => this.opentokService.connect())
-     .catch((err) => {
-       console.error(err);
-       alert('Unable to connect. Make sure you have Internet Working.');
-     });
+      console.log('connnected to session');
+      this.session.on('streamDestroyed', (event) => {
+        const idx = this.streams.indexOf(event.stream);
+        if (idx > -1) {
+          this.streams.splice(idx, 1);
+          this.changeDetectorRef.detectChanges();
+        }
+      });
+    })
+    .then(() => this.opentokService.connect())
+    .catch((err) => {
+      console.error(err);
+      alert('Unable to connect. Make sure you have Internet Working.');
+    });
    }
    endcall() {
      this.deletename();
