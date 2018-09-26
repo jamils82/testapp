@@ -11,6 +11,7 @@
   </form> 
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv(boxinput.value)"  >Start Call</button>
+    <button mat-raised-button color="primary" (click) ="testcall()"  >Start Call</button>
     </div>
 
 </div>
@@ -18,7 +19,8 @@
   <h1>Welcome to Doctors Waiting Room</h1>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
-    <app-publisher class="publisher" [session]="session"></app-publisher>
+  <div class="publisher" [ngClass]="{'publishing': publishing}" #publisherDiv></div>
+  <!--  <app-publisher class="publisher" [session]="session"></app-publisher> -->
    <app-subscriber class="subscriber" *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
 </div>
 </div>

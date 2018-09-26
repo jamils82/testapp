@@ -1,9 +1,15 @@
-import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef , ElementRef, AfterViewInit, ViewChild, Input  } from '@angular/core';
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router } from '@angular/router';
+
+const publish = () => {
+
+};
+
+
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -11,7 +17,10 @@ import {  RouterModule, Routes, Router } from '@angular/router';
   providers: [ OpentokService ]
 })
 export class PatientComponent implements OnInit {
-  session: OT.Session;
+  @ViewChild('publisherDiv') publisherDiv: ElementRef;
+  @Input() session: OT.Session;
+  publisher: OT.Publisher;
+  publishing: Boolean;
   token = '123';
   streams: Array<OT.Stream> = [];
   wel = true;
@@ -126,6 +135,16 @@ export class PatientComponent implements OnInit {
       alert('Unable to connect. Make sure you have Internet Working.');
     });
    }
+   testcall() {
+    this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
+
+    if (this.session) {
+      if (this.session['isConnected']()) {
+        this.publish();
+      }
+      this.session.on('sessionConnected', () => this.publish());
+    }
+   }
    endcall() {
      this.deletename();
      this.session.disconnect();
@@ -133,4 +152,13 @@ export class PatientComponent implements OnInit {
      this.wel = !this.wel;
      this.call = !this.call;
    }
+   publish() {
+    this.session.publish(this.publisher, (err) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        this.publishing = true;
+      }
+    });
+  }
 }
