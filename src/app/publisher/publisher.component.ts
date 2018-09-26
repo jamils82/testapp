@@ -22,8 +22,7 @@ export class PublisherComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.initCamera({ video: true, audio: true });
-
+    const OT = this.opentokService.getOT();
     this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
 
     if (this.session) {
@@ -32,16 +31,6 @@ export class PublisherComponent implements AfterViewInit {
       }
       this.session.on('sessionConnected', () => this.publish());
     }
-  }
-  initCamera(config: any) {
-    const browser = <any>navigator;
-    browser.getUserMedia = (browser.getUserMedia ||
-      browser.webkitGetUserMedia ||
-      browser.mozGetUserMedia ||
-      browser.msGetUserMedia);
-
-    browser.mediaDevices.getUserMedia(config).then(stream => {
-    });
   }
   publish() {
     this.session.publish(this.publisher, (err) => {

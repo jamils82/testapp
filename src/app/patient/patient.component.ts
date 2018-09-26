@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router } from '@angular/router';
-
+import * as OT from 'opentok-angular';
 const publish = () => {
 
 };
@@ -134,17 +134,6 @@ export class PatientComponent implements OnInit {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
     });
-   }
-   testcall() {
-    const OT = this.opentokService.getOT();
-    this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
-
-    if (this.session) {
-      if (this.session['isConnected']()) {
-        this.publish();
-      }
-      this.session.on('sessionConnected', () => this.publish());
-    }
    }
    endcall() {
      this.deletename();
