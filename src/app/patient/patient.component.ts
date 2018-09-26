@@ -78,7 +78,7 @@ export class PatientComponent implements OnInit {
     } );
   }
   getfav() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/favcaller').subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/getfavcaller').subscribe( data => {
       this.favcaller = data;
       console.log(this.favcaller);
     });
