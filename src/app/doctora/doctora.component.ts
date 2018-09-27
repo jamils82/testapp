@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
-// import * as OT from 'opentok-angular';
+import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
 import {MatListModule} from '@angular/material/list';
-declare var OT: any;
 export interface Cat {
   name: string;
 }
@@ -18,7 +17,7 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  publisher: any;
+
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
@@ -119,25 +118,26 @@ export class DoctoraComponent implements OnInit {
     this.enter = false;
     this.call = true;
     this.end = true;
-    this.opentokService.initSession();
-    this.session.on('streamCreated', (event) => {
-      this.session.subscribe(event.stream, 'subscriber', this.subscriberOpts );
-    });
-    this.opentokService.connect();
-        // Create a publisher
-        this.publisher = OT.initPublisher('publisher', {
-          insertMode: 'append',
-          resolution: '1280x720',
-          width: '100%',
-          height: '100%',
-          });
-          this.session.publish(this.publisher, (error) => {
-            if (error) {
-              console.log('Publisher error: ' + error);
-            }
-          });
-      this.session.on('sessionDisconnected', (event) => {
-
+    this.opentokService.initSession().then((session: OT.Session) => {
+      this.session = session;
+      this.session.on('streamCreated', (event) => {
+        console.log(session);
+        this.streams.push(event.stream);
+        this.changeDetectorRef.detectChanges();
+      });
+      console.log('connnected to session');
+      this.session.on('streamDestroyed', (event) => {
+        const idx = this.streams.indexOf(event.stream);
+        if (idx > -1) {
+          this.streams.splice(idx, 1);
+          this.changeDetectorRef.detectChanges();
+        }
+      });
+    })
+    .then(() => this.opentokService.connect())
+    .catch((err) => {
+      console.error(err);
+      alert('Unable to connect. Make sure you have Internet Working.');
     });
   }
   getSess() {

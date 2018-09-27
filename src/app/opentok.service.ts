@@ -8,7 +8,7 @@ export class OpentokService {
 
   session: OT.Session;
   token: string;
-  publisher: any;
+
   constructor() { }
   gettoken(tokenid: string) {
     // this.token = tokenid;
