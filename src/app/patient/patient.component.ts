@@ -29,7 +29,7 @@ export class PatientComponent implements OnInit {
   end = false;
   callername: string;
   doctorconnected: any;
-  favcaller: any;
+  favcaller: string;
   config: any;
   call = false;
   onHold = false;
