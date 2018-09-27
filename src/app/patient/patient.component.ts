@@ -91,7 +91,7 @@ export class PatientComponent implements OnInit {
   }
   getfav() {
     return this.http.get('https://doctestapp.herokuapp.com/api/getfavcaller', {responseType: 'text'} ).subscribe( data => {
-      this.favcaller = data;
+    //  this.favcaller = data;
       console.log(this.favcaller);
     });
   }
@@ -110,8 +110,6 @@ export class PatientComponent implements OnInit {
   hidediv(box: string ) {
     this.callername = box;
     this.getSess(this.callername);
-    this.opentokService.gettoken(this.token);
-    console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.call = true;
     this.end = true;
@@ -125,7 +123,11 @@ export class PatientComponent implements OnInit {
     this.call = !this.call;
    }
    connectcall() {
-    if (this.callername === this.favcaller ) {
+    if ( this.callername = '' ) {
+      console.log('waitng for callername');
+    } else if ( this.favcaller = '' ) {
+      console.log('Fav Caller is null');
+    } else if (this.callername === this.favcaller ) {
       console.log(this.callername , '&&%%%', this.favcaller );
       this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
