@@ -109,26 +109,25 @@ export class PatientComponent implements OnInit {
   }
   hidediv(box: string ) {
     this.callername = box;
-   this.getSess(this.callername);
-  // alert(box);
-     this.opentokService.gettoken(this.token);
-     console.log(JSON.stringify(this.token));
-     this.wel = !this.wel;
-     this.call = true;
-     this.end = true;
-       this.connectcall();
+    this.getSess(this.callername);
+    this.opentokService.gettoken(this.token);
+    console.log(JSON.stringify(this.token));
+    this.wel = !this.wel;
+    this.call = true;
+    this.end = true;
+    this.connectcall();
    }
    endcall() {
-     this.deletename();
-     this.session.disconnect();
-     this.end = false;
-     this.wel = !this.wel;
-     this.call = !this.call;
+    this.deletename();
+    this.session.disconnect();
+    this.end = false;
+    this.wel = !this.wel;
+    this.call = !this.call;
    }
    connectcall() {
     if (this.callername === this.favcaller ) {
       console.log(this.callername , '&&%%%', this.favcaller );
-    this.opentokService.initSession().then((session: OT.Session) => {
+      this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
       this.session.on('streamCreated', (event) => {
         console.log(session);
