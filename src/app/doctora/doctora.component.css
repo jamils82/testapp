@@ -7,7 +7,7 @@
     position: absolute;
     z-index: -1;
   }
-  .publisher {
+  #publisher {
     position: relative;
     width: 22%;
     margin-top: 3%;
