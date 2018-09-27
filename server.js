@@ -89,7 +89,8 @@ app.use(function (req, res, next) {
   app.route('/api/session/:name').get((req, res) => {
     requestedCatName = req.params['name'];
     var a = callernames.indexOf(requestedCatName);
-    callernames.splice(a,1); 
+    if(a > -1)
+      callernames.splice(a,1); 
    // newLength =callernames.pop(requestedCatName);
     res.send( {requestedCatName} );
   });
