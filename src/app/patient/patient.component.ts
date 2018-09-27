@@ -123,36 +123,36 @@ export class PatientComponent implements OnInit {
     this.call = !this.call;
    }
    connectcall() {
-    if ( this.callername = '' ) {
-      console.log('waitng for callername');
-    } else if ( this.favcaller = '' ) {
-      console.log('Fav Caller is null');
-    } else if (this.callername === this.favcaller ) {
-      console.log(this.callername , '&&%%%', this.favcaller );
-      this.opentokService.initSession().then((session: OT.Session) => {
-      this.session = session;
-      this.session.on('streamCreated', (event) => {
-        console.log(session);
-        this.streams.push(event.stream);
-        this.changeDetectorRef.detectChanges();
-      });
-      console.log('connnected to session');
-      this.session.on('streamDestroyed', (event) => {
-        const idx = this.streams.indexOf(event.stream);
-        if (idx > -1) {
-          this.streams.splice(idx, 1);
+    if (typeof this.callername !== undefined ) {
+      console.log(this.callername);
+      if ( typeof this.favcaller !== undefined ) {
+        if (this.callername === this.favcaller ) {
+        console.log(this.callername , '&&%%%', this.favcaller );
+        this.opentokService.initSession().then((session: OT.Session) => {
+        this.session = session;
+        this.session.on('streamCreated', (event) => {
+          console.log(session);
+          this.streams.push(event.stream);
           this.changeDetectorRef.detectChanges();
-        }
+        });
+        console.log('connnected to session');
+        this.session.on('streamDestroyed', (event) => {
+          const idx = this.streams.indexOf(event.stream);
+          if (idx > -1) {
+            this.streams.splice(idx, 1);
+            this.changeDetectorRef.detectChanges();
+          }
+        });
+      })
+      .then(() => this.opentokService.connect())
+      .catch((err) => {
+        console.error(err);
+        alert('Unable to connect. Make sure you have Internet Working.');
       });
-    })
-    .then(() => this.opentokService.connect())
-    .catch((err) => {
-      console.error(err);
-      alert('Unable to connect. Make sure you have Internet Working.');
-    });
-    } else {
-      console.log('looking');
-    }
+      } } else {
+        console.log('looking');
+      }
+   }
   }
    publish() {
     this.session.publish(this.publisher, (err) => {
