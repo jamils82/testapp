@@ -49,6 +49,7 @@ export class DoctoraComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
+    this.publishing = true;
   }
 
   ngOnInit () {
