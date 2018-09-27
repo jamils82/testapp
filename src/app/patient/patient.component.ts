@@ -70,7 +70,7 @@ export class PatientComponent implements OnInit {
   }
   getSess(name: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
-        this.callername = JSON.stringify(data );
+      //  this.callername = JSON.stringify(data );
       //  alert(this.callername);
       }
     );
