@@ -163,7 +163,6 @@ export class DoctoraComponent implements OnInit {
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
-    this.route.navigate(['doctora']);
   }
 
 }
