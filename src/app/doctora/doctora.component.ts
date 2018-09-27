@@ -17,7 +17,7 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  @ViewChild('publisherDiv') publisherDiv: ElementRef;
+  @ViewChild('publisherDiv', {read: ElementRef}) private publisherDiv: ElementRef;
   @Input()
   publisher: OT.Publisher;
   publishing: Boolean;
