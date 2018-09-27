@@ -43,7 +43,6 @@ export class DoctoraComponent implements OnInit {
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
-  publisher: any;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
@@ -135,20 +134,7 @@ export class DoctoraComponent implements OnInit {
         }
       });
     })
-    .then(() => {this.opentokService.connect();
-      this.publisher = OT.initPublisher('publisher', {
-        insertMode: 'append',
-            resolution: '1280x720',
-            width: '100%',
-            height: '100%'
-            });
-            this.session.publish(this.publisher, (error) => {
-              if (error) {
-                console.log('Publisher error: ' + error);
-              }
-            });
-        }
-    )
+    .then(() => this.opentokService.connect())
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
