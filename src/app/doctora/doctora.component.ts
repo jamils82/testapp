@@ -108,11 +108,11 @@ export class DoctoraComponent implements OnInit {
   }
    hidediv(i: string ) {
     // alert(i);
-    alert(this.onlinecallers[i]);
+    // alert(this.onlinecallers[i]);
     this.favcaller = this.onlinecallers[i];
     this.setfav(this.favcaller);
     this.opentokService.gettoken(this.token);
-     console.log(JSON.stringify(this.token));
+    // console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.list = !this.list;
     this.enter = false;
@@ -127,11 +127,6 @@ export class DoctoraComponent implements OnInit {
       });
       console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
-        const idx = this.streams.indexOf(event.stream);
-        if (idx > -1) {
-          this.streams.splice(idx, 1);
-          this.changeDetectorRef.detectChanges();
-        }
       });
     })
     .then(() => this.opentokService.connect())
