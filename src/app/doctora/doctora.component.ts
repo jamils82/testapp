@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,12 +17,10 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  @ViewChild('publisherDiv') publisherDiv: ElementRef;
-  @Input() session: OT.Session;
-  publisher: OT.Publisher;
-  publishing: Boolean;
+
   closeResult: string;
   title = 'Angular Basic Video Chat';
+  session: OT.Session;
   token: string;
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
@@ -45,10 +43,10 @@ export class DoctoraComponent implements OnInit {
   audioVideo: 'audioVideo';
   sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
+  publisher: any;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
-    this.publishing = true;
   }
 
   ngOnInit () {
@@ -109,15 +107,6 @@ export class DoctoraComponent implements OnInit {
       // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
-  publish() {
-    this.session.publish(this.publisher, (err) => {
-      if (err) {
-        alert(err.message);
-      } else {
-        this.publishing = true;
-      }
-    });
-  }
    hidediv(i: string ) {
     // alert(i);
     // alert(this.onlinecallers[i]);
@@ -172,16 +161,6 @@ export class DoctoraComponent implements OnInit {
       // alert(this.token);
       console.log(this.callerName);
   });
-  }
-  initpub() {
-    this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
-
-    if (this.session) {
-      if (this.session['isConnected']()) {
-        this.publish();
-      }
-      this.session.on('sessionConnected', () => this.publish());
-    }
   }
   onSubmit() {
    /* // tslint:disable-next-line:max-line-length
