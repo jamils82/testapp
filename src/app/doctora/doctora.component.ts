@@ -127,11 +127,6 @@ export class DoctoraComponent implements OnInit {
       });
       console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
-        const idx = this.streams.indexOf(event.stream);
-        if (idx > -1) {
-          this.streams.splice(idx, 1);
-          this.changeDetectorRef.detectChanges();
-        }
       });
     })
     .then(() => this.opentokService.connect())
