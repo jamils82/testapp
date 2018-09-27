@@ -112,7 +112,9 @@ export class PatientComponent implements OnInit {
     this.getSess(this.callername);
     this.wel = !this.wel;
     this.call = true;
+    if (this.favcaller ) {
     this.end = true;
+    }
     this.connectcall();
    }
    endcall() {
