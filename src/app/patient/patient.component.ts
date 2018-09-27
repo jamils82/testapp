@@ -130,21 +130,22 @@ export class PatientComponent implements OnInit {
       console.log(this.callername);
       if ( this.favcaller ) {
         if (this.callername === this.favcaller ) {
-        console.log(this.callername , '&&%%%', this.favcaller );
-        this.opentokService.initSession().then((session: OT.Session) => {
-        this.session = session;
-        this.session.on('streamCreated', (event) => {
-          console.log(session);
-          this.streams.push(event.stream);
-          this.changeDetectorRef.detectChanges();
-        });
-        console.log('connnected to session');
-        this.session.on('streamDestroyed', (event) => {
-          const idx = this.streams.indexOf(event.stream);
-          if (idx > -1) {
-            this.streams.splice(idx, 1);
+          console.log(this.callername , '&&%%%', this.favcaller );
+          this.opentokService.initSession().then((session: OT.Session) => {
+          this.session = session;
+          this.session.on('streamCreated', (event) => {
+            console.log(session);
+            this.streams.push(event.stream);
             this.changeDetectorRef.detectChanges();
-          }
+          });
+          console.log('connnected to session');
+          this.session.on('streamDestroyed', (event) => {
+            event.preventDefault();
+            const idx = this.streams.indexOf(event.stream);
+            if (idx > -1) {
+              this.streams.splice(idx, 1);
+              this.changeDetectorRef.detectChanges();
+            }
         });
       })
       .then(() => this.opentokService.connect())
