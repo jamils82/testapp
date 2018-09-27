@@ -47,6 +47,9 @@ export class PatientComponent implements OnInit {
     setInterval(() => {
     this.getfav();
   }, 3000 );
+  setInterval(() => {
+    this.connectcall();
+  }, 3000 );
    // this.insertSess();
   //  this.getSess();
   }
@@ -108,13 +111,23 @@ export class PatientComponent implements OnInit {
     this.callername = box;
    this.getSess(this.callername);
   // alert(box);
-    if (this.callername = this.favcaller ) {
      this.opentokService.gettoken(this.token);
      console.log(JSON.stringify(this.token));
      this.wel = !this.wel;
      this.call = true;
      this.end = true;
-     this.opentokService.initSession().then((session: OT.Session) => {
+       this.connectcall();
+   }
+   endcall() {
+     this.deletename();
+     this.session.disconnect();
+     this.end = false;
+     this.wel = !this.wel;
+     this.call = !this.call;
+   }
+   connectcall() {
+    if (this.callername = this.favcaller ) {
+    this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
       this.session.on('streamCreated', (event) => {
         console.log(session);
@@ -135,15 +148,8 @@ export class PatientComponent implements OnInit {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
     });
+    }
   }
-   }
-   endcall() {
-     this.deletename();
-     this.session.disconnect();
-     this.end = false;
-     this.wel = !this.wel;
-     this.call = !this.call;
-   }
    publish() {
     this.session.publish(this.publisher, (err) => {
       if (err) {
