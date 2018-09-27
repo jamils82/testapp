@@ -88,11 +88,12 @@ app.use(function (req, res, next) {
   })
   app.route('/api/session/:name').get((req, res) => {
     requestedCatName = req.params['name'];
-    var index = array.indexOf(requestedCatName);
+    var index = callernames.indexOf(requestedCatName);
    // newLength = callernames.push(req.params['name']);
    if (index > -1) {
     array.splice(index, 1);
   }
+      
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
