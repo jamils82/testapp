@@ -21,6 +21,7 @@ describe('DoctoraComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        PublisherComponent,
         SubscriberComponent,
       ],
     }).compileComponents();
