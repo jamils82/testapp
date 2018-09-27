@@ -15,7 +15,7 @@
 
 </div>
 <div *ngIf="call" >
-  <h1>Welcome to Doctors Waiting Room</h1>
+  <h1>Welcome {{callername}} to Doctors Waiting Room</h1>
   <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
     <app-publisher class="publisher" [session]="session"></app-publisher> 
