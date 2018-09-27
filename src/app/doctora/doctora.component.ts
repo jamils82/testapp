@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,10 +17,7 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  @ViewChild('publisherDiv', {read: ElementRef}) private publisherDiv: ElementRef;
-  @Input()
-  publisher: OT.Publisher;
-  publishing: Boolean;
+
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
@@ -49,7 +46,6 @@ export class DoctoraComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
-    this.publishing = true;
   }
 
   ngOnInit () {
@@ -123,7 +119,6 @@ export class DoctoraComponent implements OnInit {
     this.call = true;
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
-      this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
       this.session = session;
       this.session.on('streamCreated', (event) => {
         console.log(session);
