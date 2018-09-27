@@ -148,6 +148,8 @@ export class PatientComponent implements OnInit {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
     });
+    } else {
+      console.log('looking');
     }
   }
    publish() {
