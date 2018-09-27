@@ -120,7 +120,7 @@ export class PatientComponent implements OnInit {
     this.deletename(this.callername);
     this.session.disconnect();
     this.callername = '';
-    alert(this.callername);
+    this.favcaller = '' ;
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
