@@ -90,7 +90,7 @@ app.use(function (req, res, next) {
     requestedCatName = req.params['name'];
     var a = callernames.indexOf(requestedCatName);
    // newLength = callernames.push(req.params['name']);
-      newLength =callernames.pop(a);
+      newLength =callernames.pop(requestedCatName);
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
