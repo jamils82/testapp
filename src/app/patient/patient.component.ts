@@ -95,7 +95,8 @@ export class PatientComponent implements OnInit {
       console.log(this.favcaller);
     });
   }
-  deletename() {
+  deletename(name: string) {
+    this.callername = name;
     return this.http.get('https://doctestapp.herokuapp.com/api/session/' +  this.callername ).subscribe( data => {
      // this.callername = JSON.stringify(data );
     //  alert(this.callername);
@@ -116,7 +117,7 @@ export class PatientComponent implements OnInit {
     this.connectcall();
    }
    endcall() {
-    this.deletename();
+    this.deletename(this.callername);
     this.session.disconnect();
     this.end = false;
     this.wel = !this.wel;
