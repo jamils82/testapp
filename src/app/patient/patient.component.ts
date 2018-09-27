@@ -119,6 +119,8 @@ export class PatientComponent implements OnInit {
    endcall() {
     this.deletename(this.callername);
     this.session.disconnect();
+    this.callername = '';
+    alert(this.callername);
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
