@@ -125,6 +125,7 @@ export class PatientComponent implements OnInit {
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
+    this.route.navigate(['/doctor']);
    }
    connectcall() {
     if (this.callername) {
