@@ -127,6 +127,7 @@ export class PatientComponent implements OnInit {
    }
    connectcall() {
     if (this.callername === this.favcaller ) {
+      console.log(this.callername , '&&%%%', this.favcaller );
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
       this.session.on('streamCreated', (event) => {
