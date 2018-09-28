@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
 // import * as OT from 'opentok-angular';
+import config from '../../config';
 import { cleanSession } from 'selenium-webdriver/safari';
 import {MatListModule} from '@angular/material/list';
 declare var OT: any;
@@ -120,9 +121,15 @@ export class DoctoraComponent implements OnInit {
     this.enter = false;
     this.call = true;
     this.end = true;
-    this.opentokService.initSession().then((session: OT.Session) => {
-      this.session = session;
-      this.session.on('streamCreated', (event) => {
+    this.token = config.TOKEN;
+    if (config.API_KEY && config.TOKEN && config.SESSION_ID) {
+      this.session = OT.initSession(config.API_KEY, config.SESSION_ID);
+      this.pubdiv = document.getElementById('publisherdiv');
+      this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
+      this.publish();
+      this.session.on('sessionConnected', () => this.publish());
+    //  console.log('Token ID ' , this.token);
+     this.session.on('streamCreated', (event) => {
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
       });
@@ -132,18 +139,8 @@ export class DoctoraComponent implements OnInit {
           this.streams.splice(idx, 1);
           this.changeDetectorRef.detectChanges();
         }
-      });
-    })
-    .then(() => { this.opentokService.connect();
-      this.pubdiv = document.getElementById('publisherdiv');
-      this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
-      this.publish();
-      this.session.on('sessionConnected', () => this.publish());
-    })
-    .catch((err) => {
-      console.error(err);
-      alert('Unable to connect. Make sure you have updated the config.ts file with your OpenTok details.');
     });
+    }
   }
   publish() {
     this.session.publish(this.publisher, (err) => {
