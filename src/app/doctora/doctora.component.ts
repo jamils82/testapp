@@ -99,6 +99,8 @@ export class DoctoraComponent implements OnInit {
       this.session = session;
       this.session.on('streamCreated', (event) => {
         console.log(session);
+        this.streams.push(event.stream);
+        this.changeDetectorRef.detectChanges();
       });
       console.log('connnected to session');
       const ot = this.opentokService.getOT();
@@ -148,6 +150,7 @@ export class DoctoraComponent implements OnInit {
   endcall() {
     this.session.unpublish(this.publisher);
     this.session.disconnect();
+    window.location.reload();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
