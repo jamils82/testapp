@@ -103,7 +103,7 @@ export class DoctoraComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       });
       console.log('connnected to session');
-      const ot = this.opentokService.getOT();
+      /* const ot = this.opentokService.getOT();
         this.pubdiv = document.getElementById('pubvideo');
 
         if (this.session) {
@@ -115,7 +115,7 @@ export class DoctoraComponent implements OnInit {
             this.publish();
           }
           this.session.on('sessionConnected', () => this.publish());
-      }
+      } */
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
