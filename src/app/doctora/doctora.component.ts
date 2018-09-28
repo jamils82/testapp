@@ -105,10 +105,17 @@ export class DoctoraComponent implements OnInit {
       console.log('connnected to session');
       const ot = this.opentokService.getOT();
         this.pubdiv = document.getElementById('pubvideo');
-        this.session.connect();
+
+        if (this.session) {
+          if (this.session['isConnected']()) {
+            if (this.publisher) {
+              this.session.unpublish(this.publisher);
+            }
             this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
             this.publish();
+          }
           this.session.on('sessionConnected', () => this.publish());
+      }
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
