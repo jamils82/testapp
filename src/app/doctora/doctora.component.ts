@@ -108,9 +108,6 @@ export class DoctoraComponent implements OnInit {
 
         if (this.session) {
           if (this.session['isConnected']()) {
-            if (this.publisher) {
-              this.session.unpublish(this.publisher);
-            }
             this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
             this.publish();
           }
