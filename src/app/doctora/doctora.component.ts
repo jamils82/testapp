@@ -121,11 +121,9 @@ export class DoctoraComponent implements OnInit {
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
       this.session.on('streamCreated', (event) => {
-        console.log(session);
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
       });
-      console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -137,7 +135,7 @@ export class DoctoraComponent implements OnInit {
     .then(() => this.opentokService.connect())
     .catch((err) => {
       console.error(err);
-      alert('Unable to connect. Make sure you have Internet Working.');
+      alert('Unable to connect. Make sure you have updated the config.ts file with your OpenTok details.');
     });
   }
   getSess() {
