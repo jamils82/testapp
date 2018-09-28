@@ -130,10 +130,15 @@ export class DoctoraComponent implements OnInit {
       this.session.connect(this.TOKEN, (error) => {
       if (!error) {
       this.pubdiv = document.getElementById('publisherdiv');
+      if (this.session) {
+        if (this.publisher) {
+            this.session.unpublish(this.publisher);
+        }
       this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
       this.publish();
       }
       alert(error);
+    }
     });
       this.session.on('sessionConnected', () => this.publish());
     //  console.log('Token ID ' , this.token);
