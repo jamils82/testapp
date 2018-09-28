@@ -4,9 +4,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
-import * as OT from 'opentok-angular';
+// import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
 import {MatListModule} from '@angular/material/list';
+declare var OT: any;
 export interface Cat {
   name: string;
 }
@@ -123,6 +124,8 @@ export class DoctoraComponent implements OnInit {
       this.session = session;
       this.pubdiv = document.getElementById('publisherdiv');
       this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
+      this.publish();
+      this.session.on('sessionConnected', () => this.publish());
       this.session.on('streamCreated', (event) => {
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
@@ -139,6 +142,15 @@ export class DoctoraComponent implements OnInit {
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have updated the config.ts file with your OpenTok details.');
+    });
+  }
+  publish() {
+    this.session.publish(this.publisher, (err) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        this.publishing = true;
+      }
     });
   }
   getSess() {
