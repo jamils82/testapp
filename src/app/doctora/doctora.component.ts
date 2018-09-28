@@ -52,19 +52,27 @@ export class DoctoraComponent implements OnInit {
   ngOnInit () {
     this.route.navigate(['/doctora']);
     this.postconnect();
+   // this.getCat();
    setInterval(() => {
     this.getname().subscribe( data => {
+   //   this.onlinecallers = JSON.stringify(data);
+    //  console.log(data);
     });
 }, 3000);
+
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
+      // console.log(data);
        this.token = data;
-       console.log(this.token);
+      // alert(this.token);
+      console.log(this.token);
     });
   }
   postconnect() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
+        // this.doctorconnected = (data );
+      //  alert(this.callername);
       }
     );
   }
@@ -72,6 +80,7 @@ export class DoctoraComponent implements OnInit {
     return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {
       this.onlinecallers = data;
       this.favcaller = this.onlinecallers[0];
+    //  this.callerName = JSON.stringify(this.callerName);
       console.log(this.onlinecallers);
     }));
   }
@@ -84,12 +93,16 @@ export class DoctoraComponent implements OnInit {
   errorHandler(err) {
     if (err && err.message) {
      console.log(err);
+      // UIkit.notification(err.message, { pos: 'bottom-left', status: 'danger' })
     }
   }
    hidediv(i: string ) {
+    // alert(i);
+    // alert(this.onlinecallers[i]);
     this.favcaller = this.onlinecallers[i];
     this.setfav(this.favcaller);
     this.opentokService.gettoken(this.token);
+    // console.log(JSON.stringify(this.token));
     this.wel = !this.wel;
     this.list = !this.list;
     this.enter = false;
@@ -105,17 +118,6 @@ export class DoctoraComponent implements OnInit {
       console.log('connnected to session');
       const ot = this.opentokService.getOT();
         this.pubdiv = document.getElementById('pubvideo');
-
-        if (this.session) {
-          if (this.session['isConnected']()) {
-            if (this.publisher) {
-              this.session.unpublish(this.publisher);
-            }
-            this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
-            this.publish();
-          }
-          this.session.on('sessionConnected', () => this.publish());
-      }
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -147,9 +149,18 @@ export class DoctoraComponent implements OnInit {
       console.log(this.callerName);
   });
   }
+  onSubmit() {
+   /* // tslint:disable-next-line:max-line-length
+    axios.post('http://localhost:8000/dial' )
+    .then(res => {
+      this.caller = res.data.caller;
+      this.otConnect(res.data.apiKey, res.data.caller.sessionId, res.data.caller.token);
+    })
+    .catch(console.log);*/
+  }
   endcall() {
-    this.session.unpublish(this.publisher);
     this.session.disconnect();
+    this.ngOnInit();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
