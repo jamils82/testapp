@@ -14,7 +14,6 @@ export interface Cat {
   selector: 'app-doctora',
   templateUrl: './doctora.component.html',
   styleUrls: ['./doctora.component.css'],
-  providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
 
