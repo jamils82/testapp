@@ -51,7 +51,7 @@ export class DoctoraComponent implements OnInit {
 
   ngOnInit () {
     this.route.navigate(['/doctora']);
-    this.route.navigateByUrl('/doctora');
+    this.route.navigateByUrl('https://doctestapp.herokuapp.com/doctora');
     this.postconnect();
    setInterval(() => {
     this.getname().subscribe( data => {
