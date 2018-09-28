@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -10,12 +10,6 @@ import {MatListModule} from '@angular/material/list';
 export interface Cat {
   name: string;
 }
-@NgModule({
-  declarations: [
-    ['/doctora']
-    // <== Insert your directives and components here
-  ]
-})
 @Component({
   selector: 'app-doctora',
   templateUrl: './doctora.component.html',
