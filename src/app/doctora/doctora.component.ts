@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Component, NgModule, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,12 @@ import {MatListModule} from '@angular/material/list';
 export interface Cat {
   name: string;
 }
+@NgModule({
+  declarations: [
+    ['/doctora']
+    // <== Insert your directives and components here
+  ]
+})
 @Component({
   selector: 'app-doctora',
   templateUrl: './doctora.component.html',
@@ -51,7 +57,6 @@ export class DoctoraComponent implements OnInit {
 
   ngOnInit () {
     this.route.navigate(['/doctora']);
-    this.route.navigateByUrl('https://doctestapp.herokuapp.com/doctora');
     this.postconnect();
    setInterval(() => {
     this.getname().subscribe( data => {
@@ -151,7 +156,6 @@ export class DoctoraComponent implements OnInit {
   endcall() {
     this.session.unpublish(this.publisher);
     this.session.disconnect();
-    window.location.reload();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
