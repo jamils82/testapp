@@ -124,9 +124,12 @@ export class DoctoraComponent implements OnInit {
     this.token = config.TOKEN;
     if (config.API_KEY && config.TOKEN && config.SESSION_ID) {
       this.session = OT.initSession(config.API_KEY, config.SESSION_ID);
+      this.session.connect(this.token, (error) => {
+      if (!error) {
       this.pubdiv = document.getElementById('publisherdiv');
       this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
       this.publish();
+      }});
       this.session.on('sessionConnected', () => this.publish());
     //  console.log('Token ID ' , this.token);
      this.session.on('streamCreated', (event) => {
@@ -170,6 +173,7 @@ export class DoctoraComponent implements OnInit {
   }
   endcall() {
     this.session.disconnect();
+    this.session.unpublish(this.publisher);
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
