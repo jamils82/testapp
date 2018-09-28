@@ -14,12 +14,11 @@ export interface Cat {
   selector: 'app-doctora',
   templateUrl: './doctora.component.html',
   styleUrls: ['./doctora.component.css'],
+  providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  pubdiv: any;
+
   closeResult: string;
-  publisher: OT.Publisher;
-  publishing: Boolean;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
   token: string;
@@ -121,13 +120,12 @@ export class DoctoraComponent implements OnInit {
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
-      this.session.connect();
-      this.pubdiv = document.getElementById('publisherdiv');
-      this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
       this.session.on('streamCreated', (event) => {
+        console.log(session);
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
       });
+      console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -139,7 +137,7 @@ export class DoctoraComponent implements OnInit {
     .then(() => this.opentokService.connect())
     .catch((err) => {
       console.error(err);
-      alert('Unable to connect. Make sure you have updated the config.ts file with your OpenTok details.');
+      alert('Unable to connect. Make sure you have Internet Working.');
     });
   }
   getSess() {
