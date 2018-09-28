@@ -44,7 +44,12 @@ export class DoctoraComponent implements OnInit {
   list = true;
   doctorconnected = true;
   audioVideo: 'audioVideo';
-  sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
+   API_KEY: '46192222';
+  SESSION_ID: '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
+  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line:max-line-length
+  TOKEN: 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
+
   testname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
@@ -121,10 +126,8 @@ export class DoctoraComponent implements OnInit {
     this.enter = false;
     this.call = true;
     this.end = true;
-    this.token = config.TOKEN;
-    if (config.API_KEY && config.TOKEN && config.SESSION_ID) {
-      this.session = OT.initSession(config.API_KEY, config.SESSION_ID);
-      this.session.connect(this.token, (error) => {
+     this.session = OT.initSession(this.API_KEY , this.SESSION_ID);
+      this.session.connect(this.TOKEN, (error) => {
       if (!error) {
       this.pubdiv = document.getElementById('publisherdiv');
       this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
@@ -143,7 +146,6 @@ export class DoctoraComponent implements OnInit {
           this.changeDetectorRef.detectChanges();
         }
     });
-    }
   }
   publish() {
     this.session.publish(this.publisher, (err) => {
