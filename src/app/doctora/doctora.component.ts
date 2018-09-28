@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,13 +17,11 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-  publisher: OT.Publisher;
-  publishing: Boolean;
+
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
   token: string;
-  pubdiv: any;
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
   favcaller: string;
@@ -42,11 +40,12 @@ export class DoctoraComponent implements OnInit {
   callerReason = null;
   list = true;
   doctorconnected = true;
+  audioVideo: 'audioVideo';
+  sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
     this.changeDetectorRef = ref;
-    this.publishing = true;
   }
 
   ngOnInit () {
@@ -56,10 +55,21 @@ export class DoctoraComponent implements OnInit {
    setInterval(() => {
     this.getname().subscribe( data => {
    //   this.onlinecallers = JSON.stringify(data);
-    //  console.log(data);
+      console.log(data);
     });
 }, 3000);
-
+  //  this.getSess();
+  //  this.getname();
+   // this.hidediv();
+    /* this.getCat().subscribeOn((dataFromServer) => {
+      // Now you can use the data
+      // alert(dataFromServer);
+      this.token = JSON.stringify(dataFromServer);
+      console.log(this.token);
+      this.opentokService.settoken(dataFromServer);
+    });
+    // console.log(this.getAllCats());
+  */
   }
   getCat() {
     return this.http.get('https://doctestapp.herokuapp.com/api/cat', {responseType: 'text'}).subscribe( data => {
@@ -116,8 +126,6 @@ export class DoctoraComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       });
       console.log('connnected to session');
-      const ot = this.opentokService.getOT();
-        this.pubdiv = document.getElementById('pubvideo');
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -130,15 +138,6 @@ export class DoctoraComponent implements OnInit {
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
-    });
-  }
-  publish() {
-    this.session.publish(this.publisher, (err) => {
-      if (err) {
-        alert(err.message);
-      } else {
-        this.publishing = true;
-      }
     });
   }
   getSess() {
@@ -160,7 +159,6 @@ export class DoctoraComponent implements OnInit {
   }
   endcall() {
     this.session.disconnect();
-    this.ngOnInit();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
