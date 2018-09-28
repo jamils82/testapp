@@ -52,7 +52,7 @@ export class DoctoraComponent implements OnInit {
   ngOnInit () {
     this.route.navigate(['/doctora']);
     this.postconnect();
-     setInterval(() => {
+   setInterval(() => {
     this.getname().subscribe( data => {
     });
 }, 3000);
@@ -99,11 +99,9 @@ export class DoctoraComponent implements OnInit {
       this.session = session;
       this.session.on('streamCreated', (event) => {
         console.log(session);
-        this.streams.push(event.stream);
-        this.changeDetectorRef.detectChanges();
       });
       console.log('connnected to session');
-      /* const ot = this.opentokService.getOT();
+      const ot = this.opentokService.getOT();
         this.pubdiv = document.getElementById('pubvideo');
 
         if (this.session) {
@@ -115,7 +113,7 @@ export class DoctoraComponent implements OnInit {
             this.publish();
           }
           this.session.on('sessionConnected', () => this.publish());
-      } */
+      }
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -148,8 +146,8 @@ export class DoctoraComponent implements OnInit {
   });
   }
   endcall() {
+    this.session.unpublish(this.publisher);
     this.session.disconnect();
-    this.ngOnInit();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;

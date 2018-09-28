@@ -11,7 +11,7 @@
   </mat-list>
 <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
   <div *ngIf="session" >
-   <app-publisher class="publisher" [session]="session"></app-publisher>  
+  <!-- <app-publisher class="publisher" [session]="session"></app-publisher> --> 
     <div id="pubdiv" class="publisher"></div>
   <app-subscriber class="subscriber" *ngFor="let stream of streams" [stream]="stream" [session]="session"></app-subscriber>
 </div>
