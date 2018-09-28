@@ -16,8 +16,10 @@ export interface Cat {
   styleUrls: ['./doctora.component.css'],
 })
 export class DoctoraComponent implements OnInit {
-
+  pubdiv: any;
   closeResult: string;
+  publisher: OT.Publisher;
+  publishing: Boolean;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
   token: string;
@@ -119,6 +121,8 @@ export class DoctoraComponent implements OnInit {
     this.end = true;
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
+      this.pubdiv = document.getElementById('publisherdiv');
+      this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
       this.session.on('streamCreated', (event) => {
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
