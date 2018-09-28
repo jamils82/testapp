@@ -182,9 +182,8 @@ export class DoctoraComponent implements OnInit {
     .catch(console.log);*/
   }
   endcall() {
-    this.session.unpublish(this.publisher);
     this.session.disconnect();
-    this.session.unpublish(this.publisher);
+    this.ngOnInit();
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
