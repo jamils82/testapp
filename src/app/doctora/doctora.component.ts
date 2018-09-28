@@ -4,11 +4,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
-// import * as OT from 'opentok-angular';
-import config from '../../config';
+import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
 import {MatListModule} from '@angular/material/list';
-declare var OT: any;
 export interface Cat {
   name: string;
 }
@@ -44,12 +42,7 @@ export class DoctoraComponent implements OnInit {
   list = true;
   doctorconnected = true;
   audioVideo: 'audioVideo';
-   API_KEY = '46192222';
-  SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
-  // tslint:disable-next-line:max-line-length
-  // tslint:disable-next-line:max-line-length
-  TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
-
+  sessionId = '2_MX40NjE1MjQ1Mn5-MTUzNDUyNzk5MTY0NH5zenRtcm50WlpLSE4wNWtTQVZuUXYrSkZ-UH4';
   testname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
@@ -126,23 +119,12 @@ export class DoctoraComponent implements OnInit {
     this.enter = false;
     this.call = true;
     this.end = true;
-     this.session = OT.initSession(this.API_KEY , this.SESSION_ID);
-      this.session.connect(this.TOKEN, (error) => {
-      if (!error) {
+    this.opentokService.initSession().then((session: OT.Session) => {
+      this.session = session;
+      this.session.connect();
       this.pubdiv = document.getElementById('publisherdiv');
-      if (this.session) {
-        if (this.publisher) {
-            this.session.unpublish(this.publisher);
-        }
       this.publisher = OT.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
-      this.publish();
-      }
-      alert(error);
-    }
-    });
-      this.session.on('sessionConnected', () => this.publish());
-    //  console.log('Token ID ' , this.token);
-     this.session.on('streamCreated', (event) => {
+      this.session.on('streamCreated', (event) => {
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
       });
@@ -152,15 +134,12 @@ export class DoctoraComponent implements OnInit {
           this.streams.splice(idx, 1);
           this.changeDetectorRef.detectChanges();
         }
-    });
-  }
-  publish() {
-    this.session.publish(this.publisher, (err) => {
-      if (err) {
-        alert(err.message);
-      } else {
-        this.publishing = true;
-      }
+      });
+    })
+    .then(() => this.opentokService.connect())
+    .catch((err) => {
+      console.error(err);
+      alert('Unable to connect. Make sure you have updated the config.ts file with your OpenTok details.');
     });
   }
   getSess() {
@@ -182,7 +161,6 @@ export class DoctoraComponent implements OnInit {
   }
   endcall() {
     this.session.disconnect();
-    this.session.unpublish(this.publisher);
     this.list = !this.list;
     this.end = false;
     this.wel = !this.wel;
