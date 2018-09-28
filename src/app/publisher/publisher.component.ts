@@ -22,27 +22,6 @@ export class PublisherComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const OT = this.opentokService.getOT();
-    this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
-
-    if (this.session) {
-      if (this.session['isConnected']()) {
-        if (this.publisher) {
-          this.session.unpublish(this.publisher);
-        }
-        this.publish();
-      }
-      this.session.on('sessionConnected', () => this.publish());
-  }
-  }
-  publish() {
-    this.session.publish(this.publisher, (err) => {
-      if (err) {
-        alert(err.message);
-      } else {
-        this.publishing = true;
-      }
-    });
   }
 
 }
