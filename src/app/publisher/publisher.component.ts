@@ -33,6 +33,7 @@ export class PublisherComponent implements AfterViewInit {
     }
   }
   publish() {
+    this.session.unpublish(this.publisher);
     this.session.publish(this.publisher, (err) => {
       if (err) {
         alert(err.message);
