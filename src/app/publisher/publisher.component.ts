@@ -30,6 +30,9 @@ export class PublisherComponent implements AfterViewInit {
 
     if (this.session) {
       if (this.session['isConnected']()) {
+        if (this.publisher) {
+          this.session.unpublish(this.publisher);
+        }
         this.publish();
       }
       this.session.on('sessionConnected', () => this.publish());
