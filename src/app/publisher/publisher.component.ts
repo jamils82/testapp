@@ -23,9 +23,6 @@ export class PublisherComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const OT = this.opentokService.getOT();
-    if (this.publisher) {
-      this.session.unpublish(this.publisher);
-    } else {
     this.publisher = OT.initPublisher(this.publisherDiv.nativeElement, {insertMode: 'append', width : '100%', height : '100%'});
 
     if (this.session) {
@@ -36,7 +33,6 @@ export class PublisherComponent implements AfterViewInit {
         this.publish();
       }
       this.session.on('sessionConnected', () => this.publish());
-    }
   }
   }
   publish() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ElementRef, AfterViewInit, ViewChild, Input } from '@angular/core';
 import { OpentokService } from '.././opentok.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,11 +17,13 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class DoctoraComponent implements OnInit {
-
+  publisher: OT.Publisher;
+  publishing: Boolean;
   closeResult: string;
   title = 'Angular Basic Video Chat';
   session: OT.Session;
   token: string;
+  pubdiv: any;
   streams: Array<OT.Stream> = [];
   changeDetectorRef: ChangeDetectorRef;
   favcaller: string;
@@ -55,7 +57,7 @@ export class DoctoraComponent implements OnInit {
    setInterval(() => {
     this.getname().subscribe( data => {
    //   this.onlinecallers = JSON.stringify(data);
-      console.log(data);
+    //  console.log(data);
     });
 }, 3000);
   //  this.getSess();
@@ -126,6 +128,19 @@ export class DoctoraComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       });
       console.log('connnected to session');
+      const ot = this.opentokService.getOT();
+        this.pubdiv = document.getElementById('pubvideo');
+
+        if (this.session) {
+          if (this.session['isConnected']()) {
+            if (this.publisher) {
+              this.session.unpublish(this.publisher);
+            }
+            this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
+            this.publish();
+          }
+          this.session.on('sessionConnected', () => this.publish());
+      }
       this.session.on('streamDestroyed', (event) => {
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
@@ -138,6 +153,15 @@ export class DoctoraComponent implements OnInit {
     .catch((err) => {
       console.error(err);
       alert('Unable to connect. Make sure you have Internet Working.');
+    });
+  }
+  publish() {
+    this.session.publish(this.publisher, (err) => {
+      if (err) {
+        alert(err.message);
+      } else {
+        this.publishing = true;
+      }
     });
   }
   getSess() {
