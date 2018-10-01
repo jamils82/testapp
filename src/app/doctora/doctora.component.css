@@ -7,7 +7,7 @@
     position: absolute;
     z-index: -1;
   }
-  .publisher {
+  #pubdiv {
     position: relative;
     width: 22%;
     margin-top: 3%;
@@ -80,7 +80,7 @@
       display: none;   
      }
      html, body { height: 100%; width: 100%; margin: 0; }
-    
+   
      input {
        line-height: 4px;
        height: 20%;
