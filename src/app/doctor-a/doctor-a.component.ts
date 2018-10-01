@@ -11,6 +11,7 @@ export class DoctorAComponent implements OnInit {
   subscriber: any;
   cameraSource = 0;
   devices: any[];
+  streams: Array<OT.Stream> = [];
   API_KEY = '46192222';
   SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
   // tslint:disable-next-line:max-line-length
@@ -35,9 +36,17 @@ export class DoctorAComponent implements OnInit {
       });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
+        const idx = this.streams.indexOf(event.stream);
+        if (idx > -1) {
+          this.streams.splice(idx, 1);
+        }
       });
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
+        const idx = this.streams.indexOf(event.stream);
+        if (idx > -1) {
+          this.streams.splice(idx, 1);
+        }
       });
       // Connect to the session
       this.session.connect(this.TOKEN, (error) => {
