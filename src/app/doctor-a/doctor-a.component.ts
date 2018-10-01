@@ -8,6 +8,7 @@ declare var OT: any;
 export class DoctorAComponent implements OnInit {
   session: any;
   publisher: any;
+  subscriber: any;
   cameraSource = 0;
   devices: any[];
   API_KEY = '46192222';
@@ -24,8 +25,8 @@ export class DoctorAComponent implements OnInit {
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
      // Subscribe to a newly created stream
       this.session.on('streamCreated', (event) => {
-        this.session.subscribe(event.stream, 'subscriber', {
-       insertMode: 'append',
+      this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
+          insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
           width: '100%',
@@ -57,6 +58,7 @@ export class DoctorAComponent implements OnInit {
     // Ends call
     endCall() {
       if (!!this.session) {
+        this.session.unsubscribe(this.subscriber);
         this.session.disconnect();
       }
     }
