@@ -32,7 +32,6 @@ export class DoctoraComponent implements OnInit {
   end = false;
   call = false;
   callbut = true;
-  parentDiv: any;
   onlinecallers: any = [];
   subscriberOpts: {
       insertMode: 'append',
@@ -122,10 +121,8 @@ export class DoctoraComponent implements OnInit {
     this.call = true;
     this.end = true;
     const ot = this.opentokService.getOT();
-    this.parentDiv = document.getElementById('pubdiv');
-    this.pubdiv =  document.createElement('div');
-    this.pubdiv.setAttribute('id', 'opentok_publisher');
-    this.parentDiv.appendChild(this.pubdiv);
+    this.pubdiv = document.getElementById('pubdiv');
+
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
       if (this.session) {
@@ -133,7 +130,7 @@ export class DoctoraComponent implements OnInit {
           if (this.publisher) {
             this.session.unpublish(this.publisher);
           }
-          this.publisher = ot.initPublisher(this.pubdiv.id, {insertMode: 'append', width : '100%', height : '100%'});
+          this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
           this.publish();
         }
         this.session.on('sessionConnected', () => this.publish());
