@@ -105,7 +105,6 @@ export class DoctoraComponent implements OnInit {
     const ot = this.opentokService.getOT();
     this.pubdiv = document.getElementById('pubdiv');
     this.session = OT.initSession(this.API_KEY , this.SESSION_ID);
-
     this.session.on('streamCreated', (event) => {
     this.session.subscribe(event.stream, 'subscriber',
      {insertMode: 'append',
@@ -119,7 +118,7 @@ export class DoctoraComponent implements OnInit {
 
     });
     // Connect to the session
-    this.session.connect(this.token, (error) => {
+    this.session.connect(this.TOKEN, (error) => {
       if (!error) {
         // Create a publisher
         this.publisher = OT.initPublisher('publisher', { insertMode: 'append',
