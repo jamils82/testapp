@@ -157,7 +157,7 @@ export class PatientComponent implements OnInit {
       });
       } else {
 
-        this.endcall();
+
       }
      } else {
         console.log('looking');
