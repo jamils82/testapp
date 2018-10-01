@@ -121,7 +121,7 @@ export class DoctoraComponent implements OnInit {
     this.call = true;
     this.end = true;
     const ot = this.opentokService.getOT();
-    this.pubdiv = document.getElementById('pubvideo');
+    this.pubdiv = document.getElementById('pubdiv');
 
     this.opentokService.initSession().then((session: OT.Session) => {
       this.session = session;
