@@ -14,7 +14,7 @@ export class DoctorComponent implements OnInit {
     this.route.navigateByUrl('/doctor');
   }
   doctor() {
-    this.route.navigate(['/doctora']);
+    this.route.navigate(['/doctor-a']);
   }
   patient() {
     this.route.navigate(['/patient']);

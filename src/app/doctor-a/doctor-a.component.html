@@ -1,3 +1,11 @@
-<p>
-  doctor-a works!
-</p>
+<base href="/">
+
+<div>
+<button matLine  (click)="startCall()" class="callbut"  mat-raised-button >Call </button>
+   
+<button class="endbut" mat-raised-button color="warn" (click)="endCall()" >End Call</button>
+<div id="videos">
+  <div id="subscriber"></div>
+  <div id="publisher"></div>
+</div>
+</div>

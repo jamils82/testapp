@@ -13,9 +13,11 @@ import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
+import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   { path: 'doctora',  component: DoctoraComponent },
+  { path: 'doctor-a',  component: DoctoraComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent }
@@ -25,6 +27,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    DoctorAComponent,
     PublisherComponent,
     SubscriberComponent,
     DoctoraComponent,
