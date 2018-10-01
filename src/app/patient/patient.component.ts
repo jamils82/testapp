@@ -140,7 +140,7 @@ export class PatientComponent implements OnInit {
             this.streams.push(event.stream);
             this.changeDetectorRef.detectChanges();
           });
-          console.log('connnected to session');
+         console.log('connnected to session');
           this.session.on('streamDestroyed', (event) => {
             event.preventDefault();
             const idx = this.streams.indexOf(event.stream);
@@ -156,6 +156,7 @@ export class PatientComponent implements OnInit {
         alert('Unable to connect. Make sure you have Internet Working.');
       });
       } } else {
+        this.session.disconnect();
         console.log('looking');
       }
    }
