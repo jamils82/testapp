@@ -147,7 +147,9 @@ export class DoctoraComponent implements OnInit {
   });
   }
   endcall() {
+    this.session.unpublish(this.publisher);
     this.publisher = null;
+    this.pubdiv = null;
     this.session.disconnect();
     this.list = !this.list;
     this.end = false;
