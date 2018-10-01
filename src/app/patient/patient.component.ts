@@ -156,8 +156,7 @@ export class PatientComponent implements OnInit {
         alert('Unable to connect. Make sure you have Internet Working.');
       });
       } else {
-
-
+        this.session.disconnect();
       }
      } else {
         console.log('looking');
