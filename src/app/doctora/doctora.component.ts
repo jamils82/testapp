@@ -4,10 +4,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router } from '@angular/router';
-
+import * as OT from 'opentok-angular';
 import { cleanSession } from 'selenium-webdriver/safari';
 import {MatListModule} from '@angular/material/list';
-declare var OT: any;
 export interface Cat {
   name: string;
 }
@@ -43,12 +42,6 @@ export class DoctoraComponent implements OnInit {
   callerReason = null;
   list = true;
   doctorconnected = true;
-  API_KEY = '46192222';
-  SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
-  // tslint:disable-next-line:max-line-length
-  // tslint:disable-next-line:max-line-length
-  TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
-
   testname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
@@ -104,36 +97,39 @@ export class DoctoraComponent implements OnInit {
     this.end = true;
     const ot = this.opentokService.getOT();
     this.pubdiv = document.getElementById('pubdiv');
-    this.session = OT.initSession(this.API_KEY , this.SESSION_ID);
-    this.session.on('streamCreated', (event) => {
-    this.session.subscribe(event.stream, 'subscriber',
-     {  insertMode: 'append',
-        showControls: true,
-        width: '100%',
-        height: '100%'
-      });
-    });
 
-    this.session.on('sessionDisconnected', (event) => {
-
-    });
-    // Connect to the session
-    console.log(this.session);
-    this.session.connect(this.TOKEN, (error) => {
-      if (!error) {
-        // Create a publisher
-        this.publisher = OT.initPublisher('publisher', { insertMode: 'append',
-            resolution: '1280x720',
-            width: '100%',
-            height: '100%'
-          });
+    this.opentokService.initSession().then((session: OT.Session) => {
+      this.session = session;
+      if (this.session) {
+        if (this.session['isConnected']()) {
+          if (this.publisher) {
+            this.session.unpublish(this.publisher);
           }
-        });
-          this.session.publish(this.publisher, (error) => {
-            if (error) {
-              console.log('Publisher error: ' + error);
-            }
-          });
+          this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
+          this.publish();
+        }
+        this.session.on('sessionConnected', () => this.publish());
+    }
+      this.session.on('streamCreated', (event) => {
+        console.log(session);
+        this.streams.push(event.stream);
+        this.changeDetectorRef.detectChanges();
+      });
+      console.log('connnected to session');
+      this.session.on('streamDestroyed', (event) => {
+        event.preventDefault();
+        const idx = this.streams.indexOf(event.stream);
+        if (idx > -1) {
+          this.streams.splice(idx, 1);
+          this.changeDetectorRef.detectChanges();
+        }
+      });
+    })
+    .then(() => this.opentokService.connect())
+    .catch((err) => {
+      console.error(err);
+      alert('Unable to connect. Make sure you have Internet Working.');
+    });
   }
   publish() {
     this.session.publish(this.publisher, (err) => {
