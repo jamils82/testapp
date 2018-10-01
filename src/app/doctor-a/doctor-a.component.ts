@@ -26,7 +26,7 @@ export class DoctorAComponent implements OnInit {
      // Subscribe to a newly created stream
       this.session.on('streamCreated', (event) => {
       this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
-          insertMode: 'replace',
+          insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
           width: '100%',
