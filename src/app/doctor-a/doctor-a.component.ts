@@ -41,13 +41,7 @@ export class DoctorAComponent implements OnInit {
           this.streams.splice(idx, 1);
         }
       });
-      this.session.on('streamDestroyed', (event) => {
-        event.preventDefault();
-        const idx = this.streams.indexOf(event.stream);
-        if (idx > -1) {
-          this.streams.splice(idx, 1);
-        }
-      });
+
       // Connect to the session
       this.session.connect(this.TOKEN, (error) => {
         if (!error) {
