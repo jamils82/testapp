@@ -105,12 +105,12 @@ export class DoctoraComponent implements OnInit {
           if (this.publisher) {
             this.session.unpublish(this.publisher);
           }
-          this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
-          this.publish();
         }
         this.session.on('sessionConnected', () => this.publish());
     }
       this.session.on('streamCreated', (event) => {
+        this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
+          this.publish();
         console.log(session);
         this.streams.push(event.stream);
         this.changeDetectorRef.detectChanges();
