@@ -34,6 +34,10 @@ export class DoctorAComponent implements OnInit {
         });
       });
       this.session.on('sessionDisconnected', (event) => {
+        event.preventDefault();
+      });
+      this.session.on('streamDestroyed', (event) => {
+        event.preventDefault();
       });
       // Connect to the session
       this.session.connect(this.TOKEN, (error) => {
