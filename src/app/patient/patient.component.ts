@@ -25,6 +25,7 @@ export class PatientComponent implements OnInit {
   token = '123';
   streams: Array<OT.Stream> = [];
   wel = true;
+  sessconected = false;
   testname: any;
   changeDetectorRef: ChangeDetectorRef;
   end = false;
@@ -132,6 +133,7 @@ export class PatientComponent implements OnInit {
       console.log(this.callername);
       if ( this.favcaller ) {
         if (this.callername === this.favcaller ) {
+          this.sessconected = true;
           console.log(this.callername , '&&%%%', this.favcaller );
           this.opentokService.initSession().then((session: OT.Session) => {
           this.session = session;
@@ -156,8 +158,10 @@ export class PatientComponent implements OnInit {
         alert('Unable to connect. Make sure you have Internet Working.');
       });
       } else {
+        if (this.sessconected = true) {
         alert('Doctor disconnected.Please End the call');
         this.session.disconnect();
+        }
       }
      } else {
         console.log('looking');
