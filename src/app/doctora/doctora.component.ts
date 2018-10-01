@@ -107,7 +107,7 @@ export class DoctoraComponent implements OnInit {
     this.session = OT.initSession(this.API_KEY , this.SESSION_ID);
     this.session.on('streamCreated', (event) => {
     this.session.subscribe(event.stream, 'subscriber',
-     {insertMode: 'append',
+     {  insertMode: 'append',
         showControls: true,
         width: '100%',
         height: '100%'
@@ -118,6 +118,7 @@ export class DoctoraComponent implements OnInit {
 
     });
     // Connect to the session
+    console.log(this.session);
     this.session.connect(this.TOKEN, (error) => {
       if (!error) {
         // Create a publisher
