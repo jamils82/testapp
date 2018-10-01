@@ -130,7 +130,7 @@ export class DoctoraComponent implements OnInit {
           if (this.publisher) {
             this.session.unpublish(this.publisher);
           }
-          this.publisher = ot.initPublisher('pubdiv', {insertMode: 'append', width : '100%', height : '100%'});
+          this.publisher = ot.initPublisher(this.pubdiv, {insertMode: 'append', width : '100%', height : '100%'});
           this.publish();
         }
         this.session.on('sessionConnected', () => this.publish());
@@ -142,6 +142,7 @@ export class DoctoraComponent implements OnInit {
       });
       console.log('connnected to session');
       this.session.on('streamDestroyed', (event) => {
+        event.preventDefault();
         const idx = this.streams.indexOf(event.stream);
         if (idx > -1) {
           this.streams.splice(idx, 1);
