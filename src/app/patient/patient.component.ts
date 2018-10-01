@@ -158,9 +158,9 @@ export class PatientComponent implements OnInit {
         alert('Unable to connect. Make sure you have Internet Working.');
       });
       } else {
-        if (this.sessconected = true) {
-        alert('Doctor disconnected.Please End the call');
-        this.session.disconnect();
+        if (this.sessconected === true) {
+          alert('Doctor disconnected.Please End the call');
+          this.session.disconnect();
         }
       }
      } else {
