@@ -29,7 +29,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamCreated', (event) => {
         console.log(event);
 
-      this.subscriber =  this.session.subscribe(event.stream, this.subscriberDiv.nativeElement, {
+      this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
