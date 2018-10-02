@@ -57,7 +57,7 @@ vidFeedsDiv: any;
         if (!alreadySubscribed) {
            this.subDiv = document.createElement('div');
             this.subDiv.id = 'subscriberDiv_' + event.stream.connection.data;
-            this.vidFeedsDiv = document.getElementById('videos');
+            this.vidFeedsDiv = document.getElementById('subscriber');
             this.vidFeedsDiv.appendChild(this.subDiv);
              this.subscriber = this.session.subscribe(event.stream,
                 this.subDiv.id,
