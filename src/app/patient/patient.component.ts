@@ -115,7 +115,7 @@ export class PatientComponent implements OnInit {
     this.getSess(this.callername);
     this.wel = !this.wel;
     this.call = true;
-    this.end = true;
+
     this.connectcall();
    }
    endcall() {
@@ -134,6 +134,7 @@ export class PatientComponent implements OnInit {
       if ( this.favcaller ) {
         if (this.callername === this.favcaller ) {
           this.sessconected = true;
+          this.end = true;
           console.log(this.callername , '&&%%%', this.favcaller );
           this.opentokService.initSession().then((session: OT.Session) => {
           this.session = session;
