@@ -29,7 +29,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamCreated', (event) => {
         console.log(event);
 
-      this.subscriber =  this.session.subscribe(event.stream, this.subscriberDiv.nativeElement , {
+      this.subscriber =  this.session.subscribe(event.stream, 'subscriber' , {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
@@ -39,13 +39,11 @@ export class DoctorAComponent implements OnInit {
 
       });
       this.session.on('sessionDisconnected', (event) => {
-        event.preventDefault();
         this.session.unsubscribe(event.stream);
 
       }
       );
       this.session.on('streamDestroyed', (event) => {
-        event.preventDefault();
         this.session.unsubscribe(event.stream);
 
       });
@@ -71,7 +69,6 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      this.subscriberDiv.nativeElement = '';
       this.session.disconnect();
 
     }
