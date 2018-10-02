@@ -17,11 +17,7 @@ export class DoctorAComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   // tslint:disable-next-line:max-line-length
   TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
-  div: any;
-  elementa: any;
-  streamsContainer: any;
-  subscribers: any;
-  i: any;
+
   constructor() { }
 
   ngOnInit() {
@@ -29,22 +25,15 @@ export class DoctorAComponent implements OnInit {
   startCall() {
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
      // Subscribe to a newly created stream
-     this.div = document.createElement('div');
-
       this.session.on('streamCreated', (event) => {
-        this.div.setAttribute('id', 'stream' + event.stream.streamId);
-        this.subscriber =  this.session.subscribe(event.stream, this.div , {
+      this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
           width: '100%',
           height: '100%'
         });
-        this.subscribers.push();
-        this.streamsContainer = document.getElementById('subscriber');
-        this.streamsContainer.appendChild(this.div);
-        this.streams = event.streams;
-     });
+      });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
         this.session.unsubscribe(this.subscriber);
@@ -78,17 +67,8 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      this.unsubscribe(this.subscriber.id);
+      this.session.unsubscribe(this.subscriber);
       this.session.disconnect();
 
     }
-    unsubscribe(subscriberId) {
-      console.log('unsubscribe called');
-      for ( this.i = 0; this.i < this.subscribers.length; this.i++) {
-          this.subscriber = this.subscribers[this.i];
-          if (this.subscriber.id = this.subscribers.subscriberId) {
-              this.session.unsubscribe(this.subscriber);
-          }
-      }
-  }
 }
