@@ -26,6 +26,9 @@ export class DoctorAComponent implements OnInit {
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
      // Subscribe to a newly created stream
       this.session.on('streamCreated', (event) => {
+        if (this.subscriber) {
+          this.session.unsubscribe(this.subscriber);
+        } else {
       this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           resolution: '1280x720',
@@ -33,6 +36,7 @@ export class DoctorAComponent implements OnInit {
           width: '100%',
           height: '100%'
         });
+      }
       });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
@@ -42,7 +46,7 @@ export class DoctorAComponent implements OnInit {
       );
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
-         this.session.unsubscribe(this.subscriber);
+         this.session.unsubscribe(event.stream);
 
       });
       // Connect to the session
