@@ -78,7 +78,7 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      this.session.unsubscribe(this.subscribers.subscriberId);
+      this.unsubscribe(this.subscribers.subscriberId);
       this.session.disconnect();
 
     }
