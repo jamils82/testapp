@@ -42,7 +42,7 @@ export class DoctorAComponent implements OnInit {
       );
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(this.subscriber);
+         this.session.unsubscribe(this.subscriber);
 
       });
       // Connect to the session
@@ -67,8 +67,9 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      if (!!this.session) {
-        this.session.disconnect();
-      }
+      this.session.unsubscribe();
+      this.session.unsubscribe(this.subscriber);
+      this.session.disconnect();
+
     }
 }
