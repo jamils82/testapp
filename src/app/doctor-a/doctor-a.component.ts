@@ -117,12 +117,11 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamDestroyed', (event) => {
         this.session.unsubscribe(event.stream);
       });
-      this.session.on('signal:doctorconnect');
       this.session.signal(
         {
           data: 'hello'
         },
-        function(error) {
+        (error) => {
           if (error) {
             console.log('signal error ('
                          + error.name
