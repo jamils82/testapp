@@ -14,6 +14,7 @@ export class DoctorAComponent implements OnInit {
   session: any;
   publisher: any;
   subscriber: any;
+  vid = false;
   cameraSource = 0;
   devices: any[];
   streams: Array<OT.Stream> = [];
@@ -45,7 +46,7 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router) { }
 
   ngOnInit() {
-    this.route.navigate(['/doctora']);
+    this.route.navigate(['/mydoctor']);
     this.postconnect();
    setInterval(() => {
     this.getname().subscribe( data => {
@@ -81,6 +82,7 @@ export class DoctorAComponent implements OnInit {
     this.favcaller = this.onlinecallers[i];
     this.setfav(this.favcaller);
     this.wel = !this.wel;
+    this.vid = true;
     this.list = !this.list;
     this.enter = false;
     this.call = true;
@@ -139,6 +141,7 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
+      this.vid = false;
       this.session.disconnect();
       this.list = !this.list;
       this.end = false;
