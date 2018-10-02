@@ -1,9 +1,15 @@
 <base href="/">
 
 <div>
-<button matLine  (click)="startCall()" class="callbut"  mat-raised-button >Call </button>
-  
-<button class="endbut" mat-raised-button color="warn" (click)="endCall()" >End Call</button>
+  <h1>Welcome Doctor</h1>
+  <mat-list *ngIf="list">
+    <mat-list-item *ngFor="let caller of onlinecallers; let i = index">
+     <h1 matLine> {{caller}} </h1>
+     <h2 matLine >Caller number in Queue {{i+1}} </h2>
+      <button matLine  (click)="hidediv(i)" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
+    </mat-list-item>
+  </mat-list>
+<button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
 <div id="videos">
   <div id="subscriber"  ></div>
   <div id="publisher"></div>

@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { RouterModule, Routes, Router } from '@angular/router';
+
 declare var OT: any;
 @Component({
   selector: 'app-doctor-a',
@@ -27,27 +31,61 @@ export class DoctorAComponent implements OnInit {
     width: '100%',
     height: '100%'
 };
-subDiv: any;
-vidFeedsDiv: any;
-  constructor() { }
+    subDiv: any;
+    doctorconnected = true;
+    favcaller: string;
+    wel = true;
+    enter = true;
+    end = false;
+    call = false;
+    callbut = true;
+    onlinecallers: any = [];
+    vidFeedsDiv: any;
+    list = true;
+  constructor( private http: HttpClient , private route: Router) { }
 
   ngOnInit() {
+    this.route.navigate(['/doctora']);
+    this.postconnect();
+   setInterval(() => {
+    this.getname().subscribe( data => {
+
+    });
+}, 3000);
   }
-  startCall() {
+
+  postconnect() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
+      }
+    );
+  }
+  getname() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {
+      this.onlinecallers = data;
+      this.favcaller = this.onlinecallers[0];
+      console.log(this.onlinecallers);
+    }));
+  }
+  setfav (call: string) {
+    this.favcaller = call;
+    return this.http.get('https://doctestapp.herokuapp.com/api/favcaller/' + this.favcaller).subscribe( data => {
+      console.log(this.favcaller);
+    });
+  }
+  errorHandler(err) {
+    if (err && err.message) {
+     console.log(err);
+     }
+   }
+   startCall(i: string) {
+    this.favcaller = this.onlinecallers[i];
+    this.setfav(this.favcaller);
+    this.wel = !this.wel;
+    this.list = !this.list;
+    this.enter = false;
+    this.call = true;
+    this.end = true;
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
-     // Subscribe to a newly created stream
-     /* this.session.on('streamCreated', (event) => {
-        console.log(event);
-
-      this.subscriber =  this.session.subscribe(event.stream, 'subscriber' , {
-          insertMode: 'append',
-          resolution: '1280x720',
-          showControls: true,
-          width: '100%',
-          height: '100%'
-        });
-
-      });*/
       this.session.on('streamCreated', (event: any) => {
         let alreadySubscribed = false;
         this.subscribers = this.session.getSubscribersForStream(event.stream);
@@ -57,11 +95,7 @@ vidFeedsDiv: any;
             }
         }
         if (!alreadySubscribed) {
-           /* this.subDiv = document.getElementById('subscriber');
-            this.subDiv.id = 'subscriberDiv_' + event.stream.connection.data;
-            this.vidFeedsDiv = document.getElementById('subscriber');
-            this.vidFeedsDiv.appendChild(this.subDiv); */
-             this.subscriber = this.session.subscribe(event.stream,
+            this.subscriber = this.session.subscribe(event.stream,
                 'subscriber',
                 this.subscriberProperties,
                 (error: any) => {
@@ -106,6 +140,9 @@ vidFeedsDiv: any;
     // Ends call
     endCall() {
       this.session.disconnect();
-
+      this.list = !this.list;
+      this.end = false;
+      this.wel = !this.wel;
+      this.call = !this.call;
     }
 }
