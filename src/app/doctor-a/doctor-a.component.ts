@@ -18,7 +18,15 @@ export class DoctorAComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   // tslint:disable-next-line:max-line-length
   TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
-
+  subscribers: any;
+  sub: any;
+   subscriberProperties = {
+    insertMode: 'append',
+    width: '100%',
+    height: '100%'
+};
+subDiv: any;
+vidFeedsDiv: any;
   constructor() { }
 
   ngOnInit() {
@@ -26,7 +34,7 @@ export class DoctorAComponent implements OnInit {
   startCall() {
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
      // Subscribe to a newly created stream
-      this.session.on('streamCreated', (event) => {
+     /* this.session.on('streamCreated', (event) => {
         console.log(event);
 
       this.subscriber =  this.session.subscribe(event.stream, 'subscriber' , {
@@ -37,7 +45,33 @@ export class DoctorAComponent implements OnInit {
           height: '100%'
         });
 
-      });
+      });*/
+      this.session.on('streamCreated', (event: any) => {
+        let alreadySubscribed = false;
+        this.subscribers = this.session.getSubscribersForStream(event.stream);
+        for (this.sub of this.subscribers) {
+            if (this.subscriber.stream.connection.connectionId === event.stream.connection.connectionId) {
+                alreadySubscribed = true;
+            }
+        }
+        if (!alreadySubscribed) {
+           this.subDiv = document.createElement('div');
+            this.subDiv.id = 'subscriberDiv_' + event.stream.connection.data;
+            this.vidFeedsDiv = document.getElementById('vidFeeds');
+            this.vidFeedsDiv.appendChild(this.subDiv);
+             this.subscriber = this.session.subscribe(event.stream,
+                this.subDiv.id,
+                this.subscriberProperties,
+                (error: any) => {
+                    if (error) {
+                        console.log(error);
+                    } else {
+
+                    }
+                }
+            );
+        }
+    });
       this.session.on('sessionDisconnected', (event) => {
         this.session.unsubscribe(event.stream);
 
