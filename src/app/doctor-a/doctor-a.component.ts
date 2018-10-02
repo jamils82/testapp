@@ -71,7 +71,8 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-
+      const subdiv = document.getElementById('subscriber');
+      alert(subdiv);
       this.session.disconnect();
 
     }
