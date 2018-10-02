@@ -22,6 +22,8 @@ export class DoctorAComponent implements OnInit {
   sub: any;
    subscriberProperties = {
     insertMode: 'append',
+    resolution: '1280x720',
+    showControls: true,
     width: '100%',
     height: '100%'
 };
@@ -55,9 +57,9 @@ vidFeedsDiv: any;
             }
         }
         if (!alreadySubscribed) {
-           this.subDiv = document.createElement('div');
+           this.subDiv = document.getElementById('subscriber');
             this.subDiv.id = 'subscriberDiv_' + event.stream.connection.data;
-            this.vidFeedsDiv = document.getElementById('subscriber');
+            this.vidFeedsDiv = document.getElementById('videos');
             this.vidFeedsDiv.appendChild(this.subDiv);
              this.subscriber = this.session.subscribe(event.stream,
                 this.subDiv.id,
