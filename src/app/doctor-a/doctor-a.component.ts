@@ -104,7 +104,6 @@ export class DoctorAComponent implements OnInit {
                     if (error) {
                         console.log(error);
                     } else {
-
                     }
                 }
             );
