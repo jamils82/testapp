@@ -143,6 +143,11 @@ export class PatientComponent implements OnInit {
             this.streams.push(event.stream);
             this.changeDetectorRef.detectChanges();
           });
+          this.session.on('signal', (event) => {
+            console.log('Signal sent from connection ' + event.from.connectionId);
+            // Process the event.data property, if there is any data.
+            alert(event.from.connectionId);
+          });
          console.log('connnected to session');
           this.session.on('streamDestroyed', (event) => {
             event.preventDefault();
