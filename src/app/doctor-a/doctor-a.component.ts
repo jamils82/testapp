@@ -116,8 +116,22 @@ export class DoctorAComponent implements OnInit {
       );
       this.session.on('streamDestroyed', (event) => {
         this.session.unsubscribe(event.stream);
-
       });
+      this.session.on('signal:doctorconnect');
+      this.session.signal(
+        {
+          data: 'hello'
+        },
+        function(error) {
+          if (error) {
+            console.log('signal error ('
+                         + error.name
+                         + '): ' + error.message);
+          } else {
+            console.log('signal sent.');
+          }
+        }
+      );
       // Connect to the session
       this.session.connect(this.TOKEN, (error) => {
         if (!error) {
