@@ -27,7 +27,7 @@ export class DoctorAComponent implements OnInit {
      // Subscribe to a newly created stream
       this.session.on('streamCreated', (event) => {
         if (this.subscriber) {
-          this.session.unsubscribe(this.subscriber);
+          this.session.unsubscribe(event.stream);
         } else {
       this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
