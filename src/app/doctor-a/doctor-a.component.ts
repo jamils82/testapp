@@ -33,7 +33,7 @@ export class DoctorAComponent implements OnInit {
 
       this.session.on('streamCreated', (event) => {
         this.div.setAttribute('id', 'stream' + event.stream.streamId);
-      this.subscriber =  this.session.subscribe(event.stream, 'div', {
+        this.subscriber =  this.session.subscribe(event.stream, this.div , {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
@@ -41,7 +41,7 @@ export class DoctorAComponent implements OnInit {
           height: '100%'
         });
         this.subscribers.push();
-        this.streamsContainer = document.getElementById('streamsContainer');
+        this.streamsContainer = document.getElementById('subscriber');
         this.streamsContainer.appendChild(this.div);
         this.streams = event.streams;
      });
@@ -78,7 +78,7 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      this.unsubscribe(this.subscribers.subscriberId);
+      this.unsubscribe(this.subscriber.id);
       this.session.disconnect();
 
     }
