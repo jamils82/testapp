@@ -28,7 +28,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamCreated', (event) => {
         console.log(event);
 
-      this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
+      this.subscriber =  this.session.subscribe(event.stream.streamid, 'subscriber', {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
@@ -39,13 +39,13 @@ export class DoctorAComponent implements OnInit {
       });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(event.stream.streamid);
+        this.session.unsubscribe(event.stream[0].streamid);
 
       }
       );
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(event.stream.streamid);
+        this.session.unsubscribe(event.stream[0].streamid);
 
       });
       // Connect to the session
@@ -70,7 +70,7 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      this.session.unsubscribe(this.subscriber);
+
       this.session.disconnect();
 
     }
