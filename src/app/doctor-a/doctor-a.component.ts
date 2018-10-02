@@ -39,13 +39,13 @@ export class DoctorAComponent implements OnInit {
       });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(event.stream.id);
+        this.session.unsubscribe(event.stream.streamid);
 
       }
       );
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
-         this.session.unsubscribe(event.stream);
+        this.session.unsubscribe(event.stream.streamid);
 
       });
       // Connect to the session
