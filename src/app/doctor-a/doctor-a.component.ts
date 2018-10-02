@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare var OT: any;
 @Component({
   selector: 'app-doctor-a',
@@ -6,6 +6,7 @@ declare var OT: any;
   styleUrls: ['./doctor-a.component.css']
 })
 export class DoctorAComponent implements OnInit {
+  @ViewChild('subscriberDiv') subscriberDiv: ElementRef;
   session: any;
   publisher: any;
   subscriber: any;
@@ -28,7 +29,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamCreated', (event) => {
         console.log(event);
 
-      this.subscriber =  this.session.subscribe(event.stream.streamid, 'subscriber', {
+      this.subscriber =  this.session.subscribe(event.stream, this.subscriberDiv.nativeElement, {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
@@ -39,13 +40,13 @@ export class DoctorAComponent implements OnInit {
       });
       this.session.on('sessionDisconnected', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(event.stream[0].streamid);
+        this.session.unsubscribe(event.stream);
 
       }
       );
       this.session.on('streamDestroyed', (event) => {
         event.preventDefault();
-        this.session.unsubscribe(event.stream[0].streamid);
+        this.session.unsubscribe(event.stream);
 
       });
       // Connect to the session
