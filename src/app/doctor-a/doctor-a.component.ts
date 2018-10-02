@@ -29,7 +29,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamCreated', (event) => {
         console.log(event);
 
-      this.subscriber =  this.session.subscribe(event.stream, 'subscriber', {
+      this.subscriber =  this.session.subscribe(event.stream, this.subscriberDiv.nativeElement , {
           insertMode: 'append',
           resolution: '1280x720',
           showControls: true,
@@ -71,8 +71,7 @@ export class DoctorAComponent implements OnInit {
     }
     // Ends call
     endCall() {
-      const subdiv = document.getElementById('subscriber');
-      alert(subdiv);
+      this.subscriberDiv.nativeElement = '';
       this.session.disconnect();
 
     }
