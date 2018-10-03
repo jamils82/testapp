@@ -18,6 +18,7 @@ import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'mydoctor',  component: DoctorAComponent },
+  { path: 'mydoctor/:name',  component: DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent }
