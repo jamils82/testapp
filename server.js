@@ -17,6 +17,9 @@ app.use(bodyParser.json());
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
+app.get('*', function(req, res) {
+  res.sendfile('./src/index.html')
+})
 app.get('/', function(req,res) {
     
 res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
