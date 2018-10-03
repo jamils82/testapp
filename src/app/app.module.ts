@@ -16,7 +16,7 @@ import { PatientComponent } from './patient/patient.component';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'mydoctor', pathMatch: 'full'},
+  {path: '', redirectTo: 'doctor', pathMatch: 'full'},
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'mydoctor',  component: DoctorAComponent },
   { path: 'mydoctor/:name',  component: DoctorAComponent },
@@ -53,7 +53,6 @@ const appRoutes: Routes = [
   providers: [
     OpentokService,
   ],
-  bootstrap: [AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
