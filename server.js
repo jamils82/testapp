@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
+const routes = require('./routes');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
@@ -18,8 +19,9 @@ app.use(bodyParser.json());
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
 app.get('/patient', function(req, res) {
-  res.sendfile(path.join(__dirname+'/src/app/patient/patient.component.html'))
+  res.send('connected')
 })
+
 app.get('/', function(req,res) {
     
 res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
