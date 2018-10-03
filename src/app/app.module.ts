@@ -18,8 +18,8 @@ import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'mydoctor', pathMatch: 'full'},
   { path: 'doctora',  component: DoctoraComponent },
-  { path: 'mydoctor',  loadChildren: DoctorAComponent },
-  { path: 'mydoctor/:name',  loadChildren: DoctorAComponent },
+  { path: 'mydoctor',  component: DoctorAComponent },
+  { path: 'mydoctor/:name',  component: DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
