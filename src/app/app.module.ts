@@ -7,7 +7,7 @@ import { SubscriberComponent } from './subscriber/subscriber.component';
 import { OpentokService } from './opentok.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient , HttpHandler } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes , LoadChildren , LoadChildrenCallback } from '@angular/router';
 import { DoctoraComponent } from './doctora/doctora.component';
 import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
@@ -23,7 +23,6 @@ const appRoutes: Routes = [
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
-  {path: '**', component: DoctorAComponent}
 ];
 
 
@@ -54,6 +53,8 @@ const appRoutes: Routes = [
   providers: [
     OpentokService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+    RouterModule
+  ]
 })
 export class AppModule { }
