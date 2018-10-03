@@ -46,8 +46,7 @@ const appRoutes: Routes = [
     MatInputModule,
     MatListModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true }
+      appRoutes
     ),
     HttpClientModule
   ],
