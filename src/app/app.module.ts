@@ -17,12 +17,12 @@ import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'doctor', pathMatch: 'full'},
-  { path: 'doctora',  loadChildren: './doctora/doctora.component' },
-  { path: 'mydoctor',  loadChildren: './doctor-a/doctor-a.component' },
+  { path: 'doctora',  component: DoctoraComponent },
+  { path: 'mydoctor',  component: DoctorAComponent },
   { path: 'mydoctor/:name',  component: DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
-  {path : 'patient' , loadChildren: './patient/patient.component' },
+  {path : 'patient' , component : PatientComponent },
   {path: '**', component: DoctorAComponent}
 ];
 
