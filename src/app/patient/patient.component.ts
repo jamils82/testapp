@@ -44,7 +44,8 @@ export class PatientComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef, private http: HttpClient, private opentokService: OpentokService, private route: Router ) { }
 
   ngOnInit() {
-    this.route.navigate(['./patient']);
+    this.route.navigateByUrl('/patient');
+    this.route.navigate(['/patient']);
     this.getCat();
     setInterval(() => {
     this.getfav();

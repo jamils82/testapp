@@ -48,6 +48,7 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.navigateByUrl('/mydoctor');
    /* this.activatedRoute.params.subscribe((params) => {
       this.href = this.route.url;
       alert(this.route.url);
