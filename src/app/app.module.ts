@@ -16,8 +16,10 @@ import { PatientComponent } from './patient/patient.component';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/doctor', pathMatch: 'full'},
-  { path: 'doctora',  component: DoctoraComponent }
+  {path: '', redirectTo: 'doctor', pathMatch: 'full'},
+  { path: 'doctora',  component: DoctoraComponent },
+
+  {path: '**', component: PagenotfoundComponent}
 ];
 
 
