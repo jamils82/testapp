@@ -51,7 +51,6 @@ export class DoctorAComponent implements OnInit {
        this.userId = params['userId'];
       alert(this.userId);
     });
-    this.route.navigate(['/mydoctor']);
     this.postconnect();
    setInterval(() => {
     this.getname().subscribe( data => {
