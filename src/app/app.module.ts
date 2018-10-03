@@ -45,9 +45,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    RouterModule.forRoot(
-      appRoutes
-    ),
+
     HttpClientModule
   ],
   providers: [
