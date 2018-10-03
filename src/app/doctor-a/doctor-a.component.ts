@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -13,6 +13,7 @@ export class DoctorAComponent implements OnInit {
   @ViewChild('subscriberDiv') subscriberDiv: ElementRef;
   session: any;
   publisher: any;
+  public href: string;
   subscriber: any;
   vid = false;
   cameraSource = 0;
@@ -48,7 +49,8 @@ export class DoctorAComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
-
+      this.href = this.route.url;
+      alert(this.route.url);
       this.userId = params['name'];
        alert(this.userId);
     });
