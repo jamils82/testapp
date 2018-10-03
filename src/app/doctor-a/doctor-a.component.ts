@@ -47,7 +47,7 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.params.subscribe((params: Params) => {
        this.userId = params['userId'];
       alert(this.userId);
     });
