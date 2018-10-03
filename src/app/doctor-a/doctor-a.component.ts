@@ -47,9 +47,10 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-       this.userId = params['userId'];
-      alert(this.userId);
+    this.activatedRoute.params.subscribe((params) => {
+
+      this.userId = params['name'];
+       alert(this.userId);
     });
     this.postconnect();
    setInterval(() => {
