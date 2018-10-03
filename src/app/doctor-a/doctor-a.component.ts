@@ -47,9 +47,9 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
        this.userId = params['userId'];
-      console.log(this.userId);
+      alert(this.userId);
     });
     this.route.navigate(['/mydoctor']);
     this.postconnect();
@@ -57,7 +57,7 @@ export class DoctorAComponent implements OnInit {
     this.getname().subscribe( data => {
 
     });
-}, 3000);
+}, 1000);
   }
 
   postconnect() {
