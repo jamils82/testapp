@@ -53,6 +53,8 @@ const appRoutes: Routes = [
   providers: [
     OpentokService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+    appRoutes
+  ]
 })
 export class AppModule { }
