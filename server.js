@@ -2,7 +2,6 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
-const routes = require('./routes');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
