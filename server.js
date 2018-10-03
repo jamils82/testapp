@@ -47,7 +47,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
   });
-  api.route('/mydoctor:name').get((req, res) => {
+  app.route('/mydoctor:name').get((req, res) => {
     res.sendFile(path.join(__dirname+'/src/app/doctor-a/doctor-a.component.html'));
   });
   app.route('/api/cats').get((req, res) => {
