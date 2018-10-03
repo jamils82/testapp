@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
 
-app.get('/', function(req,res) {
+app.get('/*', function(req,res) {
     
 res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
@@ -28,9 +28,7 @@ app.get('', function(req,res) {
   });
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
-app.route('/patient').get((req, res) => {
-  
-});
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(function (req, res, next) {
