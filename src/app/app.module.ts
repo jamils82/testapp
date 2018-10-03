@@ -18,11 +18,7 @@ import {MatListModule} from '@angular/material/list';
 const appRoutes: Routes = [
   {path: '', redirectTo: 'doctor', pathMatch: 'full'},
   { path: 'doctora',  component: DoctoraComponent },
-  { path: 'mydoctor',  component: DoctorAComponent },
-  { path: 'mydoctor/:name',  component: DoctorAComponent },
-  { path: 'doctorb', component: DoctorbComponent },
-  { path : 'doctor', component: DoctorComponent  },
-  {path : 'patient' , component : PatientComponent },
+
   {path: '**', component: DoctorAComponent}
 ];
 
@@ -46,7 +42,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatListModule,
     RouterModule.forRoot(
-      appRoutes
+      appRoutes,
+      {enableTracing : true }
     ),
     HttpClientModule
   ],
