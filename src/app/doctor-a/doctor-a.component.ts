@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute, Params, Router } from '@angular/router';
 
 declare var OT: any;
 @Component({
@@ -43,9 +43,14 @@ export class DoctorAComponent implements OnInit {
     onlinecallers: any = [];
     vidFeedsDiv: any;
     list = true;
-  constructor( private http: HttpClient , private route: Router) { }
+     userId: any;
+  constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+       this.userId = params['userId'];
+      console.log(this.userId);
+    });
     this.route.navigate(['/mydoctor']);
     this.postconnect();
    setInterval(() => {
@@ -117,20 +122,7 @@ export class DoctorAComponent implements OnInit {
       this.session.on('streamDestroyed', (event) => {
         this.session.unsubscribe(event.stream);
       });
-      this.session.signal(
-        {
-          data: 'hello'
-        },
-        (error) => {
-          if (error) {
-            console.log('signal error ('
-                         + error.name
-                         + '): ' + error.message);
-          } else {
-            console.log('signal sent.');
-          }
-        }
-      );
+
       // Connect to the session
       this.session.connect(this.TOKEN, (error) => {
         if (!error) {
