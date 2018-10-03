@@ -44,7 +44,10 @@ export class DoctorAComponent implements OnInit {
     vidFeedsDiv: any;
     list = true;
      userId: any;
-  constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
+  constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) {
+    const params: any = this.activatedRoute.snapshot.params;
+    console.log(params.id);
+   }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
