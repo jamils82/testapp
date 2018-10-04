@@ -97,13 +97,9 @@ app.listen(process.env.PORT || 5000 , function () {
 
 app.get('/', function(req,res) {
     
-  res.sendFile(path.join(__dirname+'/src/index.html'));
-  });
-app.get('/*', function(req,res) {
-    
-  res.sendFile(path.join(__dirname+'/src/index.html'));
+  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
   app.get('', function(req,res) {
      
-    res.sendFile(path.join(__dirname+'/src/index.html'));
+    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
