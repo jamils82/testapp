@@ -18,14 +18,6 @@ app.use(bodyParser.json());
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
 
-app.get('/*', function(req,res) {
-    
-  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-  });
-  app.get('', function(req,res) {
-     
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-   });
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
@@ -101,3 +93,12 @@ app.use(function (req, res, next) {
 app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
+
+app.get('/*', function(req,res) {
+    
+  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+  });
+  app.get('', function(req,res) {
+     
+    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+});
