@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const app = express();
-const myname ='saad';
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
   const apiKey=  '46168292';
