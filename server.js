@@ -97,7 +97,3 @@ app.get('/*', function(req,res) {
     
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
-  app.get('', function(req,res) {
-     
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-   });
