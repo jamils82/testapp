@@ -13,5 +13,5 @@ export const appRoutes: Routes = [
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
-  {path : '*' , component : PagenotfoundComponent },
+  {path : '**' ,  redirectTo: '', pathMatch: 'full' },
 ];
