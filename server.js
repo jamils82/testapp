@@ -94,9 +94,8 @@ app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
 
-app.configure(function() {
-  app.use('/', express.static(__dirname + '/'));
-});
+app.use('/', express.static(__dirname + '/'));
+
 app.get('*', function(req,res) {
     
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
