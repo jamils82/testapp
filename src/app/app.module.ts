@@ -13,18 +13,10 @@ import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
-const appRoutes: Routes = [
-  {path: '', redirectTo: 'doctor', pathMatch: 'full'},
-  { path: 'doctora',  component: DoctoraComponent },
-  { path: 'mydoctor',  component: DoctorAComponent },
-  { path: 'mydoctor/:name',  component: DoctorAComponent },
-  { path: 'doctorb', component: DoctorbComponent },
-  { path : 'doctor', component: DoctorComponent  },
-  {path : 'patient' , component : PatientComponent },
-];
-
+import {appRoutes} from './routes';
 
 @NgModule({
   declarations: [
@@ -52,6 +44,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     OpentokService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
