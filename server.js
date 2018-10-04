@@ -97,7 +97,7 @@ app.listen(process.env.PORT || 5000 , function () {
 
 app.get('*', function(req,res) {
     
-  res.sendFile(path.join(__dirname+'/'));
+  res.sendFile(path.join(__dirname+'/dist/testapp'));
   });
   app.get('', function(req,res) {
      
