@@ -16,7 +16,7 @@ app.use(bodyParser.json());
   opentok = new OpenTok(apiKey, apiSecret);
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/testapp'));
+app.use(express.static(__dirname + '/src/app'));
 
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
@@ -96,13 +96,13 @@ app.listen(process.env.PORT || 5000 , function () {
 
 app.get('/', function(req,res) {
      
-  res.sendFile(path.join(__dirname+'/dist/testapp'));
+  res.sendFile(path.join(__dirname+'/src/app'));
 });
 app.get('*', function(req,res) {
     
-  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+  res.sendFile(path.join(__dirname+'/src/app/index.html'));
   });
   app.get('', function(req,res) {
      
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+    res.sendFile(path.join(__dirname+'/src/app/index.html'));
 });
