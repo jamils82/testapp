@@ -61,6 +61,7 @@ export class DoctorAComponent implements OnInit {
 }, 1000); */
     setInterval(() => {
       this.getpatobj().subscribe( data => {
+        console.log(data);
       });
     }, 1000);
   }
