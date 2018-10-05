@@ -55,13 +55,13 @@ export class DoctorAComponent implements OnInit {
       // alert(this.userId);
     });
     this.postconnect();
-    setInterval(() => {
+   /* setInterval(() => {
     this.getname().subscribe( data => {
     });
-}, 1000);
-   /* setInterval(() => {
+}, 1000);*/
+    setInterval(() => {
       this.getpatobj();
-    }, 1000); */
+    }, 1000);
   }
 
   postconnect() {
@@ -70,7 +70,7 @@ export class DoctorAComponent implements OnInit {
     );
   }
   getpatobj() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/docobj/' + name ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/docobj/' + this.session ).subscribe( data => {
       console.log( data );
       }
     );
