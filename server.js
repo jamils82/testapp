@@ -77,7 +77,7 @@ app.use(function (req, res, next) {
     requestedCatName = req.params['name'];
     });
   app.route('/api/docobj/:name').get((req, res) => {
-    res.send(requestedCatName );
+    res.send({requestedCatName} );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
