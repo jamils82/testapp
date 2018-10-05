@@ -130,6 +130,7 @@ export class PatientComponent implements OnInit {
     const myph = phone;
     this.pat = {name: this.callername, phone : myph , activedoc : this.pname };
     // alert(JSON.stringify( this.pat));
+    this.setobj(this.pat);
     this.getSess(this.callername);
     this.wel = !this.wel;
     this.call = true;
