@@ -79,7 +79,7 @@ app.use(function (req, res, next) {
     patient.activedoc = req.params['activedoc'];
   });
   app.route('/api/docobj').get((req, res) => {
-    res.send(patient );
+    res.send(patient.patname );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
