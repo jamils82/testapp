@@ -56,14 +56,23 @@ export class DoctorAComponent implements OnInit {
       // alert(this.userId);
     });
     this.postconnect();
-   setInterval(() => {
+   /* setInterval(() => {
     this.getname().subscribe( data => {
     });
-}, 1000);
+}, 1000); */
+    setInterval(() => {
+      this.getpatobj();
+    }, 1000);
   }
 
   postconnect() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
+      }
+    );
+  }
+  getpatobj() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' ).subscribe( data => {
+      console.log( data );
       }
     );
   }
