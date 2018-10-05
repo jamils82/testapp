@@ -75,7 +75,7 @@ app.use(function (req, res, next) {
   
   app.route('/api/patobj').post((req, res) => {
     
-   patient = req.body.data;
+   patient = req.body;
     res.send(201, req.body);
   });
   app.route('/api/patobj').get((req, res) => {
