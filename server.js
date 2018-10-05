@@ -74,12 +74,10 @@ app.use(function (req, res, next) {
   });
   
   app.route('/api/patobj/:name').get((req, res) => {
-    patient = req.params['name'];
-    patient.phone = req.params['phone'];
-    patient.activedoc = req.params['activedoc'];
-  });
+    patient.patname = req.params['name'];
+    });
   app.route('/api/docobj').get((req, res) => {
-    res.send(patient );
+    res.send(patient.patname );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
