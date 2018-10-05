@@ -77,6 +77,9 @@ app.use(function (req, res, next) {
     activedoc =req.body.activedoc; 
     res.send(201, req.body);
   });
+  app.route('/api/patobj').get((req, res) => {
+    res.send(doctorconnected);
+  });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
    // newLength = callernames.push(req.params['name']);
