@@ -30,7 +30,7 @@ var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
