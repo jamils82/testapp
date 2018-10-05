@@ -60,9 +60,7 @@ export class DoctorAComponent implements OnInit {
     });
 }, 1000); */
     setInterval(() => {
-      this.getpatobj().subscribe( data => {
-        console.log(data);
-      });
+      this.getpatobj();
     }, 1000);
   }
 
@@ -72,13 +70,16 @@ export class DoctorAComponent implements OnInit {
     );
   }
   getpatobj() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' ).pipe(map(data => {
-    }));
+    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' ).subscribe( data => {
+      console.log( data );
+      }
+    );
   }
   getname() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' ).pipe(map(data => {
-
-      console.log(data);
+    return this.http.get('https://doctestapp.herokuapp.com/api/sess' ).pipe(map(data => {
+      this.onlinecallers = data;
+      this.favcaller = this.onlinecallers[0];
+      console.log(this.onlinecallers);
     }));
   }
   setfav (call: string) {

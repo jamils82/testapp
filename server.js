@@ -81,7 +81,7 @@ app.use(function (req, res, next) {
     res.send(201, req.body);
   });
   app.route('/api/patobj').get((req, res) => {
-    res.send(patient );
+    res.send( 'doc' );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
