@@ -77,11 +77,11 @@ app.use(function (req, res, next) {
     
     patient.patname = req.body.params.name;
     patient.phone = req.body.params.phone;
-   patient.activedoc =req.body.params.activedoc; 
+    patient.activedoc =req.body.params.activedoc; 
     res.send(201, req.body);
   });
   app.route('/api/patobj').get((req, res) => {
-    res.send(patient.phone );
+    res.send(patient );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
