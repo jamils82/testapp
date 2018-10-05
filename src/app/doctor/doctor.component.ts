@@ -18,7 +18,7 @@ export class DoctorComponent implements OnInit {
       alert(this.route.url); */
       this.userId = params['name'];
       if ( this.userId ) {
-       alert(this.userId);
+      // alert(this.userId);
       } else {
         this.route.navigate(['doctor']);
       }

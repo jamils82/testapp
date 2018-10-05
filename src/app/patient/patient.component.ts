@@ -90,8 +90,8 @@ export class PatientComponent implements OnInit {
       }
     );
   }
-  setobj(pat: MyPatient): Observable<MyPatient> {
-    return this.http.post<MyPatient>('https://doctestapp.herokuapp.com/api/patobj/' , pat);
+  setobj(pat: MyPatient) {
+    return this.http.post('https://doctestapp.herokuapp.com/api/patobj/' , pat);
   }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
