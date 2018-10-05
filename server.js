@@ -15,9 +15,7 @@ app.use(cors());
   favcaller = '';
   doctorconnected = false;
   var patient = { 
-    patname : string,
-    phone : string ,
-    activedoc : string
+    patname,phone,activedoc 
   }
   var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
