@@ -14,9 +14,11 @@ app.use(cors());
   var newLength ='';
   favcaller = '';
   doctorconnected = false;
-  var patname ='';
-  var activedoc= '';
-  var phone = '';
+  var patient = { 
+    patname : string,
+    phone : string ,
+    activedoc = ''
+  }
   var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -72,13 +74,14 @@ app.use(function (req, res, next) {
   });
   
   app.route('/api/patobj').post((req, res) => {
-    patname= req.body.name;
+    patient = req.body;
+    /* patname= req.body.name;
     phone = req.body.phone;
-    activedoc =req.body.activedoc; 
+    activedoc =req.body.activedoc; */
     res.send(201, req.body);
   });
   app.route('/api/patobj').get((req, res) => {
-    res.send(patname);
+    res.send({patient});
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
