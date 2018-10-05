@@ -5,12 +5,15 @@ import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { AppComponent } from './app.component';
 export const appRoutes: Routes = [
-  {path: '', redirectTo: 'doctor', pathMatch: 'full'},
+  {path: '', component: AppComponent},
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'mydoctor',  component : DoctoraComponent },
   { path: 'mydoctor/:name',  component : DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
-  { path : 'doctor', component: DoctorComponent  },
+  { path : 'doctor/:name', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
+  {path : 'patient/:name' , component : PatientComponent },
+  { path : '**' , component : PagenotfoundComponent } ,
 ];

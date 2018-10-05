@@ -49,16 +49,15 @@ export class DoctorAComponent implements OnInit {
 
   ngOnInit() {
     this.route.navigateByUrl('/mydoctor');
-   /* this.activatedRoute.params.subscribe((params) => {
-      this.href = this.route.url;
-      alert(this.route.url);
+      this.activatedRoute.params.subscribe((params) => {
+     // this.href = this.route.url;
+     // alert(this.route.url);
       this.userId = params['name'];
-       alert(this.userId);
-    }); */
+      // alert(this.userId);
+    });
     this.postconnect();
    setInterval(() => {
     this.getname().subscribe( data => {
-
     });
 }, 1000);
   }

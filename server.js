@@ -10,9 +10,13 @@ app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
   var callernames = [];
+  var patcallers = ''
   var newLength ='';
   favcaller = '';
   doctorconnected = false;
+  var patname ='';
+  var activedoc= '';
+  var phone = '';
   var requestedCatName ='hadi';
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
@@ -66,6 +70,13 @@ app.use(function (req, res, next) {
    
     res.send( {requestedCatName} );
   });
+  
+  app.route('/api/patobj').post((req, res) => {
+    patname= req.body.name;
+    phone = req.body.phone;
+    activedoc =req.body.activedoc; 
+    res.send(201, req.body);
+  });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {
     doctorconnected = true;
    // newLength = callernames.push(req.params['name']);
@@ -101,7 +112,7 @@ app.get('/', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
 app.get('*', function(req,res) {
-    
+   
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
   });
   app.get('', function(req,res) {

@@ -3,14 +3,19 @@
   
   <div *ngIf="wel" class="maindiv" >
     <h1>Welcome</h1>
-  <p>Please provide your Name</p>
   <form class="example-form">
-    <mat-form-field class="example-full-width" >
-      <input required matInput #boxinput >
-    </mat-form-field>
+    <div class="example-full-width" >
+      <label style="background:white " >Name</label>
+      <br>
+      <input required #nameinput >
+      <br>
+      <label>Phone</label>
+      <br>
+      <input required  #phoneinput >
+    </div>
   </form> 
   <div class="button-row" >
-    <button mat-raised-button color="primary" (click) ="hidediv(boxinput.value)" >Start Call</button>
+    <button mat-raised-button color="primary" (click) ="hidediv(nameinput.value, phoneinput.value )" >Start Call</button>
     </div>
 
 </div>

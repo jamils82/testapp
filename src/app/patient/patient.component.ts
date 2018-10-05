@@ -3,14 +3,18 @@ import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
-import {  RouterModule, Routes, Router } from '@angular/router';
+import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 
 import * as OT from '@opentok/client';
+import { Observable } from 'rxjs';
 const publish = () => {
 
 };
-
-
+export interface MyPatient {
+  name: string;
+  phone: string;
+  activedoc: string;
+}
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -34,6 +38,7 @@ export class PatientComponent implements OnInit {
   favcaller: string;
   config: any;
   call = false;
+  public pat: MyPatient;
   onHold = false;
     subscriberOpts: {
       insertMode: 'append',
@@ -41,11 +46,18 @@ export class PatientComponent implements OnInit {
       height: '100%'
     };
   connectionstream: any;
-  constructor(private ref: ChangeDetectorRef, private http: HttpClient, private opentokService: OpentokService, private route: Router ) { }
+  pname: string;
+  // tslint:disable-next-line:max-line-length
+  constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
+
+   }
 
   ngOnInit() {
-    this.route.navigateByUrl('/patient');
-    this.route.navigate(['/patient']);
+    this.activatedRoute.params.subscribe((params) => {
+      // this.href = this.route.url;
+      // alert(this.route.url);
+      this.pname = params['name'];
+     });
     this.getCat();
     setInterval(() => {
     this.getfav();
@@ -78,6 +90,9 @@ export class PatientComponent implements OnInit {
       }
     );
   }
+  setobj(pat: MyPatient): Observable<MyPatient> {
+    return this.http.post<MyPatient>('https://doctestapp.herokuapp.com/api/patobj/' , pat);
+  }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
         this.doctorconnected = data;
@@ -108,11 +123,13 @@ export class PatientComponent implements OnInit {
   }
   onEnter(value: string) {
     this.callername = value;
-    this.hidediv(value);
-  // alert(this.callername);
+   // this.hidediv(value);
   }
-  hidediv(box: string ) {
-    this.callername = box;
+  hidediv(name: string , phone: string  ) {
+    this.callername = name;
+    const myph = phone;
+    this.pat = {name: this.callername, phone : myph , activedoc : this.pname };
+    // alert(JSON.stringify( this.pat));
     this.getSess(this.callername);
     this.wel = !this.wel;
     this.call = true;

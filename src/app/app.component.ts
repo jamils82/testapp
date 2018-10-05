@@ -24,6 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit () {
    // this.getCat();
-   this.route.navigate(['/doctor']);
+  // this.route.navigate(['/doctor']);
   }
 }
