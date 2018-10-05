@@ -91,7 +91,7 @@ export class PatientComponent implements OnInit {
     );
   }
   setobj(name: string  , phone: string , activedoc: string) {
-    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name );
+    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name  );
   }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
