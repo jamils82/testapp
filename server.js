@@ -74,10 +74,10 @@ app.use(function (req, res, next) {
   });
   
   app.route('/api/patobj').post((req, res) => {
-    patient = req.body;
-    /* patname= req.body.name;
-    phone = req.body.phone;
-    activedoc =req.body.activedoc; */
+    
+    patient.patname = req.body.name;
+    patient.phone = req.body.phone;
+   patient.activedoc =req.body.activedoc; 
     res.send(201, req.body);
   });
   app.route('/api/patobj').get((req, res) => {
