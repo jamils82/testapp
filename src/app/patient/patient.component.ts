@@ -83,15 +83,15 @@ export class PatientComponent implements OnInit {
        console.log(this.testname);
     });
   }
-  getSess(name: string) {
+  getSess(name: string ) {
     return this.http.get('https://doctestapp.herokuapp.com/api/cats/' +  this.callername ).subscribe( data => {
       //  this.callername = JSON.stringify(data );
       //  alert(this.callername);
       }
     );
   }
-  setobj(pat: MyPatient) {
-    return this.http.post('https://doctestapp.herokuapp.com/api/patobj' , pat);
+  setobj(name: string  , phone: string , activedoc: string) {
+    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name + phone + activedoc );
   }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
@@ -130,7 +130,7 @@ export class PatientComponent implements OnInit {
     const myph = phone;
     this.pat = {name: this.callername, phone : myph , activedoc : this.pname };
     alert(this.pat);
-    this.setobj(this.pat);
+    this.setobj(this.callername , myph , this.pname );
     this.getSess(this.callername);
     this.wel = !this.wel;
     this.call = true;

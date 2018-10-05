@@ -73,12 +73,12 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
   
-  app.route('/api/patobj').post((req, res) => {
-    
-   patient= req.body;
-    res.send(201, req.body);
+  app.route('/api/patobj/:name').get((req, res) => {
+    patient.patname = req.params['name'];
+    patient.phone = req.params['phone'];
+    patient.activedoc = req.params['activedoc'];
   });
-  app.route('/api/patobj').get((req, res) => {
+  app.route('/api/docobj').get((req, res) => {
     res.send(patient );
   });
   app.route('/api/connecteddoctor/:bool').get((req, res) => {

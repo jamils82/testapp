@@ -70,7 +70,7 @@ export class DoctorAComponent implements OnInit {
     );
   }
   getpatobj() {
-    return this.http.get('https://doctestapp.herokuapp.com/api/patobj' ).subscribe( data => {
+    return this.http.get('https://doctestapp.herokuapp.com/api/docobj' ).subscribe( data => {
       console.log( data );
       }
     );
