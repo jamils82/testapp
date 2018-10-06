@@ -50,7 +50,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io('http://doctestapp.herokuapp.com/#/patient/saad', {secure: true});
+    this.socket = io('', {secure: true});
    }
 
   ngOnInit() {
