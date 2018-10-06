@@ -2,19 +2,19 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
+
 const cors = require('cors');
 const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
-var io = socketio.listen(server);
 
-// handle incoming connections from clients
+var io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
-    // once a client has connected, we expect to get a ping from them saying what room they want to join
-    socket.on('room', function(room) {
-        socket.join(room);
-    });
+  // once a client has connected, we expect to get a ping from them saying what room they want to join
+  socket.on('room', function(room) {
+      socket.join(room);
+  });
 });
 
 // now, it's easy to send a message to just the clients in a given room
