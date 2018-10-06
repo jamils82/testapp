@@ -29,10 +29,13 @@
     "core-js": "^2.5.4",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "meteor-rxjs": "^0.4.14",
     "mongodb": "^3.1.6",
     "opentok": "^2.7.0",
     "path": "^0.12.7",
     "rxjs": "~6.2.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
     "typescript": "~2.9.2",
     "zone.js": "~0.8.26"
   },

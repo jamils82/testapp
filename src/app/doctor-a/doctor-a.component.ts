@@ -55,13 +55,13 @@ export class DoctorAComponent implements OnInit {
       // alert(this.userId);
     });
     this.postconnect();
-   /* setInterval(() => {
+    setInterval(() => {
     this.getname().subscribe( data => {
     });
-}, 1000);*/
-    setInterval(() => {
+}, 1000);
+   /* setInterval(() => {
       this.getpatobj();
-    }, 1000);
+    }, 1000); */
   }
 
   postconnect() {

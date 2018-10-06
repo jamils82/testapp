@@ -3,6 +3,12 @@ const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
 const cors = require('cors');
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+io.on('connection', function(client){
+  client.on('event', function(data){});
+  client.on('disconnect', function(){});
+});
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');

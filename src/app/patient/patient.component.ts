@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
-
+import * as io from 'socket.io-client';
 import * as OT from '@opentok/client';
 import { Observable } from 'rxjs';
 const publish = () => {
@@ -22,6 +22,7 @@ export interface MyPatient {
   providers: [ OpentokService ]
 })
 export class PatientComponent implements OnInit {
+  socket;
   @ViewChild('publisherDiv') publisherDiv: ElementRef;
   @Input() session: OT.Session;
   publisher: OT.Publisher;
@@ -49,7 +50,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-
+    this.socket = io('http://doctestapp.herokuapp.com');
    }
 
   ngOnInit() {
@@ -57,7 +58,9 @@ export class PatientComponent implements OnInit {
       // this.href = this.route.url;
       // alert(this.route.url);
       this.pname = params['name'];
+
      });
+     this.socket.on('hello', (data) => { console.log(data);  });
     this.getCat();
     setInterval(() => {
     this.getfav();
