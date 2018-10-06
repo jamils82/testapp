@@ -9,8 +9,6 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 
-var server =http.createServer(app);
-var io = socketIO(server);
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -113,7 +111,7 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 5000 , function () {
+var server = app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
 
@@ -123,6 +121,7 @@ app.get('/', function(req,res) {
 });
 
   
+var io = socketIO(server);
 io.sockets.on('connection', function(socket) {
   // once a client has connected, we expect to get a ping from them saying what room they want to join
   socket.on('room', function(room) {
