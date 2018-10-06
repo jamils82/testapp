@@ -9,8 +9,8 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 
-var server = require('http');
-var io = require('socket.io');
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 io.sockets.on('connection', function(socket) {
   // once a client has connected, we expect to get a ping from them saying what room they want to join
   socket.on('room', function(room) {
