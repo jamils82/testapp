@@ -66,12 +66,12 @@ export class PatientComponent implements OnInit {
 // let's assume that the client page, once rendered, knows what room it wants to join
     const room = 'abc123';
 
-    this.socket.on('connect', function() {
+    this.socket.on('connect', ( data) => {
       // Connected, let's sign-up for to receive messages for this room
       this.socket.emit('room', room);
     });
 
-    this.socket.on('message', function(data) {
+    this.socket.on('message', (data) => {
       console.log('Incoming message:', data);
     });
     this.getCat();
