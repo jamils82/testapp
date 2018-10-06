@@ -2,31 +2,15 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
-
+const socketIO = require('socket.io');
 const cors = require('cors');
 const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
-io.sockets.on('connection', function(socket) {
-  // once a client has connected, we expect to get a ping from them saying what room they want to join
-  socket.on('room', function(room) {
-      socket.join(room);
-  });
-});
-
-// now, it's easy to send a message to just the clients in a given room
-room = "abc123";
-io.sockets.in(room).emit('message', 'what is going on, party people?');
-
-// this message will NOT go to the client defined above
-io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
-
-
-
+var server =http.createServer(app);
+var io = SocketIO(server);
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -70,6 +54,22 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
   });
+  io.sockets.on('connection', function(socket) {
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('room', function(room) {
+        socket.join(room);
+    });
+  });
+  
+  // now, it's easy to send a message to just the clients in a given room
+  room = "abc123";
+  io.sockets.in(room).emit('message', 'what is going on, party people?');
+  
+  // this message will NOT go to the client defined above
+  io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
+  
+  
+  
   
   app.route('/api/cats').get((req, res) => {
     res.send({
