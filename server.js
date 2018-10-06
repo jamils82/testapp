@@ -2,13 +2,12 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
-
 const cors = require('cors');
 const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
-io = socketio.listen(server);
+var io = socketio.listen(server);
 
 // handle incoming connections from clients
 io.sockets.on('connection', function(socket) {
