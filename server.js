@@ -136,10 +136,7 @@ io.sockets.in(room).emit('message', 'what is going on, party people?');
 
 // this message will NOT go to the client defined above
 io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
-app.get('*', function(req,res) {
-   
-  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-  });
+
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
