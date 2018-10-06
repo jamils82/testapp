@@ -8,7 +8,6 @@ const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
-var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.set('match origin protocol', true);
 io.on('connection', function(client){
