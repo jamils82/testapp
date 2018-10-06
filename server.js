@@ -54,6 +54,14 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
   });
+  
+  
+  app.route('/api/cats').get((req, res) => {
+    res.send({
+      cats: [{ name: 'lilly' }, { name: 'lucy' }]
+    });
+  });
+  
   io.sockets.on('connection', function(socket) {
     // once a client has connected, we expect to get a ping from them saying what room they want to join
     socket.on('room', function(room) {
@@ -69,13 +77,6 @@ app.use(function (req, res, next) {
   io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
   
   
-  
-  
-  app.route('/api/cats').get((req, res) => {
-    res.send({
-      cats: [{ name: 'lilly' }, { name: 'lucy' }]
-    });
-  });
   app.route('/api/pattok' ).get((req, res) => {
     const token = opentok.generateToken(SESSION_ID, {
       role: 'subscriber'});
