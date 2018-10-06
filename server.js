@@ -10,7 +10,7 @@ const myname ='saad';
 const bodyParser = require('body-parser');
 
 var server =http.createServer(app);
-var io = socketIO(server);
+var io = socketIO.listen(server);
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
