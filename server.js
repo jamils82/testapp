@@ -143,9 +143,6 @@ io.on('connection', (socket) => {
   });
   });
   
-  server.listen(port, () => {
-    console.log("Listening on port " + port);
-  });
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
