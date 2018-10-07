@@ -75,7 +75,7 @@ export class PatientComponent implements OnInit {
         console.log(msg);
         console.log(this.messages);
     });
-    this.socket.emit('join-room', {room : this.pname } );
+    this.socket.emit('join-room',  {room : this.pname } );
     this.socket.emit('add-user' , {username : this.callername } );
     console.log(this.pname);
     this.socket.emit('request-users', {});

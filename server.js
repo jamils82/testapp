@@ -145,6 +145,10 @@ io.on('connection', (socket) => {
     socket.join(data.room);
     room = data.room;
   });
+  socket.on('request-users', function(){
+    socket.to(room).emit('users', {users: users});
+    console.log(users);
+  });
 
 
   });
