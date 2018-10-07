@@ -1,17 +1,17 @@
 //Install express server
-const express = require('express');
-const path = require('path');
-var OpenTok = require('opentok');
-const socketIO = require('socket.io');
-const cors = require('cors');
-const http = require('http');
+import express, { static } from 'express';
+import { join } from 'path';
+import OpenTok from 'opentok';
+import { listen } from 'socket.io';
+import cors from 'cors';
+import { createServer } from 'http';
 const app = express();
 const myname ='saad';
-const bodyParser = require('body-parser');
+import { json, urlencoded } from 'body-parser';
 var clients = [];
-var server =http.createServer(app);
-var io = socketIO.listen(server);
-app.use(bodyParser.json());
+var server =createServer(app);
+var io = listen(server);
+app.use(json());
 app.use(cors());
   const apiKey=  '46168292';
   var callernames = [];
@@ -29,13 +29,13 @@ app.use(cors());
   opentok = new OpenTok(apiKey, apiSecret);
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/testapp'));
+app.use(static(__dirname + '/dist/testapp'));
 
-var jsonParser = bodyParser.json();
+var jsonParser = json();
 app.use(jsonParser);
 
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(urlencoded({ extended: true }))
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -119,7 +119,7 @@ server.listen(process.env.PORT || 5000 , function () {
 
 app.get('/', function(req,res) {
      
-  res.sendFile(path.join(__dirname+'/dist/testapp'));
+  res.sendFile(join(__dirname+'/dist/testapp'));
 });
 
 io.on('connection', (socket) => {
@@ -153,5 +153,5 @@ io.on('connection', (socket) => {
   app.use(expressStatusMonitor({ websocket: io, port: app.get('port') })); 
   app.get('', function(req,res) {
      
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+    res.sendFile(join(__dirname+'/dist/testapp/index.html'));
 });
