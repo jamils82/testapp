@@ -78,6 +78,8 @@ export class PatientComponent implements OnInit {
     });
     this.socket.on('event2', (data: any) => {
     console.log(data.msg);
+    this.socket.emit('send-callername', this.callername);
+
     this.socket.emit('event3', {
         msg: 'Yes, its working for me!!'
     });

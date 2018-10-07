@@ -126,11 +126,14 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  
+  socket.on('send-nickname', function(callername) {
+    socket.callername = callername;
+    users.push(socket.callername);
+    console.log(users);
+});
   socket.on('event1', (data) => {
     console.log(data.msg);
   });
-  
   socket.emit('event2', {
     msg: 'Server to client, do you read me? Over.'
   });
@@ -142,7 +145,7 @@ io.on('connection', (socket) => {
     });
   });
   });
-  
+ 
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
