@@ -36,6 +36,7 @@ export class PatientComponent implements OnInit {
   end = false;
   callername: string;
   doctorconnected: any;
+  onlineusers = [];
   favcaller: string;
   config: any;
   messages: any;
@@ -43,6 +44,7 @@ export class PatientComponent implements OnInit {
   messageText: any;
   public pat: MyPatient;
   onHold = false;
+  room: any;
     subscriberOpts: {
       insertMode: 'append',
       width: '100%',
@@ -73,20 +75,22 @@ export class PatientComponent implements OnInit {
         console.log(msg);
         console.log(this.messages);
     });
-    this.socket.emit('event1', {
-      msg: 'Client to server, can you hear me server?'
-    });
-    this.socket.on('event2', (data: any) => {
-    console.log(data.msg);
-    this.socket.emit('send-callername', this.callername);
-
-    this.socket.emit('event3', {
-        msg: 'Yes, its working for me!!'
-    });
-    });
-    this.socket.on('event4', (data: any) => {
-      console.log(data.msg);
-    });
+    this.socket.emit('join-room', {room : this.pname } );
+    this.socket.emit('add-user' , {username : this.callername } );
+    console.log(this.pname);
+    this.socket.emit('request-users', {});
+    this.socket.on('users', (data) => {
+      this.onlineusers = data.users;
+    } );
+    this.socket.on('add-users' , (data) => {
+      this.onlineusers.push(data.username);
+    } );
+    this.socket.on('remove-users' , (data) => {
+      this.onlineusers.splice(this.onlineusers.indexOf(data.username));
+    } );
+    this.socket.on('locationchangestate' , (e) => {
+      this.socket.disconnect(true);
+    } );
     this.getCat();
     setInterval(() => {
     this.getfav();
