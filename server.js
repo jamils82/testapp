@@ -122,12 +122,10 @@ app.get('/', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
 
-  
-
 io.on('connection', (socket) => {
   console.log('new connection made');
   
-  socket.on('join-room', function(data){
+  socket.on('join-room', (data) => {
     socket.join(data.room);
     room = data.room;
   });
