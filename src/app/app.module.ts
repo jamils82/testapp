@@ -44,6 +44,7 @@ import {appRoutes} from './routes';
   ],
   providers: [
     OpentokService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
