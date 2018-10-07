@@ -30,12 +30,6 @@ app.use(cors());
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
-app.listen(process.env.PORT || 5000 , function () {
-  console.log(process.env.PORT || 5000);
-} );
-server.listen(process.env.PORT || 5000 , function () {
-  console.log(process.env.PORT || 5000);
-} );
 
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
@@ -119,46 +113,37 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
+server.listen(process.env.PORT || 5000 , function () {
+    console.log(process.env.PORT || 5000);
+} );
 
 app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
 
+  
+
 io.on('connection', (socket) => {
   console.log('new connection made');
   
-  socket.on('join-room', (data) => {
-    socket.join(data.room);
-    room = data.room;
+  socket.on('event1', (data) => {
+    console.log(data.msg);
   });
-
   
-  socket.on('request-users', () => {
-    socket.to(room).emit('users', {users: users});
-    console.log(users);
+  socket.emit('event2', {
+    msg: 'Server to client, do you read me? Over.'
   });
-
-  socket.on('add-user', (data) => {
-
-      io.to(room).emit('add-user', {
-        username: data.username
-      });
-      username = data.username;
-      users.push(data.username);
-  });
-  socket.on('disconnect', () => {
-    console.log(username + 'has disconnected');
-    users.splice(users.indexOf(username), 1);
-    io.to(room).emit('remove-user', {username: username});
+  
+  socket.on('event3', (data) => {
+    console.log(data.msg);
+    socket.emit('event4', {
+      msg: 'Loud and clear :)'
+    });
   });
   });
+  
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-});
-
-app.get('*', function(req,res) {
-     
-  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
