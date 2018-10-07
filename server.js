@@ -145,14 +145,10 @@ io.on('connection', (socket) => {
     socket.join(data.room);
     room = data.room;
   });
-  socket.on('add-user', function(data){
-
-    io.to(room).emit('add-user', {
-      username: data.username
-    });
-    username = data.username;
-    users.push(data.username);
-});
+  socket.on('add-users' , (data) => {
+    callernames.push(data.username);
+    console.log(data.username);
+  } )
 
   });
   
