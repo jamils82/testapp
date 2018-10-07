@@ -30,6 +30,9 @@ app.use(cors());
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/testapp'));
+app.listen(process.env.PORT || 5000 , function () {
+  console.log(process.env.PORT || 5000);
+} );
 
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
@@ -113,9 +116,6 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 5000 , function () {
-    console.log(process.env.PORT || 5000);
-} );
 
 app.get('/', function(req,res) {
      
