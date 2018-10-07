@@ -38,7 +38,9 @@ export class PatientComponent implements OnInit {
   doctorconnected: any;
   favcaller: string;
   config: any;
+  messages: any;
   call = false;
+  messageText: any;
   public pat: MyPatient;
   onHold = false;
     subscriberOpts: {
@@ -63,16 +65,25 @@ export class PatientComponent implements OnInit {
 
      this.socket = io.connect();
 
-// let's assume that the client page, once rendered, knows what room it wants to join
-    const room = 'abc123';
+    // let's assume that the client page, once rendered, knows what room it wants to join
+    this.messages = new Array();
 
-    this.socket.on('connect', ( data) => {
-      // Connected, let's sign-up for to receive messages for this room
-      this.socket.emit('room', room);
+    this.socket.on('message-received', (msg: any) => {
+        this.messages.push(msg);
+        console.log(msg);
+        console.log(this.messages);
     });
-
-    this.socket.on('message', (data) => {
-      console.log('Incoming message:', data);
+    this.socket.emit('event1', {
+      msg: 'Client to server, can you hear me server?'
+    });
+    this.socket.on('event2', (data: any) => {
+    console.log(data.msg);
+    this.socket.emit('event3', {
+        msg: 'Yes, its working for me!!'
+    });
+    });
+    this.socket.on('event4', (data: any) => {
+      console.log(data.msg);
     });
     this.getCat();
     setInterval(() => {
@@ -109,6 +120,14 @@ export class PatientComponent implements OnInit {
   setobj(name: string  , phone: string , activedoc: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name  );
   }
+  sendMessage() {
+    const message = {
+    text: this.messageText
+    };
+    this.socket.emit('send-message', message);
+    // console.log(message.text);
+    this.messageText = '';
+    }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
         this.doctorconnected = data;

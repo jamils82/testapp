@@ -8,7 +8,7 @@ const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
-
+var clients = [];
 var server =http.createServer(app);
 var io = socketIO.listen(server);
 app.use(bodyParser.json());
@@ -123,20 +123,25 @@ app.get('/', function(req,res) {
 });
 
   
-io.sockets.on('connection', function(socket) {
-  // once a client has connected, we expect to get a ping from them saying what room they want to join
-  socket.on('room', function(room) {
-      socket.join(room);
-  });
+i
+io.on('connection', (socket) => {
+console.log('new connection made');
+
+socket.on('event1', (data) => {
+  console.log(data.msg);
 });
 
-// now, it's easy to send a message to just the clients in a given room
-room = "abc123";
-io.sockets.in(room).emit('message', 'what is going on, party people?');
+socket.emit('event2', {
+  msg: 'Server to client, do you read me? Over.'
+});
 
-// this message will NOT go to the client defined above
-io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
-
+socket.on('event3', (data) => {
+  console.log(data.msg);
+  socket.emit('event4', {
+    msg: 'Loud and clear :)'
+  });
+});
+});
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
