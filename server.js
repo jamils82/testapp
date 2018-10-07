@@ -150,7 +150,6 @@ io.on('connection', (socket) => {
     io.to(room).emit('remove-user', {username: username});
   });
   });
-  app.use(expressStatusMonitor({ websocket: io, port: app.get('port') })); 
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
