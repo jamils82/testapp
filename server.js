@@ -144,8 +144,8 @@ io.on('connection', (socket) => {
       username = data.username;
       users.push(data.username);
   });
-  socket.on('disconnect', (data) => {
-    console.log(username + ' has disconnected');
+  socket.on('disconnect', () => {
+    console.log(username + 'has disconnected');
     users.splice(users.indexOf(username), 1);
     io.to(room).emit('remove-user', {username: username});
   });
