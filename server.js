@@ -33,6 +33,9 @@ app.use(express.static(__dirname + '/dist/testapp'));
 app.listen(process.env.PORT || 5000 , function () {
   console.log(process.env.PORT || 5000);
 } );
+server.listen(process.env.PORT || 5000 , function () {
+  console.log(process.env.PORT || 5000);
+} );
 
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
