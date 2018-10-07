@@ -149,8 +149,11 @@ io.on('connection', (socket) => {
   socket.on('add-users' , (data) => {
     callernames.push(data.username);
     console.log(data.username);
-  } )
-
+  } );
+  socket.on('request-users', function(){
+    socket.to(room).emit('users', {users: users});
+    console.log(users);
+  });
   });
   
   app.get('', function(req,res) {
