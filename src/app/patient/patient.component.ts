@@ -125,7 +125,7 @@ export class PatientComponent implements OnInit {
     text: this.messageText
     };
     this.socket.emit('send-message', message);
-    // console.log(message.text);
+     console.log(message.text);
     this.messageText = '';
     }
   getDoc() {
