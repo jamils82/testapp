@@ -127,30 +127,7 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  socket.on('join-room', function(data){
-    socket.join(data.room);
-    room = data.room;
-  });
-
-
-  socket.on('request-users', function(){
-    socket.to(room).emit('users', {users: users});
-    console.log(users);
-  });
-
-  socket.on('add-user', function(data){
-
-      io.to(room).emit('add-user', {
-        username: data.username
-      });
-      username = data.username;
-      users.push(data.username);
-  });
-  socket.on('disconnect', function(data){
-    console.log(username + ' has disconnected');
-    users.splice(users.indexOf(username), 1);
-    io.to(room).emit('remove-user', {username: username});
-  });
+  
   
   });
   
