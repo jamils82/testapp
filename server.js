@@ -127,7 +127,6 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  
   socket.on('join-room', function(data){
     socket.join(data.room);
     room = data.room;
@@ -152,8 +151,9 @@ io.on('connection', (socket) => {
     users.splice(users.indexOf(username), 1);
     io.to(room).emit('remove-user', {username: username});
   });
+  
   });
- 
+  
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
