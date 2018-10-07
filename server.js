@@ -124,31 +124,7 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  
-  socket.on('join-room', (data) => {
-    socket.join(data.room);
-    room = data.room;
-  });
-
-  
-  socket.on('request-users', () => {
-    socket.to(room).emit('users', {users: users});
-    console.log(users);
-  });
-
-  socket.on('add-user', (data) => {
-
-      io.to(room).emit('add-user', {
-        username: data.username
-      });
-      username = data.username;
-      users.push(data.username);
-  });
-  socket.on('disconnect', () => {
-    console.log(username + 'has disconnected');
-    users.splice(users.indexOf(username), 1);
-    io.to(room).emit('remove-user', {username: username});
-  });
+ 
   });
   app.get('', function(req,res) {
      
