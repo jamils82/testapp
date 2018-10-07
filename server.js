@@ -130,7 +130,7 @@ io.on('connection', (socket) => {
     room = data.room;
   });
 
-
+  
   socket.on('request-users', () => {
     socket.to(room).emit('users', {users: users});
     console.log(users);
