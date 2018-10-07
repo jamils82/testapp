@@ -113,7 +113,7 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
-server.listen(process.env.PORT || 5000 , function () {
+app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
 
