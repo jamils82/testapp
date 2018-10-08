@@ -38,7 +38,7 @@ import {appRoutes} from './routes';
     MatListModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true}
+    // {enableTracing: true}
     ),
     HttpClientModule
   ],
