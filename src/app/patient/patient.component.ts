@@ -65,7 +65,6 @@ export class PatientComponent implements OnInit {
 
      });
      this.callername = 'PatientA';
-     this.socket = io.connect();
 
     // let's assume that the client page, once rendered, knows what room it wants to join
     this.messages = new Array();
