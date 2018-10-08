@@ -54,7 +54,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io('https://doctestapp.herokuapp.com/');
+    this.socket = io();
    }
 
   ngOnInit() {
@@ -67,16 +67,12 @@ export class PatientComponent implements OnInit {
      this.callername = 'PatientA';
 
     // let's assume that the client page, once rendered, knows what room it wants to join
-    this.messages = new Array();
-
-    this.socket.on('message-received', (msg: any) => {
-        this.messages.push(msg);
-        console.log(msg);
-        console.log(this.messages);
-    });
-    this.socket.emit('event4', (data) => {
-      console.log(data);
-    });
+   this.socket.on('userSet', function(data) {
+      this.callername = data.username;
+      document.body.innerHTML = '<input type = "text" id = "message">\
+      <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
+      <div id = "message-container"></div>';
+   });
     this.getCat();
     setInterval(() => {
     // this.getfav();
@@ -148,6 +144,10 @@ export class PatientComponent implements OnInit {
     }
   );
   }
+  setUsername() {
+   this.socket.emit('setUsername', this.callername );
+ }
+
   onEnter(value: string) {
     this.callername = value;
    // this.hidediv(value);

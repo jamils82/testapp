@@ -133,20 +133,14 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  
-  socket.on('event1', (data) => {
-    console.log(data.msg);
-  });
-  
-  socket.emit('event2', {
-    msg: 'Server to client, do you read me? Over.'
-  });
-  
-  socket.on('event3', (data) => {
-    console.log(data.msg);
-    socket.emit('event4', {
-      msg: 'Loud and clear :)'
-    }); 
-  });
+  console.log('A user connected');
+   socket.on('setUsername', function(data) {
+      if(users.indexOf(data) > -1) {
+         users.push(data);
+         socket.emit('userSet', {username: data});
+      } else {
+         socket.emit('userExists', data + ' username is taken! Try some other username.');
+      }
+   })
   
   });
