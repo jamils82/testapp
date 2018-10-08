@@ -151,7 +151,7 @@ io.on('connection', (socket) => {
     console.log(data.username);
   } );
   socket.on('request-users', function(){
-    socket.to(room).emit('users', {users: users});
+    socket.to(room).emit('users', {users: callernames});
     console.log(users);
   });
   });
