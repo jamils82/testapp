@@ -69,15 +69,16 @@ export class PatientComponent implements OnInit {
 
     // let's assume that the client page, once rendered, knows what room it wants to join
 
-    this.socket.emit('join-room', {room : this.pname } );
-    this.socket.emit('add-user' , {username : this.callername } );
+    this.socket.emit('add-user' , {callername : this.callername } );
     console.log(this.pname);
     this.socket.on('request-users', {});
     this.socket.on('users', (data) => {
       this.onlineusers = data.callernames;
+      console.log(data.callernames);
     } );
     this.socket.on('add-users' , (data) => {
       this.onlineusers.push(data.username);
+      console.log(data.username);
     } );
     this.socket.on('remove-users' , (data) => {
       this.onlineusers.splice(this.onlineusers.indexOf(data.username));

@@ -138,7 +138,7 @@ io.on('connection', (socket) => {
     console.log(callername);
   } );
   socket.on('request-users', function(){
-    socket.to(room).emit('users', {users: callernames});
+    socket.to(room).emit('callernames', {callernames: callernames});
     console.log(users);
   });
   });
