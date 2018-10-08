@@ -54,7 +54,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io('https://doctestapp.herokuapp.com/#/patient');
+    this.socket = io('https://doctestapp.herokuapp.com/');
    }
 
   ngOnInit() {
@@ -67,35 +67,21 @@ export class PatientComponent implements OnInit {
      this.callername = 'PatientA';
      this.socket = io.connect();
 
-     this.socket.on('newuser', function(username) {
-     this.socket.username = username;
-      console.log( this.socket.username + ' has connected');
-    });
     // let's assume that the client page, once rendered, knows what room it wants to join
+    this.messages = new Array();
 
- /*   this.socket.emit('add-user' , {callername : this.callername } );
-    console.log(this.pname);
-    this.socket.on('request-users', {});
-    this.socket.on('users', (data) => {
-      this.onlineusers = data.callernames;
-      console.log(data.callernames);
-    } );
-    this.socket.on('add-users' , (data) => {
-      this.onlineusers.push(data.callername);
-      console.log(data.callername);
-    } );
-    this.socket.on('remove-users' , (data) => {
-      this.onlineusers.splice(this.onlineusers.indexOf(data.callername));
-    } );
-    this.socket.on('locationchangestate' , (e) => {
-      this.socket.disconnect(true);
-    } ); */
+    this.socket.on('message-received', (msg: any) => {
+        this.messages.push(msg);
+        console.log(msg);
+        console.log(this.messages);
+    });
+
     this.getCat();
     setInterval(() => {
-  //  this.getfav();
+   // this.getfav();
   }, 1000 );
   setInterval(() => {
-  //  this.connectcall();
+   // this.connectcall();
   }, 1000 );
    // this.insertSess();
   //  this.getSess();
