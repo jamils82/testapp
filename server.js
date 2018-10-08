@@ -138,6 +138,7 @@ io.on('connection', (socket) => {
       if(users.indexOf(data) > -1) {
          users.push(data);
          socket.emit('userSet', {username: data});
+         console.log(data);
       } else {
          socket.emit('userExists', data + ' username is taken! Try some other username.');
       }
