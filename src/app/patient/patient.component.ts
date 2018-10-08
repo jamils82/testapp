@@ -77,11 +77,11 @@ export class PatientComponent implements OnInit {
       console.log(data.callernames);
     } );
     this.socket.on('add-users' , (data) => {
-      this.onlineusers.push(data.username);
-      console.log(data.username);
+      this.onlineusers.push(data.callername);
+      console.log(data.callername);
     } );
     this.socket.on('remove-users' , (data) => {
-      this.onlineusers.splice(this.onlineusers.indexOf(data.username));
+      this.onlineusers.splice(this.onlineusers.indexOf(data.callername));
     } );
     this.socket.on('locationchangestate' , (e) => {
       this.socket.disconnect(true);
