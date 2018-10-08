@@ -65,7 +65,7 @@ export class PatientComponent implements OnInit {
 
      });
      this.callername = 'PatientA';
-
+     this.socket.emit('clientEvent', 'Sent an event from the client!');
     // let's assume that the client page, once rendered, knows what room it wants to join
    this.socket.on('userSet', function(data) {
       this.callername = data.username;
