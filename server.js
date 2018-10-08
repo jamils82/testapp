@@ -132,10 +132,13 @@ io.on('connection', (socket) => {
   socket.on('join-room', function(data){
     socket.join(data.room);
     room = data.room;
+    socket.emit('room name', roomm );
   });
   socket.on('add-users' , function(callername) {
-    callernames.push(callername);
+    new user = {user: callername }
+    callernames.push(user);
     console.log(callername);
+    socket.emit('welcome' , callername )
   } );
   socket.on('request-users', function(){
     socket.to(room).emit('users', {users: callernames});
