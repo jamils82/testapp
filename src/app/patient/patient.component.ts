@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
-import * as io from 'socket.io-client';
+import * as io from 'socket.io';
 import * as OT from '@opentok/client';
 import { Observable } from 'rxjs';
 const publish = () => {
