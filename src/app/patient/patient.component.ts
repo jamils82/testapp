@@ -68,13 +68,7 @@ export class PatientComponent implements OnInit {
      this.socket = io.connect();
 
     // let's assume that the client page, once rendered, knows what room it wants to join
-    this.messages = new Array();
 
-    this.socket.on('message-received', (msg: any) => {
-        this.messages.push(msg);
-        console.log(msg);
-        console.log(this.messages);
-    });
     this.socket.emit('join-room', {room : this.pname } );
     this.socket.emit('add-user' , {username : this.callername } );
     console.log(this.pname);

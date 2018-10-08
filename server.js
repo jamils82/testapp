@@ -128,27 +128,14 @@ app.get('/', function(req,res) {
 io.on('connection', (socket) => {
   console.log('new connection made');
   
-  socket.on('event1', (data) => {
-    console.log(data.msg);
-  });
   
-  socket.emit('event2', {
-    msg: 'Server to client, do you read me? Over.'
-  });
-  
-  socket.on('event3', (data) => {
-    console.log(data.msg);
-    socket.emit('event4', {
-      msg: 'Loud and clear :)'
-    });
-  });
   socket.on('join-room', function(data){
     socket.join(data.room);
     room = data.room;
   });
-  socket.on('add-users' , (data) => {
-    callernames.push(data.username);
-    console.log(data.username);
+  socket.on('add-users' , function(callername) {
+    callernames.push(callername);
+    console.log(callername);
   } );
   socket.on('request-users', function(){
     socket.to(room).emit('users', {users: callernames});
