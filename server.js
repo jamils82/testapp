@@ -127,8 +127,8 @@ app.get('/', function(req,res) {
 
 io.on('connection', (socket) => {
   console.log('new connection made');
-  
-  
+
+  });
   socket.on('join-room', function(data){
     socket.join(data.room);
     room = data.room;
@@ -140,9 +140,7 @@ io.on('connection', (socket) => {
   socket.on('request-users', function(){
     socket.to(room).emit('callernames', {callernames: callernames});
     console.log(users);
-  });
-  });
-  
+  });  
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
