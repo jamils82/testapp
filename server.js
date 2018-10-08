@@ -130,18 +130,14 @@ app.get('/', function(req,res) {
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
 
-
-io.on('connection', (socket) => {
-  console.log('new connection made');
+io.on('connection', function(socket) {
   console.log('A user connected');
-   socket.on('setUsername', function(data) {
-      if(users.indexOf(data) > -1) {
-         users.push(data);
-         socket.emit('userSet', {username: data});
-         console.log(data);
-      } else {
-         socket.emit('userExists', data + ' username is taken! Try some other username.');
-      }
-   })
-  
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
+});
+
+
   });

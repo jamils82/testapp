@@ -66,13 +66,6 @@ export class PatientComponent implements OnInit {
      });
      this.callername = 'PatientA';
 
-      const message = {
-      text: this.messageText
-      };
-      this.socket.emit('send-message', message);
-       console.log(message.text);
-      this.messageText = '';
-
     // let's assume that the client page, once rendered, knows what room it wants to join
    this.socket.on('userSet', function(data) {
       this.callername = data.username;
@@ -115,7 +108,14 @@ export class PatientComponent implements OnInit {
   setobj(name: string  , phone: string , activedoc: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name  );
   }
-
+  sendMessage() {
+    const message = {
+    text: this.messageText
+    };
+    this.socket.emit('send-message', message);
+     console.log(message.text);
+    this.messageText = '';
+    }
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
         this.doctorconnected = data;
