@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
-import * as io from 'socket.io';
+import * as io from 'socket.io-client';
 import * as OT from '@opentok/client';
 import { Observable } from 'rxjs';
 const publish = () => {
@@ -54,8 +54,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io('https://doctestapp.herokuapp.com');
-   }
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
