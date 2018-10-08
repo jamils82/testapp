@@ -142,6 +142,14 @@ io.on('connection', (socket) => {
       msg: 'Loud and clear :)'
     });
   });
+  socket.on('join-room', function(data){
+    socket.join(data.room);
+    room = data.room;
+  });
+  socket.on('add-users' , (data) => {
+    callernames.push(data.username);
+    console.log(data.username);
+  } );
   
   });
   

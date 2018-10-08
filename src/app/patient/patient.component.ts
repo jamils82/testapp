@@ -54,7 +54,8 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-  }
+    this.socket = io('https://doctestapp.herokuapp.com/');
+   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
@@ -74,13 +75,28 @@ export class PatientComponent implements OnInit {
         console.log(msg);
         console.log(this.messages);
     });
-
+    this.socket.emit('join-room',  {room : this.pname } );
+    this.socket.emit('add-user' , {username : this.callername } );
+    console.log(this.pname);
+    this.socket.emit('request-users', {});
+    this.socket.on('users', (data) => {
+      this.onlineusers = data.users;
+    } );
+    this.socket.on('add-users' , (data) => {
+      this.onlineusers.push(data.username);
+    } );
+    this.socket.on('remove-users' , (data) => {
+      this.onlineusers.splice(this.onlineusers.indexOf(data.username));
+    } );
+    this.socket.on('locationchangestate' , (e) => {
+      this.socket.disconnect(true);
+    } );
     this.getCat();
     setInterval(() => {
-   // this.getfav();
+    this.getfav();
   }, 1000 );
   setInterval(() => {
-   // this.connectcall();
+    this.connectcall();
   }, 1000 );
    // this.insertSess();
   //  this.getSess();
