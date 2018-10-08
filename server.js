@@ -124,6 +124,12 @@ app.get('/', function(req,res) {
 });
 
   
+  
+  app.get('', function(req,res) {
+     
+    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+});
+
 
 io.on('connection', (socket) => {
   console.log('new connection made');
@@ -140,12 +146,7 @@ io.on('connection', (socket) => {
     console.log(data.msg);
     socket.emit('event4', {
       msg: 'Loud and clear :)'
-    });
+    }); 
   });
   
   });
-  
-  app.get('', function(req,res) {
-     
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-});

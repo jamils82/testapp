@@ -74,6 +74,9 @@ export class PatientComponent implements OnInit {
         console.log(msg);
         console.log(this.messages);
     });
+    this.socket.emit('event4', (data) => {
+      console.log(data);
+    });
     this.getCat();
     setInterval(() => {
     // this.getfav();
