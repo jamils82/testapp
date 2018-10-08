@@ -80,7 +80,7 @@ export class PatientComponent implements OnInit {
     console.log(this.pname);
     this.socket.on('request-users', {});
     this.socket.on('users', (data) => {
-      this.onlineusers = data.users;
+      this.onlineusers = data.callernames;
     } );
     this.socket.on('add-users' , (data) => {
       this.onlineusers.push(data.username);
