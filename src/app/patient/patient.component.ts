@@ -67,9 +67,13 @@ export class PatientComponent implements OnInit {
      this.callername = 'PatientA';
      this.socket = io.connect();
 
+     this.socket.on('newuser', function(username) {
+     this.socket.username = username;
+      console.log( this.socket.username + ' has connected');
+    });
     // let's assume that the client page, once rendered, knows what room it wants to join
 
-    this.socket.emit('add-user' , {callername : this.callername } );
+ /*   this.socket.emit('add-user' , {callername : this.callername } );
     console.log(this.pname);
     this.socket.on('request-users', {});
     this.socket.on('users', (data) => {
@@ -85,7 +89,7 @@ export class PatientComponent implements OnInit {
     } );
     this.socket.on('locationchangestate' , (e) => {
       this.socket.disconnect(true);
-    } );
+    } ); */
     this.getCat();
     setInterval(() => {
   //  this.getfav();
