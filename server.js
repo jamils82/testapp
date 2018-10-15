@@ -152,7 +152,6 @@ io.on('connection', function(socket) {
       });
       socket.id = data
       username = data
-      users.push(data);
       console.log('User Connected', username);
      // console.log(users);
   });
