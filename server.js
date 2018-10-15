@@ -44,7 +44,9 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-
+server.listen(process.env.PORT || 5000 , function () {
+    console.log(process.env.PORT || 5000);
+} );
   
   
   app.get('', function(req,res) {
@@ -197,6 +199,3 @@ socket.on('disconnect', function(data){
 });
 });
 
-server.listen(process.env.PORT || 5000 , function () {
-    console.log(process.env.PORT || 5000);
-} );
