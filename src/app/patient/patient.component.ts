@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef , ElementRef, AfterViewInit, ViewChild, Input  } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef , ElementRef, AfterViewInit, ViewChild, Input , HostListener } from '@angular/core';
 import { OpentokService } from '../opentok.service';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -101,14 +101,7 @@ export class PatientComponent implements OnInit {
   setobj(name: string  , phone: string , activedoc: string) {
     return this.http.get('https://doctestapp.herokuapp.com/api/patobj' + name  );
   }
-  sendMessage() {
-    const message = {
-    text: this.messageText
-    };
-    this.socket.emit('send-message', message);
-     console.log(message.text);
-    this.messageText = '';
-    }
+
   getDoc() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor' ).subscribe( data => {
         this.doctorconnected = data;
@@ -152,9 +145,8 @@ export class PatientComponent implements OnInit {
 
    }
 
-  senduser( name: string ) {
-    this.Username = name;
-    this.socket.emit('add-user', this.Username );
+  senduser(  ) {
+    this.socket.emit('add-user', this.callername );
 
 
   }
@@ -171,11 +163,11 @@ export class PatientComponent implements OnInit {
       console.log(this.users);
     });
   }
-  end() {
-    this.socket.emit('disconnect' , this.Username );
+  endsock() {
+    this.socket.emit('disconnect' , this.callername );
   }
   beforeunloadHandler(event) {
-    this.end();
+    this.endsock();
   }
 
   hidediv(name: string , phone: string  ) {
