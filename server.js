@@ -8,8 +8,6 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 var clients = [];
-let server = app.listen(process.env.PORT) 
-var io = require('socket.io').listen(server) 
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -43,11 +41,12 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-server.listen(process.env.PORT || 5000 , function () {
+var server = app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
   
   
+var io = require('socket.io').listen(server) 
   app.get('', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
