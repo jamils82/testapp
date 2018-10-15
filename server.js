@@ -41,8 +41,8 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-var server = app.listen(process.env.PORT || 5000 , function () {
-    console.log(process.env.PORT || 5000);
+var server = app.listen( 5000 , function () {
+    console.log( 5000);
 } );
   
   
