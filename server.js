@@ -26,6 +26,8 @@ app.use(cors());
   }
   var requestedCatName ='hadi';
   room = '';
+  var username = '';
+  socketIds = ''
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
   opentok = new OpenTok(apiKey, apiSecret);
   const SESSION_ID= '2_MX40NjE2ODI5Mn5-MTUzNjg2ODUzNjc4OX5tY0FuRkQwUExhQ21sWHNDMVE5cFFaenl-fg';
@@ -37,6 +39,18 @@ app.use(jsonParser);
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.get('/', function(req,res) {
+     
+  res.sendFile(path.join(__dirname+'/dist/testapp'));
+});
+
+  
+  
+  app.get('', function(req,res) {
+     
+    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+});
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -114,32 +128,75 @@ app.use(function (req, res, next) {
     res.send( {requestedCatName} );
   });
 // Start the app by listening on the default Heroku port
+
+
+
+
+io.on('connection', function(socket) {
+   
+ socket.on('sendroom', function(data){
+    
+    socket.join(data);
+    room = data;
+   // console.log(nsp);
+    console.log('u r login in ' , room )
+    
+  });
+
+
+  
+  socket.on('add-user', function(data){
+
+      io.to(room).emit('add-user', {
+        username: data
+      });
+      socket.id = data
+      username = data
+      users.push(data);
+      console.log('User Connected', username);
+     // console.log(users);
+  });
+  socket.on('request-users', function(){
+    socket.to(room).emit('users', {
+     users:  users 
+  })
+    });
+   socket.on('showusers' , function(data){
+    /* var roomss = io.sockets.adapter.rooms[data] ;
+    roomss.length;
+    for ( i = 0 ; i < roomss.length ; i++) {
+    console.log(roomss);
+    console.log(roomss.length);
+    }
+   } ) */
+   for (socketID in io.sockets.adapter.rooms[data].sockets) {
+     nickname = io.sockets.connected[socketID].id;
+    // console.log(nickname)
+     if(nickname) {
+     var ind = connectedusers.indexOf(nickname)
+     if (ind > -1 )
+         { console.log('already exists') }
+     else {
+        connectedusers.push(nickname);
+       
+     }
+     }
+    // do stuff with nickname
+    
+  }
+   console.log(connectedusers); 
+  
+  socket.emit('getlist' , connectedusers )
+  connectedusers.splice(0 , connectedusers.length)
+})
+
+socket.on('disconnect', function(data){
+  console.log(username + ' has disconnected');
+  users.splice(users.indexOf(username), 1);
+  io.to(room).emit('remove-user', {username: username});
+});
+});
+
 server.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
-
-app.get('/', function(req,res) {
-     
-  res.sendFile(path.join(__dirname+'/dist/testapp'));
-});
-
-  
-  
-  app.get('', function(req,res) {
-     
-    res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
-});
-
-io.on('connection', function(socket) {
-  console.log('A user connected');
-  setTimeout(function() {
-    socket.send('Sent a message 4seconds after connection!');
- }, 4000);
- socket.on('clientEvent', function(data) {
-  console.log(data);
-});
-  //Whenever someone disconnects this piece of code executed
-  socket.on('disconnect', function () {
-     console.log('A user disconnected');
-  });
-});
