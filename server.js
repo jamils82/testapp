@@ -197,6 +197,6 @@ socket.on('disconnect', function(data){
 });
 });
 
-server.listen(process.env.PORT || 5000 , function () {
+app.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );

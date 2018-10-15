@@ -46,6 +46,7 @@
     "@angular/language-service": "^6.1.0",
     "@opentok/client": "^2.14.3",
     "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
