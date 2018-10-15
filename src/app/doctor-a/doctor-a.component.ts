@@ -62,6 +62,7 @@ export class DoctorAComponent implements OnInit {
     });
     this.sendroom(this.room);
     this.senduser('');
+    this.sendMessage('');
      setInterval( () => {
        this.sendMessage('');
      } , 7000 );
