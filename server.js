@@ -34,9 +34,9 @@ app.use(express.static(__dirname + '/dist/testapp'));
 
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
-
-var server =http.createServer('1231212');
+var server =http.createServer(app);
 var io = require('socket.io').listen(server);
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -197,6 +197,6 @@ socket.on('disconnect', function(data){
 });
 });
 
-app.listen(process.env.PORT || 5000 , function () {
+server.listen(process.env.PORT || 5000 , function () {
     console.log(process.env.PORT || 5000);
 } );
