@@ -75,6 +75,7 @@ export class DoctorAComponent implements OnInit {
     }, 1000); */
   }
 
+
   postconnect() {
     return this.http.get('https://doctestapp.herokuapp.com/api/connecteddoctor/' +  this.doctorconnected ).subscribe( data => {
       }
