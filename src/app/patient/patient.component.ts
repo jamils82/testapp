@@ -23,6 +23,7 @@ export interface MyPatient {
 })
 export class PatientComponent implements OnInit {
   socket;
+  @HostListener('window:unload', ['$event'])
   @ViewChild('publisherDiv') publisherDiv: ElementRef;
   @Input() session: OT.Session;
   publisher: OT.Publisher;
@@ -54,7 +55,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io();
+    this.socket = io.connect('https://doctestapp.herokuapp.com');
    }
 
   ngOnInit() {
@@ -62,17 +63,9 @@ export class PatientComponent implements OnInit {
       // this.href = this.route.url;
       // alert(this.route.url);
       this.pname = params['name'];
-
+      alert(this.pname);
      });
-     this.callername = 'PatientA';
-     this.socket.emit('clientEvent', 'Sent an event from the client!');
-    // let's assume that the client page, once rendered, knows what room it wants to join
-   this.socket.on('userSet', function(data) {
-      this.callername = data.username;
-      document.body.innerHTML = '<input type = "text" id = "message">\
-      <button type = "button" name = "button" onclick = "sendMessage()">Send</button>\
-      <div id = "message-container"></div>';
-   });
+
     this.getCat();
     setInterval(() => {
     // this.getfav();
@@ -152,6 +145,39 @@ export class PatientComponent implements OnInit {
     this.callername = value;
    // this.hidediv(value);
   }
+
+  sendroom(room: string ) {
+    this.room = room;
+    this.socket.emit('sendroom' , this.room );
+
+   }
+
+  senduser( name: string ) {
+    this.Username = name;
+    this.socket.emit('add-user', this.Username );
+
+
+  }
+  sendMessage(  mymsg: string ) {
+    this.socket.on('user joined' , function(userName , numUsers) {
+      console.log(userName);
+      console.log(numUsers);
+    } );
+    this.socket.emit('showusers' , this.room );
+   // console.log('works');
+    this.socket.on('getlist', function(data) {
+      this.users = data;
+    //  console.log('works');
+      console.log(this.users);
+    });
+  }
+  end() {
+    this.socket.emit('disconnect' , this.Username );
+  }
+  beforeunloadHandler(event) {
+    this.end();
+  }
+
   hidediv(name: string , phone: string  ) {
     this.callername = name;
     const myph = phone;
