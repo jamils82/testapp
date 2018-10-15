@@ -62,7 +62,7 @@ export class PatientComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       // this.href = this.route.url;
       // alert(this.route.url);
-      this.pname = params['name'];
+      this.room = params['name'];
       alert(this.pname);
      });
 
@@ -150,19 +150,6 @@ export class PatientComponent implements OnInit {
 
 
   }
-  sendMessage(  mymsg: string ) {
-    this.socket.on('user joined' , function(userName , numUsers) {
-      console.log(userName);
-      console.log(numUsers);
-    } );
-    this.socket.emit('showusers' , this.room );
-   // console.log('works');
-    this.socket.on('getlist', function(data) {
-      this.users = data;
-    //  console.log('works');
-      console.log(this.users);
-    });
-  }
   endsock() {
     this.socket.emit('disconnect' , this.callername );
   }
@@ -173,10 +160,8 @@ export class PatientComponent implements OnInit {
   hidediv(name: string , phone: string  ) {
     this.callername = name;
     const myph = phone;
-    this.pat = {name: this.callername, phone : myph , activedoc : this.pname };
-    alert(this.pat);
-    this.setobj(this.callername , myph , this.pname );
-    this.getSess(this.callername);
+    this.socket.emit('sendroom' , this.room );
+    this.socket.emit('add-user', this.callername );
     this.wel = !this.wel;
     this.call = true;
 
