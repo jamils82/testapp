@@ -9,8 +9,6 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 var clients = [];
-var server =http.createServer(app);
-var io = socketIO.listen(server);
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -44,8 +42,11 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-
+server = app.listen(process.env.PORT || 5000 , function () {
+  console.log(process.env.PORT || 5000);
+} );
   
+var io = socketIO.listen(server);
   
   app.get('', function(req,res) {
      
@@ -197,6 +198,3 @@ socket.on('disconnect', function(data){
 });
 });
 
-server.listen(process.env.PORT || 5000 , function () {
-    console.log(process.env.PORT || 5000);
-} );
