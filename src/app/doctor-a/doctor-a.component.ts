@@ -47,15 +47,24 @@ export class DoctorAComponent implements OnInit {
     vidFeedsDiv: any;
     list = true;
      userId: any;
+  room: any;
+  Username: string;
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.socket = io.connect('https://doctestapp.herokuapp.com');
+
       this.activatedRoute.params.subscribe((params) => {
      // this.href = this.route.url;
      // alert(this.route.url);
-      this.userId = params['name'];
+      this.room = params['name'];
       // alert(this.userId);
     });
+    this.sendroom(this.room);
+    this.senduser('');
+     setInterval( () => {
+       this.sendMessage('');
+     } , 7000 );
     this.postconnect();
     setInterval(() => {
     this.getname().subscribe( data => {
@@ -163,5 +172,33 @@ export class DoctorAComponent implements OnInit {
       this.end = false;
       this.wel = !this.wel;
       this.call = !this.call;
+    }
+    sendroom(room: string ) {
+      this.room = room;
+      this.socket.emit('sendroom' , this.room );
+
+     }
+
+    senduser( name: string ) {
+      this.Username = name;
+      this.socket.emit('add-user', this.Username );
+      this.socket.on('userExists', function(data) {
+        document.getElementById('error-container').innerHTML = data;
+     });
+
+    }
+    sendMessage(  mymsg: string ) {
+     /* this.socket.on('user joined' , function(userName , numUsers) {
+        console.log(userName);
+        console.log(numUsers);
+      } );
+     */
+     this.socket.emit('showusers' , this.room );
+     // console.log('works');
+      this.socket.on('getlist', (data) => {
+        this.onlinecallers = data;
+      //  alert(data);
+
+      });
     }
 }
