@@ -163,7 +163,7 @@ io.on('connection', function(socket) {
     console.log(roomss.length);
     }
    } ) */
-   if(io.sockets.adapter.rooms[data].sockets)
+   if(io.sockets.adapter.rooms[data] ) 
    {
    for (socketID in io.sockets.adapter.rooms[data].sockets) {
      nickname = io.sockets.connected[socketID].id;
@@ -189,8 +189,8 @@ io.on('connection', function(socket) {
 
 socket.on('disconnect', function(data){
   console.log(username + ' has disconnected');
- // users.splice(users.indexOf(username), 1);
- // io.to(room).emit('remove-user', {username: username});
+  users.splice(users.indexOf(username), 1);
+  io.to(room).emit('remove-user', {username: username});
 });
 });
 
