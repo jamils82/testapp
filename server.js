@@ -156,6 +156,7 @@ io.on('connection', function(socket) {
   })
     });
    socket.on('showusers' , function(data){
+
     /* var roomss = io.sockets.adapter.rooms[data] ;
     roomss.length;
     for ( i = 0 ; i < roomss.length ; i++) {
