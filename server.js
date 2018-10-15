@@ -163,6 +163,8 @@ io.on('connection', function(socket) {
     console.log(roomss.length);
     }
    } ) */
+   if(io.sockets.adapter.rooms[data].sockets)
+   {
    for (socketID in io.sockets.adapter.rooms[data].sockets) {
      nickname = io.sockets.connected[socketID].id;
     // console.log(nickname)
@@ -177,6 +179,7 @@ io.on('connection', function(socket) {
      }
     // do stuff with nickname
     
+  }
   }
    console.log(connectedusers); 
   
