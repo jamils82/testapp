@@ -9,8 +9,6 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 var clients = [];
-var server =http.createServer(app);
-var io = require('socket.io').listen(server);
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -37,6 +35,8 @@ app.use(express.static(__dirname + '/dist/testapp'));
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
+var server =http.createServer(app);
+var io = require('socket.io').listen(server);
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
