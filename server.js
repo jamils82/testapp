@@ -2,15 +2,14 @@
 const express = require('express');
 const path = require('path');
 var OpenTok = require('opentok');
-const socketIO = require('socket.io');
 const cors = require('cors');
 const http = require('http');
 const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 var clients = [];
-var server =http.createServer(app);
-var io = socketIO.listen(server);
+let server = app.listen(process.env.PORT) 
+var io = require('socket.io').listen(server) 
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';

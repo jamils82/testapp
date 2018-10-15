@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, ActivatedRoute, Params, Router } from '@angular/router';
-
+import * as io from 'socket.io-client';
 declare var OT: any;
 @Component({
   selector: 'app-doctor-a',
@@ -10,8 +10,10 @@ declare var OT: any;
   styleUrls: ['./doctor-a.component.css']
 })
 export class DoctorAComponent implements OnInit {
+  @HostListener('window:unload', ['$event'])
   @ViewChild('subscriberDiv') subscriberDiv: ElementRef;
   session: any;
+  socket ;
   publisher: any;
   public href: string;
   subscriber: any;
