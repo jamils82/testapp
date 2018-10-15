@@ -24,6 +24,7 @@ app.use(cors());
   }
   var requestedCatName ='hadi';
   room = '';
+  port = process.env.PORT || 5000;
   var username = '';
   socketIds = ''
   const apiSecret = '828124981dd61607ed239dcc30838cebcf5daebd';
@@ -42,11 +43,11 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-server = app.listen(process.env.PORT || 5000 , function () {
+server = app.listen( port, function () {
   console.log(process.env.PORT || 5000);
 } );
   
-var io = socketIO.listen(server);
+var io = socketIO.listen(port);
   
   app.get('', function(req,res) {
      
