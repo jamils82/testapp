@@ -35,7 +35,7 @@ app.use(express.static(__dirname + '/dist/testapp'));
 var jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-var server =http.createServer(app);
+var server =http.createServer('1231212');
 var io = require('socket.io').listen(server);
 
 app.use(bodyParser.urlencoded({ extended: true }))
