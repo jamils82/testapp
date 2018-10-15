@@ -14,7 +14,8 @@ app.use(cors());
   var callernames = [];
   favcaller = '';
   doctorconnected = false;
- 
+  
+  connectedusers = [];
   var requestedCatName ='hadi';
   room = '';
   var username = '';
@@ -182,6 +183,7 @@ io.on('connection', function(socket) {
     
   }
   }
+   console.log(connectedusers); 
   
   socket.emit('getlist' , connectedusers )
   connectedusers.splice(0 , connectedusers.length)
