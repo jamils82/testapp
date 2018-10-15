@@ -55,7 +55,7 @@ export class PatientComponent implements OnInit {
   pname: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
-    this.socket = io.connect('https://doctestapp.herokuapp.com');
+    this.socket = io.connect('https://doctestapp.herokuapp.com/#/');
    }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class PatientComponent implements OnInit {
       // this.href = this.route.url;
       // alert(this.route.url);
       this.room = params['name'];
-      alert(this.pname);
+    //  alert(this.pname);
      });
 
     this.getCat();
