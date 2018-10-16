@@ -185,7 +185,7 @@ io.on('connection', function(socket) {
   }
    console.log(connectedusers); 
   
-  socket.emit('getlist' , connectedusers )
+  socket.emit('getlist' , JSON.stringify(connectedusers) )
   connectedusers.splice(0 , connectedusers.length)
 })
 
