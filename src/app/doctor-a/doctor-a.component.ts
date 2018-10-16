@@ -60,6 +60,23 @@ export class DoctorAComponent implements OnInit {
       this.room = params['name'];
       // alert(this.userId);
     });
+    if (this.room  === 'DoctorA' ) {
+      this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
+      // tslint:disable-next-line:max-line-length
+      this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9ZWM5ZWQ3YzgyMWE1NTBjYWNiMGUwM2E4NjY1MTIzNjgxNjBhNDAxYTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TVRnME16YzVOMzVOWkRScWF6SnhUbVpXUnpCNmRYVnZiVmxDVlRsWWJVdC1mZyZjcmVhdGVfdGltZT0xNTM5NjgxODU0Jm5vbmNlPTAuMzA0MzA2NzAzNzcyMTAxMjMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3NzQ0OSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
+     } else if (this.room  === 'DoctorB' ) {
+      this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MjA1Mzc0OX5LT2JmYktHM0E2VVBiaDhqNnBwOHVTaUx-fg';
+      // tslint:disable-next-line:max-line-length
+      this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9OGE1YTg3N2Y4Mjk3Nzk0MTMwOTcxZGYyNjY4NjE0YjU4OTY5OTU2YTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpBMU16YzBPWDVMVDJKbVlrdEhNMEUyVlZCaWFEaHFObkJ3T0hWVGFVeC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMDc3Jm5vbmNlPTAuNzc5NjE1NTE1NjE1NTY5MyZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQyMjc3NjcyJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
+     } else if (this.room  === 'DoctorC' ) {
+      this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MjEyMTk1Nn5ldTh2TElyaXV3NW1RR0pFTW91RFBnZSt-fg';
+      // tslint:disable-next-line:max-line-length
+      this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NTM4ZjZhZjBlY2Q2NWQ3YTUxZjFmYWQyYmI0NWFlYjFmNGYyM2MxMTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFeU1UazFObjVsZFRoMlRFbHlhWFYzTlcxUlIwcEZUVzkxUkZCblpTdC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTU2Jm5vbmNlPTAuMDM5ODA5MjU3NTkwNjEyMzgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc1MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
+     } else if (this.room  === 'Saad' ) {
+      this.SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzOTY4MjE3MTc0Mn5VVnlEeXNXN3dFZ0NwZjdyRFdEeTJ3VVp-fg';
+      // tslint:disable-next-line:max-line-length
+      this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NDQ3ZGUyZTUxZTAwNmEwMjM5NmEyMDUzYTQwOWQyYTVlMWQ5YzE2ZDpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFM01UYzBNbjVWVm5sRWVYTlhOM2RGWjBOd1pqZHlSRmRFZVRKM1ZWcC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTg2Jm5vbmNlPTAuMzIwNDI4OTkwNTUxMzE0NDYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc4MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
+     }
     this.sendroom(this.room);
     this.senduser('');
     this.sendMessage('');
