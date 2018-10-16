@@ -18,20 +18,20 @@ export class DoctorComponent implements OnInit {
       alert(this.route.url); */
       this.userId = params['name'];
       if ( this.userId ) {
-        if (this.userId = 'DoctorA' ) {
+        if (this.userId === 'DoctorA' ) {
           alert(this.userId);
-        } else if (this.userId = 'DoctorB' ) {
-          alert(this.userId);
-          this.route.navigate(['/doctor', this.userId ]);
-        } else if (this.userId = 'DoctorC' ) {
+        } else if (this.userId === 'DoctorB' ) {
           alert(this.userId);
           this.route.navigate(['/doctor', this.userId ]);
-
-        } else if (this.userId = 'DoctorD') {
+        } else if (this.userId === 'DoctorC' ) {
           alert(this.userId);
           this.route.navigate(['/doctor', this.userId ]);
 
-        } else if (this.userId = 'saad') {
+        } else if (this.userId === 'DoctorD') {
+          alert(this.userId);
+          this.route.navigate(['/doctor', this.userId ]);
+
+        } else if (this.userId === 'saad') {
           alert(this.userId);
           this.route.navigate(['/doctor', this.userId ]);
 
