@@ -186,7 +186,7 @@ io.on('connection', function(socket) {
    console.log(connectedusers); 
   
   socket.emit('getlist' , connectedusers )
-  connectedusers.splice(0 , connectedusers.length)
+//  connectedusers.splice(0 , connectedusers.length)
 })
 
 socket.on('disconnect', function(data){
