@@ -8,6 +8,7 @@ const app = express();
 const myname ='saad';
 const bodyParser = require('body-parser');
 var clients = [];
+myroom = '';
 app.use(bodyParser.json());
 app.use(cors());
   const apiKey=  '46168292';
@@ -109,8 +110,14 @@ app.use(function (req, res, next) {
   app.route('/api/favcaller/:name').get((req,res) => {
     favcaller = req.params['name'];
   });
+  app.route('/api/favroom/:name').get((req,res) => {
+    myroom = req.params['name'];
+  });
   app.route('/api/getfavcaller').get((req,res) => {
     res.send(favcaller);
+  } );
+  app.route('/api/getfavroom').get((req,res) => {
+    res.send(myroom);
   } );
   app.route('/api/sess').get((req, res ) => {
     res.send(callernames);
@@ -180,7 +187,7 @@ io.on('connection', function(socket) {
      }
      }
     // do stuff with nickname
-   
+  
   }
   }
    console.log(connectedusers); 

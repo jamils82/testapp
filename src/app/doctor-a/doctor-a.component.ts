@@ -73,7 +73,7 @@ export class DoctorAComponent implements OnInit {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MjEyMTk1Nn5ldTh2TElyaXV3NW1RR0pFTW91RFBnZSt-fg';
       // tslint:disable-next-line:max-line-length
       this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NTM4ZjZhZjBlY2Q2NWQ3YTUxZjFmYWQyYmI0NWFlYjFmNGYyM2MxMTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFeU1UazFObjVsZFRoMlRFbHlhWFYzTlcxUlIwcEZUVzkxUkZCblpTdC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTU2Jm5vbmNlPTAuMDM5ODA5MjU3NTkwNjEyMzgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc1MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
-     } else if (this.room  === 'Saad' ) {
+     } else if (this.room  === 'saad' ) {
       this.SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzOTY4MjE3MTc0Mn5VVnlEeXNXN3dFZ0NwZjdyRFdEeTJ3VVp-fg';
       // tslint:disable-next-line:max-line-length
       this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NDQ3ZGUyZTUxZTAwNmEwMjM5NmEyMDUzYTQwOWQyYTVlMWQ5YzE2ZDpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFM01UYzBNbjVWVm5sRWVYTlhOM2RGWjBOd1pqZHlSRmRFZVRKM1ZWcC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTg2Jm5vbmNlPTAuMzIwNDI4OTkwNTUxMzE0NDYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc4MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
@@ -116,6 +116,11 @@ export class DoctorAComponent implements OnInit {
       console.log(this.favcaller);
     });
   }
+  setroom () {
+    return this.http.get('https://doctestapp.herokuapp.com/api/favroom/' + this.room).subscribe( data => {
+      console.log(this.room);
+    });
+  }
   errorHandler(err) {
     if (err && err.message) {
      console.log(err);
@@ -123,6 +128,7 @@ export class DoctorAComponent implements OnInit {
    }
    startCall(i: string) {
     this.favcaller = this.onlinecallers[i];
+    this.setroom();
     this.setfav(this.favcaller);
   //  alert(this.favcaller);
     this.wel = !this.wel;

@@ -70,6 +70,7 @@ export class PatientComponent implements OnInit {
   connectionstream: any;
   pname: string;
   vid: boolean;
+  myroom: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
@@ -94,12 +95,15 @@ export class PatientComponent implements OnInit {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MjEyMTk1Nn5ldTh2TElyaXV3NW1RR0pFTW91RFBnZSt-fg';
       // tslint:disable-next-line:max-line-length
       this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NTM4ZjZhZjBlY2Q2NWQ3YTUxZjFmYWQyYmI0NWFlYjFmNGYyM2MxMTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFeU1UazFObjVsZFRoMlRFbHlhWFYzTlcxUlIwcEZUVzkxUkZCblpTdC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTU2Jm5vbmNlPTAuMDM5ODA5MjU3NTkwNjEyMzgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc1MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
-     } else if (this.room  === 'Saad' ) {
+     } else if (this.room  === 'saad' ) {
       this.SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzOTY4MjE3MTc0Mn5VVnlEeXNXN3dFZ0NwZjdyRFdEeTJ3VVp-fg';
       // tslint:disable-next-line:max-line-length
       this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9NDQ3ZGUyZTUxZTAwNmEwMjM5NmEyMDUzYTQwOWQyYTVlMWQ5YzE2ZDpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TWpFM01UYzBNbjVWVm5sRWVYTlhOM2RGWjBOd1pqZHlSRmRFZVRKM1ZWcC1mZyZjcmVhdGVfdGltZT0xNTM5NjgyMTg2Jm5vbmNlPTAuMzIwNDI4OTkwNTUxMzE0NDYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3Nzc4MCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
      }
     this.getCat();
+    setInterval(() => {
+      this.getroom();
+   }, 1000 );
     setInterval(() => {
      this.getfav();
   }, 1000 );
@@ -153,6 +157,12 @@ export class PatientComponent implements OnInit {
     return this.http.get('https://doctestapp.herokuapp.com/api/getfavcaller', {responseType: 'text'} ).subscribe( data => {
       this.favcaller = data;
       console.log(this.favcaller);
+    });
+  }
+  getroom() {
+    return this.http.get('https://doctestapp.herokuapp.com/api/getfavroom', {responseType: 'text'} ).subscribe( data => {
+      this.myroom = data;
+      console.log(this.myroom);
     });
   }
   deletename(name: string) {
@@ -214,6 +224,8 @@ export class PatientComponent implements OnInit {
     if (this.callername) {
       console.log(this.callername);
       if ( this.favcaller ) {
+        if (this.myroom) {
+        if (this.room === this.myroom ) {
         if (this.callername === this.favcaller ) {
           this.sessconected = true;
           this.end = true;
@@ -274,6 +286,8 @@ export class PatientComponent implements OnInit {
         console.log('looking');
       }
    }
+  }
+  }
   }
    publish() {
     this.session.publish(this.publisher, (err) => {
