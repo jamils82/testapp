@@ -68,10 +68,10 @@ export class PatientComponent implements OnInit {
 
     this.getCat();
     setInterval(() => {
-    // this.getfav();
+     this.getfav();
   }, 1000 );
   setInterval(() => {
-   // this.connectcall();
+    this.connectcall();
   }, 1000 );
    // this.insertSess();
   //  this.getSess();

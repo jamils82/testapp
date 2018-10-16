@@ -106,7 +106,7 @@ export class DoctorAComponent implements OnInit {
    startCall(i: string) {
     this.favcaller = this.onlinecallers[i];
     this.setfav(this.favcaller);
-    alert(this.favcaller);
+  //  alert(this.favcaller);
     this.wel = !this.wel;
     this.vid = true;
     this.list = !this.list;
