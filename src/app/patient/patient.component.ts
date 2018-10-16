@@ -69,6 +69,7 @@ export class PatientComponent implements OnInit {
     };
   connectionstream: any;
   pname: string;
+  vid: boolean;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
@@ -200,6 +201,7 @@ export class PatientComponent implements OnInit {
         if (this.callername === this.favcaller ) {
           this.sessconected = true;
           this.end = true;
+          this.vid = true;
           console.log(this.callername , '&&%%%', this.favcaller );
           this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
           this.session.on('streamCreated', (event: any) => {
