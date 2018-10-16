@@ -196,6 +196,7 @@ export class DoctorAComponent implements OnInit {
      // console.log('works');
       this.socket.on('getlist', (data) => {
         this.onlinecallers = data;
+        console.log(this.onlinecallers);
       //  alert(data);
 
       });
