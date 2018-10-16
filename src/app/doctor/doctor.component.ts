@@ -18,10 +18,21 @@ export class DoctorComponent implements OnInit {
       alert(this.route.url); */
       this.userId = params['name'];
       if ( this.userId ) {
-      // alert(this.userId);
+        if (this.userId = 'DoctorA' ) {
+        } else if (this.userId = 'DoctorB' ) {
+
+        } else if (this.userId = 'DoctorC' ) {
+
+        } else if (this.userId = 'DoctorD') {
+
+        } else if (this.userId = 'saad') {
+
+        } else {
+          this.route.navigate(['pagenotfound']);
+        }
       } else {
-        this.route.navigate(['doctor']);
-      }
+        this.route.navigate(['pagenotfound']);
+     }
     });
   }
   doctor() {

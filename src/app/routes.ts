@@ -15,5 +15,6 @@ export const appRoutes: Routes = [
   { path : 'doctor/:name', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
   {path : 'patient/:name' , component : PatientComponent },
+  { path : 'pagenotfound' , component : PagenotfoundComponent } ,
   { path : '**' , component : PagenotfoundComponent } ,
 ];
