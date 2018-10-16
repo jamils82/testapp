@@ -195,7 +195,7 @@ export class DoctorAComponent implements OnInit {
      this.socket.emit('showusers' , this.room );
      // console.log('works');
       this.socket.on('getlist', (data) => {
-        this.onlinecallers = JSON.stringify(data);
+        this.onlinecallers = data;
         console.log(this.onlinecallers);
       //  alert(data);
 
