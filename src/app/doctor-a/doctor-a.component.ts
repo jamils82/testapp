@@ -68,8 +68,8 @@ export class DoctorAComponent implements OnInit {
      } , 7000 );
     this.postconnect();
     setInterval(() => {
-    this.getname().subscribe( data => {
-    });
+ //   this.getname().subscribe( data => {
+  //  });
 }, 1000);
    /* setInterval(() => {
       this.getpatobj();

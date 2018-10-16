@@ -180,7 +180,7 @@ io.on('connection', function(socket) {
      }
      }
     // do stuff with nickname
-    
+   
   }
   }
    console.log(connectedusers); 
