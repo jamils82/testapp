@@ -63,7 +63,7 @@ export class PatientComponent implements OnInit {
       // this.href = this.route.url;
       // alert(this.route.url);
       this.room = params['name'];
-      alert(this.room);
+    // alert(this.room);
      });
 
     this.getCat();
