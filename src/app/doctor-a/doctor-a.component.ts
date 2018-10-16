@@ -62,6 +62,7 @@ export class DoctorAComponent implements OnInit {
     });
     if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
+      alert(this.SESSION_ID);
       // tslint:disable-next-line:max-line-length
       this.TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9ZWM5ZWQ3YzgyMWE1NTBjYWNiMGUwM2E4NjY1MTIzNjgxNjBhNDAxYTpzZXNzaW9uX2lkPTFfTVg0ME5qRTVNakl5TW41LU1UVXpPVFk0TVRnME16YzVOMzVOWkRScWF6SnhUbVpXUnpCNmRYVnZiVmxDVlRsWWJVdC1mZyZjcmVhdGVfdGltZT0xNTM5NjgxODU0Jm5vbmNlPTAuMzA0MzA2NzAzNzcyMTAxMjMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU0MjI3NzQ0OSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
      } else if (this.room  === 'DoctorB' ) {
