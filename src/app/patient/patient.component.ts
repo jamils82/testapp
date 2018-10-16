@@ -5,8 +5,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 // import * as OT from 'opentok-angular';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 import * as io from 'socket.io-client';
-import * as OT from '@opentok/client';
 import { Observable } from 'rxjs';
+declare var OT: any;
+
 const publish = () => {
 
 };
@@ -36,6 +37,21 @@ export class PatientComponent implements OnInit {
   changeDetectorRef: ChangeDetectorRef;
   end = false;
   callername: string;
+  API_KEY = '46192222';
+  SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
+  // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line:max-line-length
+  TOKEN = 'T1==cGFydG5lcl9pZD00NjE5MjIyMiZzaWc9YWZkZTgwY2RmZWY5MDFjYTZlMmFlZjY3MTdkNGJkZDEzNzEwNjU2MTpzZXNzaW9uX2lkPTJfTVg0ME5qRTVNakl5TW41LU1UVXpOelkzT0RrNU1EYzFOMzVwYXpWWldrVkplSGxCYzFaQlRFNHhSMmh1VVdGd2JGcC1mZyZjcmVhdGVfdGltZT0xNTM3Njc5MDE3Jm5vbmNlPTAuMjcyNTc0NzQ3NTQ4NzY2MSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTQwMjcxMDE0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
+  subscribers: any;
+  sub: any;
+   subscriberProperties = {
+    insertMode: 'append',
+    resolution: '1280x720',
+    showControls: true,
+    width: '100%',
+    height: '100%'
+};
+  subscriber: any;
   doctorconnected: any;
   onlineusers = [];
   favcaller: string;
@@ -185,33 +201,51 @@ export class PatientComponent implements OnInit {
           this.sessconected = true;
           this.end = true;
           console.log(this.callername , '&&%%%', this.favcaller );
-          this.opentokService.initSession().then((session: OT.Session) => {
-          this.session = session;
-          this.session.on('streamCreated', (event) => {
-            console.log(session);
-            this.streams.push(event.stream);
-            this.changeDetectorRef.detectChanges();
-          });
-          this.session.on('signal', (event) => {
-            console.log('Signal sent from connection ' + event.from.connectionId);
-            // Process the event.data property, if there is any data.
-            alert(event.from.connectionId);
-          });
-         console.log('connnected to session');
-          this.session.on('streamDestroyed', (event) => {
-            event.preventDefault();
-            const idx = this.streams.indexOf(event.stream);
-            if (idx > -1) {
-              this.streams.splice(idx, 1);
-              this.changeDetectorRef.detectChanges();
+          this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
+          this.session.on('streamCreated', (event: any) => {
+            let alreadySubscribed = false;
+            this.subscribers = this.session.getSubscribersForStream(event.stream);
+            for (this.sub of this.subscribers) {
+                if (this.subscriber.stream.connection.connectionId === event.stream.connection.connectionId) {
+                    alreadySubscribed = true;
+                }
+            }
+            if (!alreadySubscribed) {
+                this.subscriber = this.session.subscribe(event.stream,
+                    'subscriber',  {
+                      insertMode: 'append',
+                      showControls: true,
+                      width: '100%',
+                      height: '100%'
+                  } ,
+                    (error: any) => {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                        }
+                    }
+                );
             }
         });
-      })
-      .then(() => this.opentokService.connect())
-      .catch((err) => {
-        console.error(err);
-        alert('Unable to connect. Make sure you have Internet Working.');
-      });
+          // Connect to the session
+          this.session.connect(this.TOKEN, (error) => {
+            if (!error) {
+              // Create a publisher
+              this.publisher = OT.initPublisher('publisher', {
+                insertMode: 'append',
+                resolution: '1280x720',
+                width: '100%',
+                height: '100%'
+                });
+                this.session.publish(this.publisher, (e) => {
+                  if (e) {
+                    console.log('Publisher error: ' + error);
+                  }
+                });
+            } else {
+              alert('There was an error connecting to the session' + error.message);
+            }
+          });
       } else {
         if (this.sessconected === true) {
           alert('Doctor disconnected.Please End the call');
