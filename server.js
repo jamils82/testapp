@@ -190,8 +190,8 @@ io.on('connection', function(socket) {
 })
 
 socket.on('disconnect', function(data){
-  console.log(username + ' has disconnected');
-  connectedusers.splice(connectedusers.indexOf(username), 1);
+  console.log(data + ' has disconnected');
+  connectedusers.splice(connectedusers.indexOf(data), 1);
   io.to(room).emit('remove-user', {username: username});
 });
 });
