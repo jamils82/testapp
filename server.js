@@ -198,6 +198,12 @@ io.on('connection', function(socket) {
 
 socket.on('disconnect', function(data){
   console.log(socket.id + ' has disconnected');
+  
+  const ind = connectedusers.indexOf(username)
+  console.log(connectedusers)
+    console.log(ind)
+  socket.id =''
+  connectedusers.splice(ind, 1);
   connectedusers.splice(connectedusers.indexOf(socket.id ), 1);
   io.to(room).emit('remove-user', {username: username});
 });
