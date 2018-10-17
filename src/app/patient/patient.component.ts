@@ -211,14 +211,14 @@ export class PatientComponent implements OnInit {
     this.connectcall();
    }
    endcall() {
-    this.deletename(this.callername);
     this.session.disconnect();
     this.callername = '';
     this.favcaller = '' ;
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
-    this.route.navigate(['/doctor']);
+    this.socket.emit('disconnect' , this.callername );
+    this.route.navigate(['/doctor' + this.room ]);
    }
    connectcall() {
     if (this.callername) {
