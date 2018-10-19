@@ -83,6 +83,15 @@ export class PatientComponent implements OnInit {
       this.room = params['name'];
     // alert(this.room);
      });
+     const browser = <any>navigator;
+
+    browser.getUserMedia = (browser.getUserMedia ||
+      browser.webkitGetUserMedia ||
+      browser.mozGetUserMedia ||
+      browser.msGetUserMedia);
+
+    browser.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+    });
      if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
       // tslint:disable-next-line:max-line-length
