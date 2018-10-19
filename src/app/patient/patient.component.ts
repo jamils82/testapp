@@ -287,7 +287,7 @@ export class PatientComponent implements OnInit {
           });
       } else {
         if (this.sessconected === true) {
-          alert('Doctor disconnected.Please End the call');
+        // alert('Doctor disconnected.Please End the call');
           this.session.disconnect();
         }
       }
