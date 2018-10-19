@@ -31,6 +31,7 @@
     "express": "^4.16.3",
     "meteor-rxjs": "^0.4.14",
     "mongodb": "^3.1.6",
+    "ngx-permissions": "^6.0.2",
     "opentok": "^2.7.0",
     "path": "^0.12.7",
     "rxjs": "~6.2.0",

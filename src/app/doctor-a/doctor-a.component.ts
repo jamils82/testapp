@@ -52,6 +52,16 @@ export class DoctorAComponent implements OnInit {
   constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    const browser = <any>navigator;
+
+    browser.getUserMedia = (browser.getUserMedia ||
+      browser.webkitGetUserMedia ||
+      browser.mozGetUserMedia ||
+      browser.msGetUserMedia);
+
+    browser.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+    });
+
     this.socket = io.connect('https://doctestapp.herokuapp.com');
 
       this.activatedRoute.params.subscribe((params) => {
