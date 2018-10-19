@@ -25,14 +25,14 @@ export class DoctorComponent implements OnInit {
         } else if (this.userId === 'saad') {
         } else {
           this.route.navigate(['pagenotfound']);
-        }
+       }
       } else {
         this.route.navigate(['pagenotfound']);
      }
     });
   }
   doctor() {
-    this.route.navigate(['/mydoctor', this.userId ]);
+    this.route.navigate(['/doctorwaiting', this.userId ]);
   }
   patient() {
     this.route.navigate(['/patient', this.userId]);
