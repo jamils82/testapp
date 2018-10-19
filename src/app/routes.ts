@@ -9,12 +9,12 @@ import { AppComponent } from './app.component';
 export const appRoutes: Routes = [
   {path: '', component: AppComponent},
   { path: 'doctora',  component: DoctoraComponent },
-  { path: 'mydoctor',  component : DoctorAComponent },
-  { path: 'mydoctor/:name',  component : DoctorAComponent },
+  { path: 'doctorwaiting',  component : DoctorAComponent },
+  { path: 'doctorwaiting/:name',  component : DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor/:name', component: DoctorComponent  },
   {path : 'patient' , component : PatientComponent },
-  {path : 'patient/:name' , component : PatientComponent },
+  {path : 'video/:name' , component : PatientComponent },
   { path : 'pagenotfound' , component : PagenotfoundComponent } ,
   { path : '**' , component : PagenotfoundComponent } ,
 ];

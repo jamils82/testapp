@@ -218,7 +218,7 @@ export class PatientComponent implements OnInit {
     this.wel = !this.wel;
     this.call = !this.call;
     this.socket.emit('disconnect' , this.callername );
-    this.route.navigate(['/doctor' + this.room ]);
+    this.route.navigate(['/doctor/' + this.room ]);
    }
    connectcall() {
     if (this.callername) {
