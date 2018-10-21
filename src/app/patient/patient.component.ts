@@ -92,6 +92,13 @@ export class PatientComponent implements OnInit {
 
     browser.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
     });
+    if (navigator.getUserMedia) {
+  // Request the camera.
+    alert('Permission');
+
+    } else {
+    alert('Sorry, your browser does not support getUserMedia');
+  }
      if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
       // tslint:disable-next-line:max-line-length
@@ -244,7 +251,7 @@ export class PatientComponent implements OnInit {
           this.session.on('streamCreated', (event: any) => {
             let alreadySubscribed = false;
             this.subscribers = this.session.getSubscribersForStream(event.stream);
-            for (this.sub of this.subscribers) {
+           for (this.sub of this.subscribers) {
                 if (this.subscriber.stream.connection.connectionId === event.stream.connection.connectionId) {
                     alreadySubscribed = true;
                 }
