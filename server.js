@@ -44,7 +44,7 @@ app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-  app.get('/*', function(req,res) {
+  app.get('/', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
@@ -209,7 +209,7 @@ socket.on('disconnect', function(data){
 });
 });
 
-app.get('/*', function(req,res) {
+app.get('*', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
