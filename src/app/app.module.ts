@@ -38,14 +38,14 @@ import {appRoutes} from './routes';
     MatListModule,
     RouterModule.forRoot(
       appRoutes,
-     { useHash: true }
+    // { useHash: false }
     // {enableTracing: true}
     ),
     HttpClientModule
   ],
   providers: [
     OpentokService,
-    {provide: LocationStrategy, useClass: PathLocationStrategy}
+  //  {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
