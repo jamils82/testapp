@@ -25,13 +25,13 @@
 }
   .button-row button,
   .button-row a {
-    margin-top: 8%;  
+    margin-top: 3%;  
     margin-right: 8px;
     height: 30px;
     font-size: 18px;
     border-radius: 10px;
     background: #2d72b4;
-    width: 80%;
+    width: 70%;
     color: white;
   }
   p {
@@ -59,15 +59,13 @@
       width: 100%;
       margin: 0 auto;
       font-size: 18px;
-      margin-top: 5%;
+     
       background-color: #f4f6f5;
     }
     .maindiv {
         background: #e6e6e6;
-        width: 40%;
         margin: 0 auto;
         margin-top: 10%;
-        height: 40vh;
         text-align: center; 
         border-radius: 10px;
     }
@@ -85,7 +83,7 @@
     
      input {
        line-height: 4px;
-       height: 20%;
+       height: 50%;
      }
      .mat-input-infix mat-form-field-infix{
        height: 5%;

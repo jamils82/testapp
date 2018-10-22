@@ -9,7 +9,9 @@
      <button matLine  (click)="startCall(i)" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
     </mat-list-item>
   </mat-list>
+  <div class="button-row" >
 <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endCall()" >End Call</button>
+  </div>
 <div id="videos" *ngIf="vid" >
   <div id="subscriber"  ></div>
   <div id="publisher"></div>
