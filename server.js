@@ -40,11 +40,11 @@ var server = app.listen(process.env.PORT || 5000 , function () {
   
 var io = require('socket.io').listen(server) 
 
-app.get('/*', function(req,res) {
+app.get('/', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp'));
 });
-  app.get('', function(req,res) {
+  app.get('/*', function(req,res) {
      
     res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
 });
@@ -209,3 +209,7 @@ socket.on('disconnect', function(data){
 });
 });
 
+app.get('/*', function(req,res) {
+     
+  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+});
