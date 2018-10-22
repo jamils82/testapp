@@ -59,8 +59,7 @@ export class DoctorAComponent implements OnInit {
       browser.mozGetUserMedia ||
       browser.msGetUserMedia);
 
-    browser.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
-    });
+    browser.mediaDevices.getUserMedia({ video: true, audio: true });
 
     this.socket = io.connect('https://doctestapp.herokuapp.com');
 

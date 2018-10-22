@@ -31,8 +31,9 @@
   margin-right: 8px;
   height: 30px;
   font-size: 18px;
+  background: #f44336;
+
   border-radius: 10px;
-  background: #2d72b4;
   width: 15%;
   color: white;
 }
