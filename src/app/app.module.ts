@@ -13,7 +13,7 @@ import {DoctorbComponent} from './doctorb/doctorb.component';
 import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 import {appRoutes} from './routes';
@@ -38,13 +38,14 @@ import {appRoutes} from './routes';
     MatListModule,
     RouterModule.forRoot(
       appRoutes,
+   //  { useHash: true }
     // {enableTracing: true}
     ),
     HttpClientModule
   ],
   providers: [
     OpentokService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: PathLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

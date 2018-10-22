@@ -18,11 +18,22 @@ export interface Cat {
   providers: [ OpentokService ]
 })
 export class AppComponent implements OnInit {
-
-     constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private route: Router) {
+    url: any;
+     // tslint:disable-next-line:max-line-length
+     constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private router: Router) {
    }
 
   ngOnInit () {
+    this.router.events.subscribe( ()  => {
+      this.url = this.router.url;
+      if (this.url.match('/^#!/')) {
+        this.router.navigate(
+          this.url.replace('#', '')
+        );
+      }
+    }
+  );
+
    // this.getCat();
   // this.route.navigate(['/doctor']);
   }
