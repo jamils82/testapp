@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
      // tslint:disable-next-line:max-line-length
      constructor(private ref: ChangeDetectorRef, private opentokService: OpentokService, private http: HttpClient , private router: Router) {
    }
-
   ngOnInit () {
     this.router.events.subscribe( ()  => {
       this.url = this.router.url;
