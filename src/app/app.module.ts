@@ -38,7 +38,7 @@ import {appRoutes} from './routes';
     MatListModule,
     RouterModule.forRoot(
       appRoutes,
-   //  { useHash: true }
+     { useHash: true }
     // {enableTracing: true}
     ),
     HttpClientModule
