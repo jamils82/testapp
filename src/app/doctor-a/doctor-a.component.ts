@@ -198,6 +198,7 @@ export class DoctorAComponent implements OnInit {
         }
       });
     }
+
     // Ends call
     endCall() {
       this.vid = false;

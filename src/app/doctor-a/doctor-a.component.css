@@ -8,6 +8,7 @@
     background-color: #DDD;
   }
   #publisher {
+    position: absolute;
     width: 160px !important;
     height: 200px !important;
     right: 15px;
