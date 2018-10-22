@@ -85,7 +85,7 @@ export class PatientComponent implements OnInit {
      });
      const browser = <any>navigator;
 
-    browser.getUserMedia = (browser.getUserMedia ||
+      browser.getUserMedia = (browser.getUserMedia ||
       browser.webkitGetUserMedia ||
       browser.mozGetUserMedia ||
       browser.msGetUserMedia);
