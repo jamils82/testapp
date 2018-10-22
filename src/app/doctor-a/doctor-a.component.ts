@@ -190,7 +190,7 @@ export class DoctorAComponent implements OnInit {
             });
             this.session.publish(this.publisher, (e) => {
               if (e) {
-                console.log('Publisher error: ' + error);
+                console.log('Publisher error: ' + e);
               }
             });
         } else {
