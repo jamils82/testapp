@@ -92,13 +92,6 @@ export class PatientComponent implements OnInit {
 
     browser.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
     });
-    if (navigator.getUserMedia) {
-  // Request the camera.
-    alert('Permission');
-
-    } else {
-    alert('Sorry, your browser does not support getUserMedia');
-  }
      if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
       // tslint:disable-next-line:max-line-length
