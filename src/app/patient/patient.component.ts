@@ -278,7 +278,7 @@ export class PatientComponent implements OnInit {
                 });
                 this.session.publish(this.publisher, (e) => {
                   if (e) {
-                    alert('Publisher error: ' + error);
+                    alert('Publisher error: ' + e);
                   }
                 });
             } else {
