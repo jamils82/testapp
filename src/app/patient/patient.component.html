@@ -7,8 +7,21 @@
     <div class="example-full-width" >
       <label >Name</label>
       <br>
-      <input  required #nameinput >
+      <input [(ngModel)]="myname" #name="ngModel" id="name" name="name" class="form-control"
+      required minlength="4"
+       required #nameinput >
       <br>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger">
+      </div>
+  <div *ngIf="name.errors.required">
+    Name is required.
+  </div>
+  <div *ngIf="name.errors.minlength">
+    Name must be at least 4 characters long.
+  </div>
+ 
+
       <label>Phone</label>
       <br>
       <input required  #phoneinput >

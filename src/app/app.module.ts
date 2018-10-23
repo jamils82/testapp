@@ -17,7 +17,8 @@ import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@a
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import {MatListModule} from '@angular/material/list';
 import {appRoutes} from './routes';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import {appRoutes} from './routes';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
      { useHash: false }

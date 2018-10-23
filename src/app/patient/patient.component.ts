@@ -7,6 +7,7 @@ import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router'
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { NgModule } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var OT: any;
 
 const publish = () => {
@@ -72,6 +73,8 @@ export class PatientComponent implements OnInit {
   pname: string;
   vid: boolean;
   myroom: string;
+  heroForm: any;
+  hero: any;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
@@ -90,6 +93,14 @@ export class PatientComponent implements OnInit {
       browser.webkitGetUserMedia ||
       browser.mozGetUserMedia ||
       browser.msGetUserMedia);
+      this.heroForm = new FormGroup({
+        'name': new FormControl(this.hero.name, [
+          Validators.required,
+          Validators.minLength(4),
+        ]),
+        'alterEgo': new FormControl(this.hero.alterEgo),
+        'power': new FormControl(this.hero.power, Validators.required)
+      });
 
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
@@ -210,6 +221,7 @@ export class PatientComponent implements OnInit {
   }
 
   hidediv(name: string , phone: string  ) {
+
     this.callername = name;
     const myph = phone;
     this.socket.emit('sendroom' , this.room );
