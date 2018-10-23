@@ -211,5 +211,5 @@ socket.on('disconnect', function(data){
 
 app.get('*', function(req,res) {
      
-  res.sendFile(path.join(__dirname+'/dist/testapp/index.html'));
+  res.sendFile(path.join(__dirname+'/dist/testapp/'));
 });
