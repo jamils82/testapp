@@ -6,7 +6,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var OT: any;
 
 const publish = () => {
@@ -72,8 +71,6 @@ export class PatientComponent implements OnInit {
   pname: string;
   vid: boolean;
   myroom: string;
-  heroForm: any;
-  hero: any;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
@@ -93,14 +90,6 @@ export class PatientComponent implements OnInit {
       browser.mozGetUserMedia ||
       browser.msGetUserMedia);
 
-      this.heroForm = new FormGroup({
-        'name': new FormControl(this.hero.name, [
-          Validators.required,
-          Validators.minLength(4),
-        ]),
-        'alterEgo': new FormControl(this.hero.alterEgo),
-        'power': new FormControl(this.hero.power, Validators.required)
-      });
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
