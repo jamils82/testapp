@@ -220,12 +220,12 @@ export class PatientComponent implements OnInit {
    }
    endcall() {
     this.session.disconnect();
+    this.endsock();
     this.callername = '';
     this.favcaller = '' ;
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
-    this.socket.emit('disconnect' , this.callername );
     this.route.navigate(['/doctor/' + this.room ]);
    }
    connectcall() {
