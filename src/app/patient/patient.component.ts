@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { NgModule } from '@angular/core';
 declare var OT: any;
 
 const publish = () => {

@@ -7,9 +7,7 @@
     <div class="example-full-width" >
       <label >Name</label>
       <br>
-      <input id="name" name="name" class="form-control"
-      required minlength="4" appForbiddenName="bob"
-      [(ngModel)]="hero.name" #nameimput="ngModel"  >
+      <input  required #nameinput >
       <br>
       <label>Phone</label>
       <br>

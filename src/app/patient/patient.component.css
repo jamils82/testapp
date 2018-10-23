@@ -31,7 +31,7 @@
     font-size: 18px;
     border-radius: 10px;
     background: #2d72b4;
-    width: 70%;
+    width: 40%;
     color: white;
   }
   p {
@@ -82,8 +82,12 @@
      html, body { height: 100%; width: 100%; margin: 0; }
     
      input {
-       line-height: 4px;
-       height: 50%;
+      line-height: 12px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 10px;
+      width: 40%;
+      
      }
      .mat-input-infix mat-form-field-infix{
        height: 5%;
