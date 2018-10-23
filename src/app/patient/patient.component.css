@@ -9,10 +9,10 @@
 }
 #publisher {
   position: absolute;
-  width: 140px !important;
+  width: 15% !important;
   height: 200px !important;
   right: 2%;
-  top: 20%;
+  top: 35%;
   z-index: 100;
   border-radius: 3px;
 }
