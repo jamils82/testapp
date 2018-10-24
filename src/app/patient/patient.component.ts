@@ -188,6 +188,9 @@ export class PatientComponent implements OnInit {
   );
   }
   setUsername() {
+    if (this.user.name) {
+      this.callername = this.user.name;
+    }
    this.socket.emit('setUsername', this.callername );
  }
 
@@ -314,6 +317,16 @@ export class PatientComponent implements OnInit {
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    if (this.user.name) {
+      this.callername = this.user.name;
+    }
+    alert(this.callername);
+    this.socket.emit('sendroom' , this.room );
+    this.socket.emit('add-user', this.callername );
+    this.wel = !this.wel;
+    this.call = true;
+
+    this.connectcall();
   }
 
   signInWithFB(): void {
