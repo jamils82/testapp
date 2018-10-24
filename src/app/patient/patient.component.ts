@@ -316,10 +316,14 @@ export class PatientComponent implements OnInit {
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    if (this.user.name) {
+    if (this.user) {
       this.callername = this.user.name;
+      alert(this.callername);
+    } else {
+
+      alert(this.callername);
     }
-    alert(this.callername);
+
     this.socket.emit('sendroom' , this.room );
     this.socket.emit('add-user', this.callername );
     this.wel = !this.wel;
