@@ -27,11 +27,11 @@ import { LoginComponent } from './login/login.component';
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('934578814329-nf04nbgu4j6ck5ovf1e4jbbdsue31i24.apps.googleusercontent.com')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('561602290896109')
+    provider: new FacebookLoginProvider('264609584201676')
   },
 
 ]);
