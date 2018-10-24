@@ -1,5 +1,4 @@
-<html>
-  <body>
+
     
   <div *ngIf="wel" class="maindiv" >
     <h1>Welcome</h1>
@@ -22,7 +21,7 @@
 <div *ngIf="call" >
   
 <div class="activelist" >
-  <h4 style="color : white " >Welcome {{callername}} to {{room}}'s Waiting Room</h4>
+  <h4 style="color : white " >Welcome {{callername}}</h4>
   <div style="border : 1px solid white "  ></div>  
 </div>
   <div id="videos"  >
@@ -31,7 +30,5 @@
     <div id="publisher"></div>
   </div>
 </div>
-</body>
-</html>
 
-<router-outlet></router-outlet>
+<router-outlet style="margin : 0 !important"></router-outlet>
