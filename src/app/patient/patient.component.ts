@@ -208,9 +208,7 @@ export class PatientComponent implements OnInit {
 
   senduser(  ) {
     this.socket.emit('add-user', this.callername );
-
-
-  }
+ }
   endsock() {
     this.socket.emit('disconnect' , this.callername );
   }
