@@ -20,9 +20,13 @@
 
 </div>
 <div *ngIf="call" >
-  <h1>Welcome {{callername}} to {{room}}'s Waiting Room</h1>
-  <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End Call</button>
-  <div id="videos" *ngIf="vid" >
+  
+<div class="activelist" >
+  <h4 style="color : white " >Welcome {{callername}} to {{room}}'s Waiting Room</h4>
+  <div style="border : 1px solid white "  ></div>  
+</div>
+  <div id="videos"  >
+  <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End</button>
     <div id="subscriber"  ></div>
     <div id="publisher"></div>
   </div>

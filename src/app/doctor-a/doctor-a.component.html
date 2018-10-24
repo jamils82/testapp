@@ -1,21 +1,29 @@
 
+<div class="main">
+<div class="activelist" >
+  <h4>Welcome {{room}} </h4>
+  <div style=" border: 1px solid white " >
 
-<div>
-  <h1>Welcome {{room}} </h1>
+  </div>
+  
   <mat-list *ngIf="list">
     <mat-list-item *ngFor="let caller of onlinecallers; let i = index">
-     <h1 matLine> {{caller}} </h1>
-     <p>{{i}} </p>
+     <h2 matLine style="color :white; font-size : 18px; " > {{caller}} </h2>
      <button matLine  (click)="startCall(i)" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
-    </mat-list-item>
+     <div style="border : 0.5px solid white " > 
+
+      </div>
+     </mat-list-item>
+     
   </mat-list>
   <div class="button-row" >
-<button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endCall()" >End Call</button>
+
   </div>
-<div id="videos" *ngIf="vid" >
+</div>
+<div id="videos" >
+    <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endCall()" >End</button>
   <div id="subscriber"  ></div>
   <div id="publisher"></div>
 </div>
 </div>
-
 <router-outlet></router-outlet>

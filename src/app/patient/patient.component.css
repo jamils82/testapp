@@ -1,11 +1,8 @@
 #videos {
-  top: 100px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #DDD;
+  float:  right;  
+  width: 80%;
+  height: 100vh;
+  background-color: #f4f6f5;
 }
 #publisher {
   position: absolute;
@@ -17,11 +14,16 @@
   border-radius: 3px;
 }
 #subscriber {
-  border: 3px solid white;
   width: 80% !important;
-  height: 400px !important;
+  height: 90vh !important;
   margin: 14px auto;
   z-index: 10;
+}
+.activelist {
+  background: #0f1821;
+  width: 20%;
+  height: 100vh !important;
+  float: left;
 }
   .button-row button,
   .button-row a {
@@ -38,10 +40,11 @@
       font-size: 20px;
   }
   .endbut {
-    width: 25vh;
+    width: 15vh;
     background: #eb1717;
     color: white;
-    height : 50px;
+    height : 30px;
+    margin : 0 auto;
     border-radius: 10px;
   }
   .docbut {

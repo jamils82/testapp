@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule , MatGridTile } from '@angular/material';
 import { AppComponent } from './app.component';
 import { PublisherComponent } from './publisher/publisher.component';
 import { SubscriberComponent } from './subscriber/subscriber.component';
@@ -15,9 +15,10 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {DoctorAComponent } from './doctor-a/doctor-a.component';
-import {MatListModule} from '@angular/material/list';
+import {MatListModule } from '@angular/material/list';
 import {appRoutes} from './routes';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
+
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
