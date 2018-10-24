@@ -95,6 +95,7 @@ export class PatientComponent implements OnInit {
       browser.msGetUserMedia);
       this.authService.authState.subscribe((user) => {
         this.user = user;
+        console.log(this.user.name);
       });
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
