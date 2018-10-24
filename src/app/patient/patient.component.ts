@@ -318,23 +318,37 @@ export class PatientComponent implements OnInit {
     });
   }
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-     // console.log(this.user.name);
-    });
 
+    if (!this.user) {
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      this.authService.authState.subscribe((user) => {
+      this.user = user;
+     alert(this.user);
+     this.callername = this.user.name;
+     alert(this.callername);
+
+
+   this.socket.emit('sendroom' , this.room );
+   this.socket.emit('add-user', this.callername );
+   this.wel = !this.wel;
+   this.call = true;
+
+   this.connectcall();
+
+    });
+  }
 
   }
 
   signInWithFB(): void {
+
+    if (!this.user) {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
       this.user = user;
      // console.log(this.user.name);
-    });
-      this.callername = this.user.name;
-     // alert(this.callername);
+     this.callername = this.user.name;
+      alert(this.callername);
 
 
     this.socket.emit('sendroom' , this.room );
@@ -344,6 +358,8 @@ export class PatientComponent implements OnInit {
 
     this.connectcall();
 
+    });
+    }
   }
 
 
