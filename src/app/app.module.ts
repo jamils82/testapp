@@ -20,6 +20,28 @@ import {appRoutes} from './routes';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('934578814329-19d4oeplbm91nmnb9m2pmlhbmfqnpbb0.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('Facebook-App-Id')
+  },
+  {
+    id: LinkedInLoginProvider.PROVIDER_ID,
+    provider: new LinkedInLoginProvider('LinkedIn-client-Id', false, 'en_US')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +60,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-
+    SocialLoginModule,
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
@@ -49,6 +71,10 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     OpentokService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
  //   {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

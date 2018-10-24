@@ -6,6 +6,10 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { AuthService } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
+
 declare var OT: any;
 
 const publish = () => {
@@ -71,8 +75,10 @@ export class PatientComponent implements OnInit {
   pname: string;
   vid: boolean;
   myroom: string;
+  private user: SocialUser;
+  private loggedIn: boolean;
   // tslint:disable-next-line:max-line-length
-  constructor(private ref: ChangeDetectorRef,  public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
+  constructor(private ref: ChangeDetectorRef, private authService: AuthService, public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
    }
 
@@ -89,6 +95,10 @@ export class PatientComponent implements OnInit {
       browser.webkitGetUserMedia ||
       browser.mozGetUserMedia ||
       browser.msGetUserMedia);
+      this.authService.authState.subscribe((user) => {
+        this.user = user;
+        this.loggedIn = (user != null);
+      });
 
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
@@ -306,4 +316,19 @@ export class PatientComponent implements OnInit {
       }
     });
   }
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithLinkedIn(): void {
+    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
+  }
+  signOut(): void {
+    this.authService.signOut();
+  }
+
 }
