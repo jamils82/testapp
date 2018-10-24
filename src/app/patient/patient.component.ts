@@ -228,9 +228,12 @@ export class PatientComponent implements OnInit {
    }
    endcall() {
     this.session.disconnect();
+
     this.endsock();
     this.callername = '';
     this.favcaller = '' ;
+
+    this.socket.emit('add-user', this.callername );
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
@@ -316,11 +319,12 @@ export class PatientComponent implements OnInit {
   }
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(this.user.name);
+    });
     if (this.user) {
       this.callername = this.user.name;
-      alert(this.callername);
-    } else {
-
       alert(this.callername);
     }
 
