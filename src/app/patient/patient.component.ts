@@ -317,6 +317,7 @@ export class PatientComponent implements OnInit {
     });
   }
   signInWithGoogle(): void {
+    alert('hello');
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
