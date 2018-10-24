@@ -321,9 +321,18 @@ export class PatientComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      console.log(this.user.name);
+     // console.log(this.user.name);
     });
-    if (this.user) {
+
+
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+     // console.log(this.user.name);
+    });
       this.callername = this.user.name;
      // alert(this.callername);
 
@@ -334,13 +343,7 @@ export class PatientComponent implements OnInit {
     this.call = true;
 
     this.connectcall();
-    } else {
-      alert('wait');
-    }
-  }
 
-  signInWithFB(): void {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
 
