@@ -6,10 +6,13 @@ import {DoctorAComponent } from './doctor-a/doctor-a.component';
 import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 export const appRoutes: Routes = [
   {path: '', component: AppComponent},
   { path: 'doctora',  component: DoctoraComponent },
   { path: 'doctorwaiting',  component : DoctorAComponent },
+
+  { path: 'login',  component : LoginComponent },
   { path: 'doctorwaiting/:name',  component : DoctorAComponent },
   { path: 'doctorb', component: DoctorbComponent },
   { path : 'doctor/:name', component: DoctorComponent  },

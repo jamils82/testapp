@@ -16,8 +16,23 @@
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv(nameinput.value, phoneinput.value )" >Start Call</button>
     </div>
-    <div class="button-row" >
-    <button mat-raised-button color="primary" (click) ="signInWithGoogle()" >Login with Google</button>
+    <div *ngIf="!user" class="card text-center">
+        <div class="card-block">
+        <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+        <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+        </div>
+      </div>
+    <div *ngIf="user" class="card text-center">
+    
+      <div class="card-block"></div>
+      <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+      <div class="card-block">
+        <h4 class="card-title">{{ user.name }}</h4>
+        <p class="card-text">{{ user.email }}</p>
+      </div>
+      <div class="card-block">
+        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+      </div>
     </div>
 </div>
 <div *ngIf="call" >

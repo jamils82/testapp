@@ -6,9 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {  RouterModule, Routes, Router , ActivatedRoute } from '@angular/router';
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
-import { AuthService } from 'angularx-social-login';
+import { AuthService , SocialUser } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
 
 declare var OT: any;
 
@@ -28,6 +27,7 @@ export interface MyPatient {
 })
 export class PatientComponent implements OnInit {
   socket;
+  user: SocialUser;
   @HostListener('window:unload', ['$event'])
   @ViewChild('publisherDiv') publisherDiv: ElementRef;
   @Input() session: OT.Session;
@@ -75,8 +75,6 @@ export class PatientComponent implements OnInit {
   pname: string;
   vid: boolean;
   myroom: string;
-  private user: SocialUser;
-  private loggedIn: boolean;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private authService: AuthService, public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
     this.socket = io.connect('https://doctestapp.herokuapp.com');
@@ -97,9 +95,7 @@ export class PatientComponent implements OnInit {
       browser.msGetUserMedia);
       this.authService.authState.subscribe((user) => {
         this.user = user;
-        this.loggedIn = (user != null);
       });
-
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
       this.SESSION_ID = '1_MX40NjE5MjIyMn5-MTUzOTY4MTg0Mzc5N35NZDRqazJxTmZWRzB6dXVvbVlCVTlYbUt-fg';
@@ -317,7 +313,6 @@ export class PatientComponent implements OnInit {
     });
   }
   signInWithGoogle(): void {
-    alert('hello');
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
@@ -325,11 +320,10 @@ export class PatientComponent implements OnInit {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
-  signInWithLinkedIn(): void {
-    this.authService.signIn(LinkedInLoginProvider.PROVIDER_ID);
-  }
+
   signOut(): void {
     this.authService.signOut();
   }
+
 
 }
