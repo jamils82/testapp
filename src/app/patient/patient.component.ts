@@ -218,7 +218,15 @@ export class PatientComponent implements OnInit {
   }
 
   hidediv(name: string , phone: string  ) {
+
     this.callername = name;
+    if (this.callername === '') {
+      alert('Name Required');
+      return;
+    } else if ( this.callername.length < 4 ) {
+      alert('Name should be 4 characters');
+      return ;
+    }
     const myph = phone;
     this.socket.emit('sendroom' , this.room );
     this.socket.emit('add-user', this.callername );
