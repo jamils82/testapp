@@ -163,7 +163,7 @@ export class DoctorAComponent implements OnInit {
                     if (error) {
                         console.log(error);
                     } else {
-                    }
+                   }
                 }
             );
         }
@@ -203,6 +203,7 @@ export class DoctorAComponent implements OnInit {
       this.vid = false;
       this.session.disconnect();
       this.list = !this.list;
+      this.setfav('');
       this.end = false;
       this.wel = !this.wel;
       this.call = !this.call;

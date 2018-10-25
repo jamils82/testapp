@@ -28,6 +28,7 @@ export interface MyPatient {
 export class PatientComponent implements OnInit {
   socket;
   user: SocialUser;
+  private loggedIn: boolean;
   @HostListener('window:unload', ['$event'])
   @ViewChild('publisherDiv') publisherDiv: ElementRef;
   @Input() session: OT.Session;
@@ -95,7 +96,7 @@ export class PatientComponent implements OnInit {
       browser.msGetUserMedia);
       this.authService.authState.subscribe((user) => {
         this.user = user;
-        console.log(this.user.name);
+  //      this.loggedIn = (user != null);
       });
    // browser.mediaDevices.getUserMedia({ video: true, audio: true });
      if (this.room  === 'DoctorA' ) {
@@ -319,8 +320,8 @@ export class PatientComponent implements OnInit {
   }
   signInWithGoogle(): void {
 
-    if (!this.user) {
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then ( () => {
       this.authService.authState.subscribe((user) => {
       this.user = user;
      alert(this.user);
@@ -336,30 +337,24 @@ export class PatientComponent implements OnInit {
    this.connectcall();
 
     });
-  }
-
+  });
   }
 
   signInWithFB(): void {
-
-    if (!this.user) {
-    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then ( () => {
     this.authService.authState.subscribe((user) => {
       this.user = user;
-     // console.log(this.user.name);
-     this.callername = this.user.name;
-      alert(this.callername);
-
-
-    this.socket.emit('sendroom' , this.room );
+      this.callername = this.user.name;
+      this.socket.emit('sendroom' , this.room );
     this.socket.emit('add-user', this.callername );
-    this.wel = !this.wel;
+    this.wel = false;
     this.call = true;
 
     this.connectcall();
-
     });
-    }
+     // console.log(this.user.name);
+  });
+
   }
 
 

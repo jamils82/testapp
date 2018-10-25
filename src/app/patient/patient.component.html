@@ -16,13 +16,13 @@
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv(nameinput.value, phoneinput.value )" >Start Call</button>
     </div>
-    <div *ngIf="!user" class="card text-center">
+    <div  class="card text-center">
         <div class="card-block">
         <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
         <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
         </div>
       </div>
-    <div *ngIf="user" class="card text-center">
+  <!--  <div *ngIf="user" class="card text-center">
    
       <div class="card-block"></div>
       <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
@@ -34,11 +34,14 @@
         <button class="btn btn-danger" (click)="signOut()">Sign out</button>
       </div>
     </div>
+-->
 </div>
 <div *ngIf="call" >
   
 <div class="activelist" >
-  <h4 style="color : white " >Welcome {{callername}}</h4>
+  <h4 style="color : white " >Welcome {{callername}}</h4> <div class="card-block">
+        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+      </div>
   <div style="border : 1px solid white "  ></div>  
 </div>
   <div id="videos"  >
