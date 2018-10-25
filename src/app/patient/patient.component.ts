@@ -324,9 +324,9 @@ export class PatientComponent implements OnInit {
       this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then ( () => {
       this.authService.authState.subscribe((user) => {
       this.user = user;
-     alert(this.user);
+    // alert(this.user);
      this.callername = this.user.name;
-     alert(this.callername);
+    // alert(this.callername);
 
 
    this.socket.emit('sendroom' , this.room );
@@ -360,6 +360,15 @@ export class PatientComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+    this.endsock();
+    this.callername = '';
+    this.favcaller = '' ;
+
+    this.socket.emit('add-user', this.callername );
+    this.end = false;
+    this.wel = !this.wel;
+    this.call = !this.call;
+    this.route.navigate(['/doctor/' + this.room ]);
   }
 
 
