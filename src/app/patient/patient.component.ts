@@ -359,7 +359,8 @@ export class PatientComponent implements OnInit {
 
 
   signOut(): void {
-    this.authService.signOut();
+    this.authService.signOut().then( () => {
+
     this.endsock();
     this.callername = '';
     this.favcaller = '' ;
@@ -369,6 +370,7 @@ export class PatientComponent implements OnInit {
     this.wel = !this.wel;
     this.call = !this.call;
     this.route.navigate(['/doctor/' + this.room ]);
+  });
   }
 
 
