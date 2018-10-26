@@ -142,9 +142,9 @@ export class DoctorAComponent implements OnInit {
   //  alert(this.favcaller);
     this.wel = !this.wel;
     this.vid = true;
-    this.list = !this.list;
     this.enter = false;
     this.call = true;
+    this.callbut = false;
     this.end = true;
     this.session = OT.initSession(this.API_KEY, this.SESSION_ID);
       this.session.on('streamCreated', (event: any) => {
@@ -202,11 +202,11 @@ export class DoctorAComponent implements OnInit {
     endCall() {
       this.vid = false;
       this.session.disconnect();
-      this.list = !this.list;
       this.setfav('');
       this.end = false;
       this.wel = !this.wel;
       this.call = !this.call;
+      this.callbut = true;
     }
     sendroom(room: string ) {
       this.room = room;

@@ -75,6 +75,7 @@ export class PatientComponent implements OnInit {
   connectionstream: any;
   pname: string;
   vid: boolean;
+  note = false;
   myroom: string;
   // tslint:disable-next-line:max-line-length
   constructor(private ref: ChangeDetectorRef, private authService: AuthService, public activatedRoute: ActivatedRoute,  private http: HttpClient, private opentokService: OpentokService, private route: Router ) {
@@ -227,6 +228,7 @@ export class PatientComponent implements OnInit {
       alert('Name should be 4 characters');
       return ;
     }
+    this.note = true;
     const myph = phone;
     this.socket.emit('sendroom' , this.room );
     this.socket.emit('add-user', this.callername );
@@ -246,6 +248,7 @@ export class PatientComponent implements OnInit {
     this.end = false;
     this.wel = !this.wel;
     this.call = !this.call;
+    this.note = false;
     this.route.navigate(['/doctor/' + this.room ]);
    }
    connectcall() {
@@ -341,7 +344,7 @@ export class PatientComponent implements OnInit {
    this.socket.emit('add-user', this.callername );
    this.wel = !this.wel;
    this.call = true;
-
+   this.note = true;
    this.connectcall();
 
     });
@@ -357,7 +360,7 @@ export class PatientComponent implements OnInit {
     this.socket.emit('add-user', this.callername );
     this.wel = false;
     this.call = true;
-
+    this.note = true;
     this.connectcall();
     });
      // console.log(this.user.name);

@@ -5,14 +5,15 @@
   <div style=" border: 1px solid white " >
 
   </div>
-  
+  <h6 style="color : white " >Active Patients</h6>
+  <div style=" border: 0.5px solid white " >
+
+    </div>
   <mat-list *ngIf="list">
     <mat-list-item *ngFor="let caller of onlinecallers; let i = index">
      <h2 matLine style="color :white; font-size : 18px; " > {{caller}} </h2>
      <button matLine  (click)="startCall(i)" class="callbut" *ngIf="callbut" mat-raised-button >Call </button>
-     <div style="border : 0.5px solid white " > 
-
-      </div>
+     
      </mat-list-item>
      
   </mat-list>
