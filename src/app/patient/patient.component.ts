@@ -371,7 +371,9 @@ export class PatientComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut().then( () => {
-    this.session.disconnect();
+    if (this.session) {
+      this.session.disconnect();
+    }
     this.endsock();
     this.callername = '';
     this.favcaller = '' ;
