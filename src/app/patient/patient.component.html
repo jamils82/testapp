@@ -1,8 +1,8 @@
 
-   
+  
   <div *ngIf="wel" class="maindiv" >
     <h1>Welcome</h1>
-  <!-- <form class="example-form">
+  <form class="example-form">
     <div class="example-full-width" >
       <label >Name *</label>
       <br>
@@ -12,10 +12,10 @@
       <br>
       <input required  #phoneinput >
     </div>
-  </form> 
+  </form>  
   <div class="button-row" >
     <button mat-raised-button color="primary" (click) ="hidediv(nameinput.value, phoneinput.value )" >Start Call</button>
-    </div>-->
+    </div>
     <div  class="card text-center">
       <p>Login Using Social Accounts</p>
         <div class="card-block">
@@ -46,12 +46,10 @@
   <div style="border : 1px solid white "  ></div>  
 </div>
   <div id="videos"  >
-    <div *ngIf="note" >
-      <p style="text-align: center ">
+    <p *ngIf="note" style="text-align: center ">
         Welcome to {{room}} Waiting Room
       </p>
-    </div>
-  <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End</button>
+    <button class="endbut" mat-raised-button *ngIf="end" color="warn" (click)="endcall()" >End</button>
     <div id="subscriber"  ></div>
     <div id="publisher"></div>
   </div>

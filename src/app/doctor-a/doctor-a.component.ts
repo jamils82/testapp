@@ -202,7 +202,7 @@ export class DoctorAComponent implements OnInit {
     endCall() {
       this.vid = false;
       this.session.disconnect();
-      this.setfav('');
+      this.setfav('00000');
       this.end = false;
       this.wel = !this.wel;
       this.call = !this.call;
