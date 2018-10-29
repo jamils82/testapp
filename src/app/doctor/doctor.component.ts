@@ -32,10 +32,10 @@ export class DoctorComponent implements OnInit {
     });
   }
   doctor() {
-    this.route.navigate(['/doctorwaiting', this.userId ]);
+    this.route.navigate(['/doctorwaiting', this.userId ], {skipLocationChange: true});
   }
   patient() {
-    this.route.navigate(['/video', this.userId]);
+    this.route.navigate(['/video', this.userId], {skipLocationChange: true});
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { RouterModule, Routes, ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService , SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
 import * as io from 'socket.io-client';
 declare var OT: any;
 @Component({
@@ -18,6 +20,7 @@ export class DoctorAComponent implements OnInit {
   public href: string;
   subscriber: any;
   vid = false;
+  waiting = false;
   cameraSource = 0;
   devices: any[];
   streams: Array<OT.Stream> = [];
@@ -49,7 +52,10 @@ export class DoctorAComponent implements OnInit {
      userId: any;
   room: any;
   Username: string;
-  constructor( private http: HttpClient , private route: Router , private activatedRoute: ActivatedRoute) { }
+  callername: any;
+  user: SocialUser;
+  // tslint:disable-next-line:max-line-length
+  constructor( private http: HttpClient , private authService: AuthService, private route: Router , private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     const browser = <any>navigator;
@@ -237,4 +243,56 @@ export class DoctorAComponent implements OnInit {
 
       });
     }
+
+  signInWithGoogle(): void {
+
+
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then ( () => {
+    this.authService.authState.subscribe((user) => {
+    this.user = user;
+  // alert(this.user);
+   this.callername = this.user.name;
+  // alert(this.callername);
+
+
+ this.socket.emit('sendroom' , this.room );
+ this.socket.emit('add-user', this.callername );
+ this.wel = !this.wel;
+ this.call = true;
+
+  });
+});
+}
+
+signInWithFB(): void {
+  this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then ( () => {
+  this.authService.authState.subscribe((user) => {
+    this.user = user;
+    this.callername = this.user.name;
+    this.socket.emit('sendroom' , this.room );
+  this.socket.emit('add-user', this.callername );
+  this.wel = false;
+  this.call = true;
+  });
+   // console.log(this.user.name);
+});
+
+}
+
+
+signOut(): void {
+  this.authService.signOut().then( () => {
+  if (this.session) {
+    this.session.disconnect();
+  }
+  this.callername = '';
+  this.favcaller = '' ;
+
+  this.socket.emit('add-user', this.callername );
+  this.end = false;
+  this.wel = !this.wel;
+  this.call = !this.call;
+  this.route.navigate(['/doctor/' + this.room ]);
+});
+}
 }
