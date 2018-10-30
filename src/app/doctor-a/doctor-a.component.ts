@@ -260,6 +260,7 @@ export class DoctorAComponent implements OnInit {
  this.socket.emit('add-user', '' );
  this.wel = !this.wel;
  this.call = true;
+ this.myuser = true;
 
   });
 });
@@ -274,6 +275,7 @@ signInWithFB(): void {
   this.socket.emit('add-user', this.callername );
   this.wel = false;
   this.call = true;
+  this.myuser = true;
   });
    // console.log(this.user.name);
 });
