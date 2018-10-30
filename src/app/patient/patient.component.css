@@ -106,3 +106,19 @@ img {
     h4 {
       text-align: center;
     }
+    footer {
+      position: absolute;
+      background: red;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 8%;
+      line-height: 20px;
+    }
+    .message {
+      width: 93%;
+      height: 95%;
+    }
+    .pt-4 {
+      padding-top: 0 !important;
+  }
