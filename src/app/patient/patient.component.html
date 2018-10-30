@@ -23,20 +23,26 @@
         <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
         </div>
       </div>
-  <!--  <div *ngIf="user" class="card text-center">
-   
-      <div class="card-block"></div>
-      <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+ 
+</div>
+
+<div *ngIf="myuser" >
+    <div *ngIf="user" class="card text-center">
+     
       <div class="card-block">
-        <h4 class="card-title">{{ user.name }}</h4>
+        <h2>Profile</h2>
+      </div>
+      <img class=" img-responsive photo" src="{{ user.photoUrl }}">
+      <div class="card-block">
+        <h4 style="color : black" class="card-title">{{ user.name }}</h4>
         <p class="card-text">{{ user.email }}</p>
       </div>
       <div class="card-block">
-        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+        <button class="btn btn-primary" (click)="signOut()">Sign out</button>
+        <button style="margin-left : 1% " class="btn btn-danger" (click)="WaitingRoom()">Call Now</button>
       </div>
     </div>
--->
-</div>
+    </div>
 <div *ngIf="call" >
 
 <div class="activelist" >

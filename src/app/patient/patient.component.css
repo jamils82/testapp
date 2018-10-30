@@ -13,6 +13,12 @@
   z-index: 100;
   border-radius: 3px;
 }
+
+img {
+  width: 22%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
 #subscriber {
   width: 90% !important;
   height: 90vh !important;

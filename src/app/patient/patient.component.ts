@@ -56,6 +56,7 @@ export class PatientComponent implements OnInit {
     width: '100%',
     height: '100%'
 };
+  myuser = false;
   subscriber: any;
   doctorconnected: any;
   onlineusers = [];
@@ -343,7 +344,7 @@ export class PatientComponent implements OnInit {
    this.socket.emit('sendroom' , this.room );
    this.socket.emit('add-user', this.callername );
    this.wel = !this.wel;
-   this.call = true;
+   this.myuser = true;
    this.note = true;
    this.connectcall();
 
@@ -359,7 +360,7 @@ export class PatientComponent implements OnInit {
       this.socket.emit('sendroom' , this.room );
     this.socket.emit('add-user', this.callername );
     this.wel = false;
-    this.call = true;
+    this.myuser = true;
     this.note = true;
     this.connectcall();
     });
@@ -385,6 +386,8 @@ export class PatientComponent implements OnInit {
     this.route.navigate(['/doctor/' + this.room ]);
   });
   }
-
+  WaitingRoom() {
+    this.call = true;
+  }
 
 }
