@@ -93,7 +93,6 @@ img {
       text-align: center;
       font-size: 12px;
       border-radius: 10px;
-      width: 40%;
       
      }
      .mat-input-infix mat-form-field-infix{
@@ -116,12 +115,12 @@ img {
       line-height: 20px;
     }
     .message {
-      width: 93%;
+      width: 90%;
       height: 95%;
     }
     .pt-4 {
       padding-top: 0 !important;
   }
   .btn-primary {
-    width: 5%;
+    width: 10%;
   }
