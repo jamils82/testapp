@@ -388,6 +388,7 @@ export class PatientComponent implements OnInit {
   }
   WaitingRoom() {
     this.call = true;
+    this.myuser = false;
   }
 
 }
