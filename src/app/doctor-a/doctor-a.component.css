@@ -57,6 +57,11 @@ p {
   display: inline-block;
   border-radius: 3px;
 }
+img {
+  width: 15%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
 matline {
   display: inline-block;
 }
