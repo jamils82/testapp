@@ -122,3 +122,6 @@ img {
     .pt-4 {
       padding-top: 0 !important;
   }
+  .btn-primary {
+    width: 5%;
+  }
