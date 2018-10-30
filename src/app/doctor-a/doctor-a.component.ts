@@ -25,6 +25,7 @@ export class DoctorAComponent implements OnInit {
   devices: any[];
   streams: Array<OT.Stream> = [];
   API_KEY = '46192222';
+  myuser = false;
   SESSION_ID = '2_MX40NjE5MjIyMn5-MTUzNzY3ODk5MDc1N35pazVZWkVJeHlBc1ZBTE4xR2huUWFwbFp-fg';
   // tslint:disable-next-line:max-line-length
   // tslint:disable-next-line:max-line-length
@@ -295,4 +296,10 @@ signOut(): void {
   this.route.navigate(['/doctor/' + this.room ]);
 });
 }
+
+  WaitingRoom() {
+    this.myuser = false;
+    this.waiting = true;
+    this.wel = false;
+  }
 }
