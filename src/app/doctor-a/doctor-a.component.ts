@@ -256,7 +256,7 @@ export class DoctorAComponent implements OnInit {
 
 
  this.socket.emit('sendroom' , this.room );
- this.socket.emit('add-user', this.callername );
+ this.socket.emit('add-user', '' );
  this.wel = !this.wel;
  this.call = true;
 
