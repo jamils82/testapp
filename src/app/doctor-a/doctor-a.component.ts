@@ -147,7 +147,6 @@ export class DoctorAComponent implements OnInit {
     this.setroom();
     this.setfav(this.favcaller);
   //  alert(this.favcaller);
-    this.wel = !this.wel;
     this.vid = true;
     this.enter = false;
     this.call = true;
@@ -300,8 +299,9 @@ signOut(): void {
 }
 
   WaitingRoom() {
+
+    this.wel = false;
     this.myuser = false;
     this.waiting = true;
-    this.wel = false;
   }
 }
