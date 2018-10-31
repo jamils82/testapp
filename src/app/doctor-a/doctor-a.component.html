@@ -65,7 +65,7 @@
       Msg2
     </p>
   </div>
-  <input class="message" > 
-  <button class="btn btn-primary" (click)="SendMessage()">Send</button>
+  <input class="message" #message > 
+  <button class="btn btn-primary" (click)="SendMessage( message.value )">Send</button>
 </footer>
 <router-outlet></router-outlet>

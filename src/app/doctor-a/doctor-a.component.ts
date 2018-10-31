@@ -97,9 +97,9 @@ export class DoctorAComponent implements OnInit {
      }
     this.sendroom(this.room);
     this.senduser('');
-    this.sendMessage('');
+    this.getlist('');
      setInterval( () => {
-       this.sendMessage('');
+       this.getlist('');
      } , 1000 );
     this.postconnect();
 
@@ -229,7 +229,7 @@ export class DoctorAComponent implements OnInit {
      });
 
     }
-    sendMessage(  mymsg: string ) {
+    getlist(  mymsg: string ) {
      /* this.socket.on('user joined' , function(userName , numUsers) {
         console.log(userName);
         console.log(numUsers);
@@ -282,6 +282,9 @@ signInWithFB(): void {
 
 }
 
+  SendMessage() {
+    alert('called');
+  }
 
 signOut(): void {
   this.authService.signOut().then( () => {
