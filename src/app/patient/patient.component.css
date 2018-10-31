@@ -111,16 +111,17 @@ img {
       bottom: 0;
       width: 100%;
       /* Set the fixed height of the footer here */
-      height: 8%;
+      height: 18%;
       line-height: 20px;
     }
     .message {
       width: 90%;
-      height: 95%;
+      height: 32%;
+      border-radius: 10px;
     }
     .pt-4 {
       padding-top: 0 !important;
-  }
+    }
   .btn-primary {
     width: 10%;
   }

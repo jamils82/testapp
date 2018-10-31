@@ -38,9 +38,6 @@
   width: 15%;
   color: white;
 }
-p {
-    font-size: 20px;
-  }
 .endbut {
   width: 15vh;
   background: #f44336;
@@ -117,4 +114,25 @@ h1 {
   h4 {
     color: white;
     text-align: center;
-  }
+ }
+ 
+ footer {
+  position: absolute;
+  background: transparent;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 20%;
+  line-height: 20px;
+}
+.message {
+  width: 90%;
+  height: 32%;
+  border-radius: 10px;
+}
+.pt-4 {
+  padding-top: 0 !important;
+}
+.btn-primary {
+width: 10%;
+}

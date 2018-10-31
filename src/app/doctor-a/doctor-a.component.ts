@@ -46,6 +46,7 @@ export class DoctorAComponent implements OnInit {
     enter = true;
     end = false;
     call = false;
+    foot = false;
     callbut = true;
     onlinecallers: any = [];
     vidFeedsDiv: any;
@@ -299,7 +300,7 @@ signOut(): void {
 }
 
   WaitingRoom() {
-
+    this.foot = true;
     this.wel = false;
     this.myuser = false;
     this.waiting = true;

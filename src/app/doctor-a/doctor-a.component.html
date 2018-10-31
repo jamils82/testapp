@@ -1,7 +1,7 @@
 <div *ngIf="wel" class="maindiv" >
   <h1>Welcome</h1>
    <div  class="card text-center">
-    <p>Login Using Social Accounts</p>
+    <p style="font-size :20px ">Login Using Social Accounts</p>
       <div class="card-block">
       <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
       <button class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
@@ -54,4 +54,18 @@
   <div id="publisher"></div>
 </div>
 </div>
+
+
+<footer *ngIf="foot" class="page-footer font-small blue pt-4">
+  <div class="messagecon" >
+    <p>
+      Msg1
+    </p>
+    <p>
+      Msg2
+    </p>
+  </div>
+  <input class="message" > 
+  <button class="btn btn-primary" (click)="SendMessage()">Send</button>
+</footer>
 <router-outlet></router-outlet>
