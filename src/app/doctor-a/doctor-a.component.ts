@@ -283,7 +283,16 @@ signInWithFB(): void {
 }
 
   SendMessage( message: string ) {
-    alert(message);
+    const msg = message;
+      if ( msg) {
+         this.socket.emit('msg', {message: msg, user: this.room});
+      }
+   this.socket.on('newmsg', function(data) {
+      if (this.user) {
+         document.getElementById('message-container').innerHTML += '<div><b>' +
+            data.user + '</b>: ' + data.message + '</div>';
+      }
+    } );
   }
 
 signOut(): void {

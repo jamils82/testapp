@@ -208,7 +208,13 @@ socket.on('disconnect', function(data){
   io.to(room).emit('remove-user', {username: username});
 });
 });
-
+socket.on('msg', (data) => {
+  // we tell the client to execute 'new message'
+  socket.broadcast.emit('newmsg', {
+    username: socket.username,
+    message: data
+  });
+});
 app.get('*', function(req,res) {
      
   res.sendFile(path.join(__dirname+'/dist/testapp/'));
