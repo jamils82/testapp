@@ -282,8 +282,8 @@ signInWithFB(): void {
 
 }
 
-  SendMessage() {
-    alert('called');
+  SendMessage( message: string ) {
+    alert(message);
   }
 
 signOut(): void {
